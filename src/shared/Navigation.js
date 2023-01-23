@@ -6,19 +6,21 @@ const Navigation = () => {
   const [collaps, setCollaps] = useState(false);
   return (
     <nav className="relative">
-      <div className="bg-[#FBF8F5] container mx-auto py-3 flex justify-end">
-        <ul className="flex gap-10">
-          <li>
-            <Link to="/" className="">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className="">
-              Sign up
-            </Link>
-          </li>
-        </ul>
+      <div className="bg-[#FBF8F5] py-3">
+        <div className="container mx-auto flex justify-end">
+          <ul className="flex gap-10">
+            <li>
+              <Link to="/" className="">
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link to="/" className="">
+                Sign up
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
       <div className="py-5 bg-[#FFF79E]">
         <div className="container mx-auto flex justify-between items-center">

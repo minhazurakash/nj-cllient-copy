@@ -1,16 +1,14 @@
 import React from "react";
-import Hero from "./components/Hero";
-import Navigation from "./components/Navigation";
-import ProjectsGallary from "./components/ProjectsGallary";
-import WhoWeAreSection from "./components/WhoWeAreSection";
+import Navigation from "./shared/Navigation";
+import HomePage from "./pages/HomePage";
+import Footer from "./shared/Footer";
 
 const App = () => {
   return (
     <>
       <Navigation />
-      <Hero />
-      <ProjectsGallary />
-      <WhoWeAreSection />
+      <HomePage />
+      <Footer />
     </>
   );
 };
