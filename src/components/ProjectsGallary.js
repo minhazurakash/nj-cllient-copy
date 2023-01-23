@@ -25,14 +25,40 @@ const ProjectsGallary = () => {
   console.log(Projects);
   return (
     <>
-      <div className="Projects_slider">
+      <div id="projectSection" className="Projects_gallary bg-[#fffbe0] py-10">
+        <div className="text-center mb-14">
+          <h1 className="text-3xl uppercase">Our Latest Projects</h1>
+        </div>
         <Swiper
-          slidesPerView={3}
+          slidesPerView={2.5}
           spaceBetween={30}
           height={250}
           slidesPerGroup={1}
           effect={"slide"}
           loop={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            480: {
+              slidesPerView: 1.2,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 2.5,
+              spaceBetween: 10,
+            },
+            992: {
+              slidesPerView: 2.6,
+              spaceBetween: 30,
+            },
+          }}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           navigation={true}
           pagination={{
             clickable: true,

@@ -19,6 +19,10 @@ code {
 #heroSection .swiper-wrapper {
   height: 300px !important;
 }
+
+#projectSection .swiper-wrapper {
+  height: 600px !important;
+}
 .swiper-button-next,
 .swiper-button-prev {
   background-color: #fff79e;
