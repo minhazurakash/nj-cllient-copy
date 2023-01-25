@@ -1,31 +1,56 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
+import auth from "../firebase.init";
 
 const Navigation = () => {
   const [collaps, setCollaps] = useState(false);
+  const [user, loading, error] = useAuthState(auth);
+
+  const handleSignOut = () => {
+    signOut(auth);
+  };
+
   return (
     <nav className="relative">
       <div className="bg-[#FBF8F5] py-3">
         <div className="container mx-auto flex justify-end">
-          <ul className="flex gap-10">
-            <li>
-              <Link to="/" className="">
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link to="/" className="">
-                Sign up
-              </Link>
-            </li>
+          <ul className="flex items-center gap-10">
+            {user?.email ? (
+              <>
+                <li>Hey {user?.displayName || "User"}!</li>
+                <li>
+                  <button
+                    onClick={handleSignOut}
+                    className="border border-orange-300 py-2 px-4"
+                  >
+                    Sign Out
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login" className="">
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="">
+                    Sign up
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
       <div className="py-5 bg-[#FFF79E]">
         <div className="container mx-auto flex justify-between items-center">
           <div className="w-60">
-            <Link>
+            <Link to="/">
               <img
                 src="https://restored316.wpenginepowered.com/wp-content/uploads/2020/09/R316_horizontal.png"
                 alt="Logo"
