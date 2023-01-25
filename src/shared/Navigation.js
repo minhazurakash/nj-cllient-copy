@@ -12,6 +12,7 @@ const Navigation = () => {
   const handleSignOut = () => {
     signOut(auth);
   };
+  console.log(user);
 
   return (
     <nav className="relative">
@@ -38,7 +39,7 @@ const Navigation = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/" className="">
+                  <Link to="/sign-up" className="">
                     Sign up
                   </Link>
                 </li>

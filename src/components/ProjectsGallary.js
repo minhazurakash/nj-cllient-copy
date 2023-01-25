@@ -22,7 +22,6 @@ const ProjectsGallary = () => {
     queryKey: ["Projects"],
     queryFn: getProjects,
   });
-  console.log(Projects);
   return (
     <>
       <div id="projectSection" className="Projects_gallary bg-[#fffbe0] py-10">

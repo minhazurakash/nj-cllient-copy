@@ -16,7 +16,7 @@ const LoginPage = () => {
     const password = e.target.password.value;
     signInWithEmailAndPassword(email, password);
   };
-  if ((loading, loadingEmail)) {
+  if (loading || loadingEmail) {
     return <LoadingOverlay />;
   }
   if (user) {

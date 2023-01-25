@@ -1,10 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  useAuthState,
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
+import LoadingOverlay from "../shared/LoadingOverlay";
 
 const SignUpPage = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const navigate = useNavigate();
+  const [user, loading] = useAuthState(auth);
+  const [createUserWithEmailAndPassword, passUser, passLoading, PassError] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile] = useUpdateProfile(auth);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    // create user
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: name });
   };
+  if (loading || passLoading) {
+    return <LoadingOverlay />;
+  }
+  if (user?.email) {
+    navigate("/");
+  }
   return (
     <div className="container mx-auto">
       <div className="mt-20 mb-10">
@@ -16,6 +41,7 @@ const SignUpPage = () => {
             <div className="mb-10">
               <label className="">User Name *</label>
               <input
+                name="name"
                 type="text"
                 className="w-full h-14 pl-5 border-2 border-slate-300 mt-3"
               />
@@ -23,6 +49,7 @@ const SignUpPage = () => {
             <div className="mb-10">
               <label className="">Email Address *</label>
               <input
+                name="email"
                 type="email"
                 className="w-full h-14 pl-5 border-2 border-slate-300 mt-3"
               />
@@ -30,6 +57,7 @@ const SignUpPage = () => {
             <div>
               <label>Password *</label>
               <input
+                name="password"
                 type="password"
                 className="w-full h-14 pl-5 border-2 border-slate-300 mt-3"
               />
