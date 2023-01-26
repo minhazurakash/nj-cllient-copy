@@ -88,7 +88,10 @@ const Dashboard = () => {
           />
         </Sider>
         <Layout className="site-layout">
-          <Header style={{ padding: 0, background: colorBgContainer }}>
+          <Header
+            className="flex justify-between items-center"
+            style={{ padding: 20, background: colorBgContainer }}
+          >
             {React.createElement(
               collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
               {
@@ -96,6 +99,23 @@ const Dashboard = () => {
                 onClick: () => setCollapsed(!collapsed),
               }
             )}
+            <div>
+              <ul className="flex gap-5">
+                <li>Hey {user?.displayName || "User"}!</li>
+                <li className="inline-block">
+                  <Link to="/dashboard">
+                    <button>Dashboard</button>
+                  </Link>
+                </li>
+                <li className="inline-block">
+                  <button
+                  // onClick={handleSignOut}
+                  >
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            </div>
           </Header>
           <Content
             style={{
