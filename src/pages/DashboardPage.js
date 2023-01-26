@@ -4,6 +4,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "@tanstack/react-query";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
+import { signOut } from "firebase/auth";
+
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -34,6 +36,9 @@ const Dashboard = () => {
 
   const visitor = databaseUser?.data?.find((u) => u.email === user.email);
   const isAdmin = visitor?.role;
+  const handleSignOut = () => {
+    signOut(auth);
+  };
   return (
     <>
       <Layout>
@@ -103,14 +108,7 @@ const Dashboard = () => {
               <ul className="flex gap-5">
                 <li>Hey {user?.displayName || "User"}!</li>
                 <li className="inline-block">
-                  <Link to="/dashboard">
-                    <button>Dashboard</button>
-                  </Link>
-                </li>
-                <li className="inline-block">
-                  <button
-                  // onClick={handleSignOut}
-                  >
+                  <button className="text-red-500" onClick={handleSignOut}>
                     Sign Out
                   </button>
                 </li>

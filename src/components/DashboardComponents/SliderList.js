@@ -79,15 +79,10 @@ const SliderList = () => {
         columns={columns}
         expandable={{
           expandedRowRender: (record) => (
-            <p
-              style={{
-                margin: 0,
-              }}
-            >
-              {record.description}
-            </p>
+            <div className="w-36">
+              <img src={record?.img} alt="" />
+            </div>
           ),
-          //   rowExpandable: (record) => record.name !== "Not Expandable",
         }}
         dataSource={data}
       />
