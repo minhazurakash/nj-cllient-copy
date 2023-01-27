@@ -12,6 +12,8 @@ import ProjectList from "./components/DashboardComponents/ProjectList";
 import InstagramList from "./components/DashboardComponents/InstagramList";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "./firebase.init";
+import CreateProject from "./components/DashboardComponents/CreateProject";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const { user } = useAuthState(auth);
@@ -33,12 +35,14 @@ const App = () => {
           <Route index element={<h1>Hello User !</h1>}></Route>
           <Route path="profile" element={<h1>Hello User !</h1>}></Route>
           <Route path="slider" element={<SliderList />}></Route>
+          <Route path="create-project" element={<CreateProject />}></Route>
           <Route path="project" element={<ProjectList />}></Route>
           <Route path="instagram" element={<InstagramList />}></Route>
           <Route path="*" element={<h1>Not Found</h1>}></Route>
         </Route>
       </Routes>
       <Footer />
+      <ToastContainer />
     </>
   );
 };
