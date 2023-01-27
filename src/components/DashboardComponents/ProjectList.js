@@ -18,6 +18,7 @@ const ProjectList = () => {
   const [addBtnActive, setAddBtnActive] = useState(false);
 
   const [Projects, isLoading, refetch] = useProject();
+  console.log(Projects);
 
   const deleteProject = (id) => {
     setLoad(true);

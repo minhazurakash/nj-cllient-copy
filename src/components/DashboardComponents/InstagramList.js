@@ -6,6 +6,8 @@ import LoadingOverlay from "../../shared/LoadingOverlay";
 import { Table } from "antd";
 import { Link } from "react-router-dom";
 import LoadingComponent from "../../shared/LoadingComponent";
+import { useInstagram } from "../../Hooks/useInstagram";
+import HeaderDashBoard from "./HeaderDashBoard";
 
 const InstagramList = () => {
   const [image, setImage] = useState(null);
@@ -15,51 +17,47 @@ const InstagramList = () => {
   const imageInputRef = useRef();
   const [addBtnActive, setAddBtnActive] = useState(false);
 
-  const getInstagram = async () => {
-    const { data } = await axios.get("http://localhost:5000/api/v1/instagram");
-    return data;
+  const [Instagram, isLoading, refetch] = useInstagram();
+
+  const deleteInsta = (id) => {
+    setLoad(true);
+
+    fetch(`http://localhost:5000/api/v1/instagram/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          setLoad(false);
+          refetch();
+          toast("instagram deleted successfully");
+        }
+      });
   };
-  const { data: Instagram, isLoading } = useQuery({
-    queryKey: ["Instagram"],
-    queryFn: getInstagram,
-  });
-  console.log(Instagram?.data);
-
-  //   const deleteBlog = (id) => {
-  //     setLoad(true);
-
-  //     fetch(`http://localhost:5000/api/v1/slider/${id}`, {
-  //       method: "DELETE",
-  //     })
-  //       .then((res) => res.json())
-  //       .then((result) => {
-  //         if (result.success) {
-  //           setLoad(false);
-  //           toast("slider deleted successfully");
-  //         }
-  //       });
-  //   };
 
   //   antd resource
   const columns = [
     {
       title: "Title",
-      dataIndex: "postTitle",
+      dataIndex: "title",
       key: "_id",
     },
 
     {
       title: "Action",
-      dataIndex: "",
+      dataIndex: "_id",
       key: "x",
-      render: () => {
+      render: (_id) => {
         return (
           <>
             <div className="flex gap-5">
               <Link className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500">
                 Update
               </Link>
-              <button className="w-20 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500">
+              <button
+                onClick={() => deleteInsta(_id)}
+                className="w-20 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500"
+              >
                 Delete
               </button>
             </div>
@@ -70,11 +68,13 @@ const InstagramList = () => {
   ];
   const data = Instagram?.data;
 
-  if (load || isLoading) {
+  if (isLoading) {
     return <LoadingComponent />;
   }
   return (
     <div>
+      <HeaderDashBoard title="Instagram" src="/dashboard/create-instagram" />
+
       <Table
         columns={columns}
         expandable={{

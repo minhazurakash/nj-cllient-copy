@@ -14,6 +14,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "./firebase.init";
 import CreateProject from "./components/DashboardComponents/CreateProject";
 import { ToastContainer } from "react-toastify";
+import CreateSlider from "./components/DashboardComponents/CreateSlider";
+import PackageList from "./components/DashboardComponents/PackageList";
+import CreatePackage from "./components/DashboardComponents/CreatePackage";
+import CreateInstagram from "./components/DashboardComponents/CreateInstagram";
 
 const App = () => {
   const { user } = useAuthState(auth);
@@ -34,10 +38,14 @@ const App = () => {
         >
           <Route index element={<h1>Hello User !</h1>}></Route>
           <Route path="profile" element={<h1>Hello User !</h1>}></Route>
+          <Route path="create-slider" element={<CreateSlider />}></Route>
           <Route path="slider" element={<SliderList />}></Route>
           <Route path="create-project" element={<CreateProject />}></Route>
           <Route path="project" element={<ProjectList />}></Route>
           <Route path="instagram" element={<InstagramList />}></Route>
+          <Route path="create-instagram" element={<CreateInstagram />}></Route>
+          <Route path="package" element={<PackageList />}></Route>
+          <Route path="create-package" element={<CreatePackage />}></Route>
           <Route path="*" element={<h1>Not Found</h1>}></Route>
         </Route>
       </Routes>

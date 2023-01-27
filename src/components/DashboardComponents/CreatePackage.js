@@ -5,8 +5,9 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useProject } from "../../Hooks/useProject";
 import { useNavigate } from "react-router-dom";
+import { usePackage } from "../../Hooks/usePackage";
 
-const CreateProject = (e) => {
+const CreatePackage = (e) => {
   const navigate = useNavigate();
   const editor = useRef(null);
   const [content, setContent] = useState("");
@@ -14,12 +15,13 @@ const CreateProject = (e) => {
   const [Load, setLoad] = useState(false);
 
   const queryClient = useQueryClient();
-  const [Projects, isLoading, refetch] = useProject();
+  const [Packages, isLoading, refetch] = usePackage();
 
   const postProject = (e) => {
     e.preventDefault();
     setLoad(true);
     const title = e.target.name.value;
+    const price = e.target.price.value;
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "NJ_images");
@@ -34,18 +36,18 @@ const CreateProject = (e) => {
       .then(async (data) => {
         if (data.asset_id) {
           const img = data.url;
-          const project = { title, img, content };
+          const packages = { name: title, img, price, content };
           const res = await axios.post(
-            "http://localhost:5000/api/v1/project",
-            project
+            "http://localhost:5000/api/v1/package",
+            packages
           );
           if (res) {
             setLoad(false);
             refetch();
             if (res.data.success) {
               e.target.reset();
-              navigate("/dashboard/project");
-              toast("project Post added Successfull");
+              navigate("/dashboard/package");
+              toast("package Post added Successfull");
             }
           }
         }
@@ -64,10 +66,17 @@ const CreateProject = (e) => {
             name="name"
             type="text"
             className="border w-full h-14 pl-5"
-            placeholder="Project Name"
+            placeholder="Package Name"
           />
         </div>
-
+        <div className="mb-5">
+          <input
+            name="price"
+            type="number"
+            className="border w-full h-14 pl-5"
+            placeholder="Package Price"
+          />
+        </div>
         <div className="mb-5">
           <input
             name="image"
@@ -92,7 +101,7 @@ const CreateProject = (e) => {
           <input
             type="submit"
             className="w-36 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500 cursor-pointer"
-            placeholder="Project Name"
+            placeholder="Service Name"
             value={`${Load ? "Loading" : "Submit"}`}
           />
         </div>
@@ -101,4 +110,4 @@ const CreateProject = (e) => {
   );
 };
 
-export default CreateProject;
+export default CreatePackage;

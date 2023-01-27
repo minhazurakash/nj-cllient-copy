@@ -2,26 +2,22 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
-import LoadingOverlay from "../../shared/LoadingOverlay";
 import { Table } from "antd";
 import { Link } from "react-router-dom";
 import LoadingComponent from "../../shared/LoadingComponent";
 import HeaderDashBoard from "./HeaderDashBoard";
-import { useSlider } from "../../Hooks/useSlider";
+import { usePackage } from "../../Hooks/usePackage";
 
-const SliderList = () => {
-  const [image, setImage] = useState(null);
-  const [sliderTitle, setSliderTitle] = useState("");
+const PackageList = () => {
   const [load, setLoad] = useState(false);
-  const [sliderDesc, setSliderDesc] = useState("");
-  const imageInputRef = useRef();
-  const [addBtnActive, setAddBtnActive] = useState(false);
-  const [Sliders, isLoading, refetch] = useSlider();
 
-  const deleteSlider = (id) => {
+  const [Packages, isLoading, refetch] = usePackage();
+  console.log(Packages);
+
+  const deletePackage = (id) => {
     setLoad(true);
 
-    fetch(`http://localhost:5000/api/v1/slider/${id}`, {
+    fetch(`http://localhost:5000/api/v1/package/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -29,18 +25,22 @@ const SliderList = () => {
         if (result.success) {
           setLoad(false);
           refetch();
-          toast("slider deleted successfully");
+          toast("package deleted successfully");
         }
       });
   };
 
   //   antd resource
-
   const columns = [
     {
       title: "Title",
-      dataIndex: "sliderTitle",
+      dataIndex: "name",
       key: "_id",
+    },
+    {
+      title: "Price",
+      dataIndex: "price",
+      key: "price",
     },
 
     {
@@ -51,12 +51,12 @@ const SliderList = () => {
         return (
           <>
             <div className="flex gap-5">
-              <Link className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500">
+              <Link className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500 cursor-pointer">
                 Update
               </Link>
               <button
-                onClick={() => deleteSlider(_id)}
-                className="w-20 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500"
+                onClick={() => deletePackage(_id)}
+                className="w-20 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500 cursor-pointer"
               >
                 Delete
               </button>
@@ -66,15 +66,14 @@ const SliderList = () => {
       },
     },
   ];
-  const data = Sliders?.data;
+  const data = Packages?.data;
 
   if (isLoading) {
     return <LoadingComponent />;
   }
   return (
     <div>
-      <HeaderDashBoard title="Slider" src="/dashboard/create-slider" />
-
+      <HeaderDashBoard title="package" src="/dashboard/create-package" />
       <Table
         columns={columns}
         expandable={{
@@ -83,6 +82,7 @@ const SliderList = () => {
               <img src={record?.img} alt="" />
             </div>
           ),
+          //   rowExpandable: (record) => record.name !== "Not Expandable",
         }}
         dataSource={data}
       />
@@ -90,4 +90,4 @@ const SliderList = () => {
   );
 };
 
-export default SliderList;
+export default PackageList;

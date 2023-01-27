@@ -5,8 +5,9 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useProject } from "../../Hooks/useProject";
 import { useNavigate } from "react-router-dom";
+import { useInstagram } from "../../Hooks/useInstagram";
 
-const CreateProject = (e) => {
+const CreateInstagram = (e) => {
   const navigate = useNavigate();
   const editor = useRef(null);
   const [content, setContent] = useState("");
@@ -14,12 +15,13 @@ const CreateProject = (e) => {
   const [Load, setLoad] = useState(false);
 
   const queryClient = useQueryClient();
-  const [Projects, isLoading, refetch] = useProject();
+  const [Instagram, isLoading, refetch] = useInstagram();
 
-  const postProject = (e) => {
+  const addInstagram = (e) => {
     e.preventDefault();
     setLoad(true);
     const title = e.target.name.value;
+    const link = e.target.link.value;
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "NJ_images");
@@ -34,9 +36,9 @@ const CreateProject = (e) => {
       .then(async (data) => {
         if (data.asset_id) {
           const img = data.url;
-          const project = { title, img, content };
+          const project = { title, img, link, content };
           const res = await axios.post(
-            "http://localhost:5000/api/v1/project",
+            "http://localhost:5000/api/v1/instagram",
             project
           );
           if (res) {
@@ -44,8 +46,8 @@ const CreateProject = (e) => {
             refetch();
             if (res.data.success) {
               e.target.reset();
-              navigate("/dashboard/project");
-              toast("project Post added Successfull");
+              navigate("/dashboard/instagram");
+              toast("instagram Post added Successfull");
             }
           }
         }
@@ -58,13 +60,21 @@ const CreateProject = (e) => {
 
   return (
     <div>
-      <form onSubmit={postProject}>
+      <form onSubmit={addInstagram}>
         <div className="mb-5">
           <input
             name="name"
             type="text"
             className="border w-full h-14 pl-5"
-            placeholder="Project Name"
+            placeholder="Insta post Name"
+          />
+        </div>
+        <div className="mb-5">
+          <input
+            name="link"
+            type="text"
+            className="border w-full h-14 pl-5"
+            placeholder="Insta link"
           />
         </div>
 
@@ -101,4 +111,4 @@ const CreateProject = (e) => {
   );
 };
 
-export default CreateProject;
+export default CreateInstagram;
