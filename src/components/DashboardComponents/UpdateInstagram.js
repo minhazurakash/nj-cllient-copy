@@ -1,0 +1,117 @@
+import React, { useRef, useState, useMemo } from "react";
+import JoditEditor from "jodit-react";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useProject } from "../../Hooks/useProject";
+import { useNavigate, useParams } from "react-router-dom";
+import { useInstagram } from "../../Hooks/useInstagram";
+
+const UpdateInstagram = (e) => {
+  const navigate = useNavigate();
+  const editor = useRef(null);
+  const [Load, setLoad] = useState(false);
+  const { id } = useParams();
+  console.log(id);
+
+  const queryClient = useQueryClient();
+  const [Instagram, isLoading, refetch] = useInstagram();
+  console.log(Instagram);
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState(null);
+
+  const handleUpdateProject = (e) => {
+    e.preventDefault();
+    const title = e.target.name.value;
+    const link = e.target.link.value;
+    setLoad(true);
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "NJ_images");
+    formData.append("cloud_name", "dvmwear6h");
+
+    console.log(formData);
+    fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        if (data.asset_id) {
+          const img = data.url;
+          const newProject = { title, link, img, content };
+          console.log(newProject);
+          const res = await axios.put(
+            `http://localhost:5000/api/v1/instagram/${id}`,
+            newProject
+          );
+
+          if (res) {
+            setLoad(false);
+            refetch();
+            if (res.data.success) {
+              toast("update successful");
+              navigate("/dashboard/instagram");
+            }
+          }
+        }
+      })
+      .catch((err) => {
+        setLoad(false);
+        console.log(err);
+      });
+  };
+  return (
+    <div>
+      <form onSubmit={handleUpdateProject}>
+        <div className="mb-5">
+          <input
+            name="name"
+            type="text"
+            className="border w-full h-14 pl-5"
+            placeholder="Insta post Name"
+          />
+        </div>
+        <div className="mb-5">
+          <input
+            name="link"
+            type="text"
+            className="border w-full h-14 pl-5"
+            placeholder="Insta link"
+          />
+        </div>
+
+        <div className="mb-5">
+          <input
+            name="image"
+            className="border w-full h-14 pl-5"
+            placeholder="Your Images"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+            required
+            type="file"
+          />
+        </div>
+        <div>
+          <JoditEditor
+            ref={editor}
+            value={content}
+            tabIndex={1} // tabIndex of textarea
+            onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+            onChange={(newContent) => {}}
+          />
+        </div>
+        <div className="mt-8">
+          <input
+            type="submit"
+            className="w-36 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500 cursor-pointer"
+            placeholder="Project Name"
+            value={`${Load ? "Loading" : "Submit"}`}
+          />
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default UpdateInstagram;
