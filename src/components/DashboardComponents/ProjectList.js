@@ -52,7 +52,10 @@ const ProjectList = () => {
         return (
           <>
             <div className="flex gap-5">
-              <Link className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500 cursor-pointer">
+              <Link
+                to={`/dashboard/update-project/${_id}`}
+                className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500 cursor-pointer"
+              >
                 Update
               </Link>
               <button

@@ -12,7 +12,6 @@ const PackageList = () => {
   const [load, setLoad] = useState(false);
 
   const [Packages, isLoading, refetch] = usePackage();
-  console.log(Packages);
 
   const deletePackage = (id) => {
     setLoad(true);
@@ -51,7 +50,10 @@ const PackageList = () => {
         return (
           <>
             <div className="flex gap-5">
-              <Link className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500 cursor-pointer">
+              <Link
+                to={`/dashboard/update-package/${_id}`}
+                className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500 cursor-pointer"
+              >
                 Update
               </Link>
               <button

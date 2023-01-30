@@ -19,6 +19,9 @@ import PackageList from "./components/DashboardComponents/PackageList";
 import CreatePackage from "./components/DashboardComponents/CreatePackage";
 import CreateInstagram from "./components/DashboardComponents/CreateInstagram";
 import UpdateInstagram from "./components/DashboardComponents/UpdateInstagram";
+import UpdateSlider from "./components/DashboardComponents/UpdateSlider";
+import UpdateProject from "./components/DashboardComponents/UpdateProject";
+import UpdatePackage from "./components/DashboardComponents/UpdatePackage";
 
 const App = () => {
   const { user } = useAuthState(auth);
@@ -41,8 +44,10 @@ const App = () => {
           <Route path="profile" element={<h1>Hello User !</h1>}></Route>
           <Route path="create-slider" element={<CreateSlider />}></Route>
           <Route path="slider" element={<SliderList />}></Route>
+          <Route path="update-slider/:id" element={<UpdateSlider />}></Route>
           <Route path="create-project" element={<CreateProject />}></Route>
           <Route path="project" element={<ProjectList />}></Route>
+          <Route path="update-project/:id" element={<UpdateProject />}></Route>
           <Route path="instagram" element={<InstagramList />}></Route>
           <Route path="create-instagram" element={<CreateInstagram />}></Route>
           <Route
@@ -50,6 +55,7 @@ const App = () => {
             element={<UpdateInstagram />}
           ></Route>
           <Route path="package" element={<PackageList />}></Route>
+          <Route path="update-package/:id" element={<UpdatePackage />}></Route>
           <Route path="create-package" element={<CreatePackage />}></Route>
           <Route path="*" element={<h1>Not Found</h1>}></Route>
         </Route>
