@@ -22,6 +22,8 @@ import UpdateInstagram from "./components/DashboardComponents/UpdateInstagram";
 import UpdateSlider from "./components/DashboardComponents/UpdateSlider";
 import UpdateProject from "./components/DashboardComponents/UpdateProject";
 import UpdatePackage from "./components/DashboardComponents/UpdatePackage";
+import PackagePage from "./pages/PackagePage";
+import ServicePage from "./pages/ServicePage";
 
 const App = () => {
   const { user } = useAuthState(auth);
@@ -31,6 +33,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/package" element={<PackagePage />} />
+        <Route path="/service" element={<ServicePage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route
           path="/dashboard"

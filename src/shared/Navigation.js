@@ -104,10 +104,10 @@ const Navigation = () => {
                 <Link to="/">Home</Link>
               </li>
               <li className="text-[#000000]">
-                <Link to="/about">About</Link>
+                <Link to="/package">Package</Link>
               </li>
               <li className="text-[#000000]">
-                <Link to="/">Services</Link>
+                <Link to="/service">Services</Link>
               </li>
               <li className="text-[#000000]">
                 <Link to="/">Projects</Link>
