@@ -93,7 +93,7 @@ const Navigation = () => {
                   <Link to="/">Contact Us</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/">Blog</Link>
+                  <Link to="/blog">Blog</Link>
                 </li>
               </ul>
             </div>
@@ -116,7 +116,7 @@ const Navigation = () => {
                 <Link to="/">Contact Us</Link>
               </li>
               <li className="text-[#000000]">
-                <Link to="/">Blog</Link>
+                <Link to="/blog">Blog</Link>
               </li>
             </ul>
           </div>

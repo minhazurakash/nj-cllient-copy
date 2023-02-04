@@ -24,6 +24,10 @@ import UpdateProject from "./components/DashboardComponents/UpdateProject";
 import UpdatePackage from "./components/DashboardComponents/UpdatePackage";
 import PackagePage from "./pages/PackagePage";
 import ServicePage from "./pages/ServicePage";
+import BlogPage from "./pages/BlogPage";
+import BlogList from "./components/DashboardComponents/BlogList";
+import CreateBlog from "./components/DashboardComponents/CreateBlog";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const { user } = useAuthState(auth);
@@ -34,6 +38,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/package" element={<PackagePage />} />
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="/service" element={<ServicePage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route
@@ -47,7 +52,9 @@ const App = () => {
           <Route index element={<h1>Hello User !</h1>}></Route>
           <Route path="profile" element={<h1>Hello User !</h1>}></Route>
           <Route path="create-slider" element={<CreateSlider />}></Route>
+          <Route path="create-blog" element={<CreateBlog />}></Route>
           <Route path="slider" element={<SliderList />}></Route>
+          <Route path="blog" element={<BlogList />}></Route>
           <Route path="update-slider/:id" element={<UpdateSlider />}></Route>
           <Route path="create-project" element={<CreateProject />}></Route>
           <Route path="project" element={<ProjectList />}></Route>
