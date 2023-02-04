@@ -28,6 +28,7 @@ import BlogPage from "./pages/BlogPage";
 import BlogList from "./components/DashboardComponents/BlogList";
 import CreateBlog from "./components/DashboardComponents/CreateBlog";
 import "react-toastify/dist/ReactToastify.css";
+import UpdateBlog from "./components/DashboardComponents/updateBlog";
 
 const App = () => {
   const { user } = useAuthState(auth);
@@ -56,6 +57,7 @@ const App = () => {
           <Route path="slider" element={<SliderList />}></Route>
           <Route path="blog" element={<BlogList />}></Route>
           <Route path="update-slider/:id" element={<UpdateSlider />}></Route>
+          <Route path="update-blog/:id" element={<UpdateBlog />}></Route>
           <Route path="create-project" element={<CreateProject />}></Route>
           <Route path="project" element={<ProjectList />}></Route>
           <Route path="update-project/:id" element={<UpdateProject />}></Route>
