@@ -1,8 +1,45 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import auth from "../firebase.init";
+import { useOrder } from "../Hooks/useOrder";
 import { usePackage } from "../Hooks/usePackage";
 
 const PackagePage = () => {
+  const [load, setLoad] = useState(false);
+  const [Orders, isLoad, refetch] = useOrder();
   const [Package, isLoading, reFetch] = usePackage();
+  const [user, loading, error] = useAuthState(auth);
+  const userName = user?.displayName;
+  const userEmail = user?.email;
+
+  const handleOrder = async (i) => {
+    setLoad(true);
+    const packageId = i?._id;
+    const packageName = i?.name;
+    const packagePrice = i?.price;
+    const orderDetails = {
+      userName,
+      userEmail,
+      packageId,
+      packageName,
+      packagePrice,
+    };
+    console.log(orderDetails);
+    const res = await axios.post(
+      "http://localhost:5000/api/v1/order",
+      orderDetails
+    );
+    if (res) {
+      setLoad(false);
+      refetch();
+      if (res.data.success) {
+        // navigate("/dashboard/order");
+        toast("Package Order Successfull");
+      }
+    }
+  };
   return (
     <div className="container mx-auto">
       <div className="my-5">
@@ -30,8 +67,11 @@ const PackagePage = () => {
                   </div>
                 </div>
                 <div className="mt-10">
-                  <button className="w-full px-10 py-4 uppercase bg-[#FFF79E] hover:bg-[#EDCF55]">
-                    get start today
+                  <button
+                    onClick={() => handleOrder(i)}
+                    className="w-full px-10 py-4 uppercase bg-[#FFF79E] hover:bg-[#EDCF55]"
+                  >
+                    Order Now
                   </button>
                 </div>
               </div>

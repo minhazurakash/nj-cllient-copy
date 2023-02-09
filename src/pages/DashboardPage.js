@@ -75,6 +75,11 @@ const Dashboard = () => {
                 label: "Profile",
               },
               {
+                key: "my-order",
+                icon: <UserOutlined />,
+                label: "My Orders",
+              },
+              {
                 key: "slider",
                 icon: <VideoCameraOutlined />,
                 label: "Slider",
@@ -98,6 +103,11 @@ const Dashboard = () => {
                 key: "blog",
                 icon: <UploadOutlined />,
                 label: "blog",
+              },
+              {
+                key: "orders",
+                icon: <UploadOutlined />,
+                label: "Orders",
               },
             ]}
           />

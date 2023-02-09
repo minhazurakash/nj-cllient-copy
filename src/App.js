@@ -29,6 +29,8 @@ import BlogList from "./components/DashboardComponents/BlogList";
 import CreateBlog from "./components/DashboardComponents/CreateBlog";
 import "react-toastify/dist/ReactToastify.css";
 import UpdateBlog from "./components/DashboardComponents/updateBlog";
+import OrderList from "./components/DashboardComponents/OrderList";
+import MyOrder from "./components/DashboardComponents/MyOrder";
 
 const App = () => {
   const { user } = useAuthState(auth);
@@ -38,7 +40,14 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/package" element={<PackagePage />} />
+        <Route
+          path="/package"
+          element={
+            <RequireAuth>
+              <PackagePage />
+            </RequireAuth>
+          }
+        />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/service" element={<ServicePage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
@@ -71,6 +80,9 @@ const App = () => {
           <Route path="update-package/:id" element={<UpdatePackage />}></Route>
           <Route path="create-package" element={<CreatePackage />}></Route>
           <Route path="*" element={<h1>Not Found</h1>}></Route>
+
+          <Route path="orders" element={<OrderList />}></Route>
+          <Route path="my-order" element={<MyOrder />}></Route>
         </Route>
       </Routes>
       <Footer />
