@@ -1,26 +1,28 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef, useState, useMemo, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useProject } from "../../Hooks/useProject";
 import { useNavigate, useParams } from "react-router-dom";
 import { useInstagram } from "../../Hooks/useInstagram";
+import LoadingComponent from "../../shared/LoadingComponent";
+import { useInitialValue } from "../../Hooks/useInitialValue";
 
 const UpdateInstagram = (e) => {
   const navigate = useNavigate();
   const editor = useRef(null);
   const [Load, setLoad] = useState(false);
   const { id } = useParams();
-  console.log(id);
+  const [initialValue, isLoad] = useInitialValue("instagram", id);
 
-  const queryClient = useQueryClient();
   const [Instagram, isLoading, refetch] = useInstagram();
-  console.log(Instagram);
   const [content, setContent] = useState("");
+  useEffect(() => {
+    setContent(initialValue?.content);
+  }, [initialValue]);
   const [image, setImage] = useState(null);
 
-  const handleUpdateProject = (e) => {
+  const handleUpdateProject = async (e) => {
     e.preventDefault();
     const title = e.target.name.value;
     const link = e.target.link.value;
@@ -31,42 +33,65 @@ const UpdateInstagram = (e) => {
     formData.append("cloud_name", "dvmwear6h");
 
     console.log(formData);
-    fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then(async (data) => {
-        if (data.asset_id) {
-          const img = data.url;
-          const newProject = { title, link, img, content };
-          console.log(newProject);
-          const res = await axios.put(
-            `http://localhost:5000/api/v1/instagram/${id}`,
-            newProject
-          );
+    if (image) {
+      fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then(async (data) => {
+          if (data.asset_id) {
+            const img = data.url;
+            const newProject = { title, link, img, content };
+            console.log(newProject);
+            const res = await axios.put(
+              `http://localhost:5000/api/v1/instagram/${id}`,
+              newProject
+            );
 
-          if (res) {
-            setLoad(false);
-            refetch();
-            if (res.data.success) {
-              toast("update successful");
-              navigate("/dashboard/instagram");
+            if (res) {
+              setLoad(false);
+              refetch();
+              if (res.data.success) {
+                toast("update successful");
+                navigate("/dashboard/instagram");
+              }
             }
           }
-        }
-      })
-      .catch((err) => {
+        })
+        .catch((err) => {
+          setLoad(false);
+          console.log(err);
+        });
+    } else {
+      const img = initialValue?.img;
+      const newProject = { title, link, img, content };
+      console.log(newProject);
+      const res = await axios.put(
+        `http://localhost:5000/api/v1/instagram/${id}`,
+        newProject
+      );
+
+      if (res) {
         setLoad(false);
-        console.log(err);
-      });
+        refetch();
+        if (res.data.success) {
+          toast("update successful");
+          navigate("/dashboard/instagram");
+        }
+      }
+    }
   };
+  if (Load) {
+    return <LoadingComponent />;
+  }
   return (
     <div>
       <form onSubmit={handleUpdateProject}>
         <div className="mb-5">
           <input
             name="name"
+            defaultValue={initialValue?.title}
             type="text"
             className="border w-full h-14 pl-5"
             placeholder="Insta post Name"
@@ -78,6 +103,7 @@ const UpdateInstagram = (e) => {
             type="text"
             className="border w-full h-14 pl-5"
             placeholder="Insta link"
+            defaultValue={initialValue?.link}
           />
         </div>
 
@@ -88,8 +114,9 @@ const UpdateInstagram = (e) => {
             placeholder="Your Images"
             accept="image/*"
             onChange={(e) => setImage(e.target.files[0])}
-            required
+            // required
             type="file"
+            defaultValue={initialValue?.img}
           />
         </div>
         <div>

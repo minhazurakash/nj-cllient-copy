@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef, useState, useMemo, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { usePackage } from "../../Hooks/usePackage";
 import LoadingComponent from "../../shared/LoadingComponent";
-import { useSinglePackage } from "../../Hooks/useSinglePackage";
+import { useInitialValue } from "../../Hooks/useInitialValue";
 
 const UpdatePackage = (e) => {
   const navigate = useNavigate();
@@ -15,14 +15,16 @@ const UpdatePackage = (e) => {
   const { id } = useParams();
 
   const queryClient = useQueryClient();
-  const [Packages, refetch] = usePackage();
-  const [Package, isLoading] = useSinglePackage(id);
-  console.log(Package, Package.content);
+  const [Packages, isLoad, refetch] = usePackage();
+  const [Package, isLoading] = useInitialValue("package", id);
 
-  const [content, setContent] = useState(Package.content);
+  const [content, setContent] = useState("");
+  useEffect(() => {
+    setContent(Package?.content);
+  }, [Package]);
   const [image, setImage] = useState(null);
 
-  const handleUpdateProject = (e) => {
+  const handleUpdateProject = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const price = e.target.price.value;
@@ -32,36 +34,54 @@ const UpdatePackage = (e) => {
     formData.append("upload_preset", "NJ_images");
     formData.append("cloud_name", "dvmwear6h");
 
-    console.log(formData);
-    fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then(async (data) => {
-        if (data.asset_id) {
-          const img = data.url;
-          const newProject = { name, price, img, content };
-          console.log(newProject);
-          const res = await axios.put(
-            `http://localhost:5000/api/v1/package/${id}`,
-            newProject
-          );
+    if (image) {
+      fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then(async (data) => {
+          if (data.asset_id) {
+            const img = data.url;
+            const newProject = { name, price, img, content };
+            console.log(newProject);
+            const res = await axios.put(
+              `http://localhost:5000/api/v1/package/${id}`,
+              newProject
+            );
 
-          if (res) {
-            setLoad(false);
-            refetch();
-            if (res.data.success) {
-              toast("update successful");
-              navigate("/dashboard/package");
+            if (res) {
+              setLoad(false);
+              refetch();
+              if (res.data.success) {
+                toast("update successful");
+                navigate("/dashboard/package");
+              }
             }
           }
-        }
-      })
-      .catch((err) => {
+        })
+        .catch((err) => {
+          setLoad(false);
+          console.log(err);
+        });
+    } else {
+      const img = Package?.img;
+      const newProject = { name, price, img, content };
+      console.log(newProject);
+      const res = await axios.put(
+        `http://localhost:5000/api/v1/package/${id}`,
+        newProject
+      );
+
+      if (res) {
         setLoad(false);
-        console.log(err);
-      });
+        refetch();
+        if (res.data.success) {
+          toast("update successful");
+          navigate("/dashboard/package");
+        }
+      }
+    }
   };
   // if (isLoading) {
   //   return <LoadingComponent />;
@@ -75,7 +95,7 @@ const UpdatePackage = (e) => {
             type="text"
             className="border w-full h-14 pl-5"
             placeholder="Package Name"
-            // defaultValue={Package?.name}
+            defaultValue={Package?.name}
           />
         </div>
         <div className="mb-5">
@@ -84,7 +104,7 @@ const UpdatePackage = (e) => {
             type="number"
             className="border w-full h-14 pl-5"
             placeholder="Package price"
-            // defaultValue={Package?.price}
+            defaultValue={Package?.price}
           />
         </div>
 
@@ -95,7 +115,7 @@ const UpdatePackage = (e) => {
             placeholder="Your Images"
             accept="image/*"
             onChange={(e) => setImage(e.target.files[0])}
-            required
+            // required
             type="file"
           />
         </div>
