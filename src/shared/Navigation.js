@@ -1,6 +1,7 @@
 import { signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import auth from "../firebase.init";
@@ -20,7 +21,30 @@ const Navigation = () => {
   return (
     <nav className="relative">
       <div className="bg-[#FBF8F5] py-3">
-        <div className="container mx-auto px-4 flex justify-end">
+        <div className="container mx-auto px-4 flex justify-between">
+        <ul className="flex items-center gap-5">
+           <li className="text-black">
+            <a href="mailto:info@websitesprofessional.com" className="flex items-stretch">
+              <div className="flex-auto text-xl p-0.5">
+              <AiOutlineMail/>
+              </div>
+              <div className="flex-auto text-base ">
+              info@websitesprofessional.com
+              </div>
+              </a>
+           </li>
+           <li className="text-black">
+            <a href="tel:704-891-4329" className="flex items-stretch">
+            <div className="flex-auto text-xl p-0.5">
+              <AiOutlinePhone/>
+              </div>
+              <div className="flex-auto text-base ">
+              704-891-4329
+              </div>
+              
+              </a>
+           </li>
+          </ul>
           <ul className="flex items-center gap-5">
             {user?.email ? (
               <>
@@ -57,6 +81,7 @@ const Navigation = () => {
               </>
             )}
           </ul>
+          
         </div>
       </div>
       <div className="py-5 bg-[#FFF79E]">
@@ -81,43 +106,43 @@ const Navigation = () => {
                   <Link to="/">Home</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/about">About</Link>
+                  <Link to="/">Our Projects</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/">Services</Link>
+                  <Link to="/about">About Me</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/">Projects</Link>
-                </li>
-                <li className="text-[#fff]">
-                  <Link to="/">Contact Us</Link>
+                  <Link to="/">Our Packages</Link>
                 </li>
                 <li className="text-[#fff]">
                   <Link to="/blog">Blog</Link>
+                </li>
+                <li className="text-[#fff]">
+                  <Link to="/">Contact Us</Link>
                 </li>
               </ul>
             </div>
           )}
           <div className="hidden md:block">
             <ul className="flex gap-5 lg:gap-10">
-              <li className="text-[#000000]">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="text-[#000000]">
-                <Link to="/package">Package</Link>
-              </li>
-              <li className="text-[#000000]">
-                <Link to="/service">Services</Link>
-              </li>
-              <li className="text-[#000000]">
-                <Link to="/">Projects</Link>
-              </li>
-              <li className="text-[#000000]">
-                <Link to="/">Contact Us</Link>
-              </li>
-              <li className="text-[#000000]">
-                <Link to="/blog">Blog</Link>
-              </li>
+            <li className="text-[#000]">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="text-[#000]">
+                  <Link to="/">Our Projects</Link>
+                </li>
+                <li className="text-[#000]">
+                  <Link to="/about">About Me</Link>
+                </li>
+                <li className="text-[#000]">
+                  <Link to="/">Our Packages</Link>
+                </li>
+                <li className="text-[#000]">
+                  <Link to="/blog">Blog</Link>
+                </li>
+                <li className="text-[#000]">
+                  <Link to="/">Contact Us</Link>
+                </li>
             </ul>
           </div>
         </div>
