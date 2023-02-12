@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navigation from "./shared/Navigation";
 import HomePage from "./pages/HomePage";
 import Footer from "./shared/Footer";
@@ -31,9 +31,16 @@ import "react-toastify/dist/ReactToastify.css";
 import UpdateBlog from "./components/DashboardComponents/updateBlog";
 import OrderList from "./components/DashboardComponents/OrderList";
 import MyOrder from "./components/DashboardComponents/MyOrder";
+import "./App.css";
 
 const App = () => {
   const { user } = useAuthState(auth);
+  const [img, setImg] = useState(null);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(img);
+  };
+
   return (
     <>
       <Navigation />
@@ -85,6 +92,7 @@ const App = () => {
           <Route path="my-order" element={<MyOrder />}></Route>
         </Route>
       </Routes>
+
       <Footer />
       <ToastContainer />
     </>

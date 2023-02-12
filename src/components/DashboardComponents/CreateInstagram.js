@@ -6,6 +6,8 @@ import axios from "axios";
 import { useProject } from "../../Hooks/useProject";
 import { useNavigate } from "react-router-dom";
 import { useInstagram } from "../../Hooks/useInstagram";
+import { UploadOutlined } from "@ant-design/icons";
+import { Button, Upload } from "antd";
 
 const CreateInstagram = (e) => {
   const navigate = useNavigate();
@@ -16,6 +18,12 @@ const CreateInstagram = (e) => {
 
   const queryClient = useQueryClient();
   const [Instagram, isLoading, refetch] = useInstagram();
+
+  const handleChange = (info) => {
+    if (info.file.status === "done") {
+      setImage(info.file.originFileObj);
+    }
+  };
 
   const addInstagram = (e) => {
     e.preventDefault();
@@ -78,7 +86,7 @@ const CreateInstagram = (e) => {
           />
         </div>
 
-        <div className="mb-5">
+        {/* <div className="mb-5">
           <input
             name="image"
             className="border w-full h-14 pl-5"
@@ -88,7 +96,20 @@ const CreateInstagram = (e) => {
             required
             type="file"
           />
-        </div>
+        </div> */}
+        <Upload
+          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          listType="picture"
+          // defaultFileList={[...fileList]}
+          maxCount={1}
+          // rules={[{ required: true }]}
+          onChange={(e) => {
+            setImage(e.file.originFileObj);
+          }}
+        >
+          <Button icon={<UploadOutlined />}>Upload</Button>
+        </Upload>
+        <br />
         <div>
           <JoditEditor
             ref={editor}
