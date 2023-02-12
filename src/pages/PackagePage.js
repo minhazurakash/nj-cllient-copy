@@ -41,7 +41,7 @@ const PackagePage = () => {
     }
   };
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4">
       <div className="my-5">
         <h1 className="text-3xl font-bold text-center uppercase">
           our package

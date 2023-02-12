@@ -1,10 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
 import {
-  useAuthState,
-  useCreateUserWithEmailAndPassword,
-  useUpdateProfile,
+    useAuthState,
+    useCreateUserWithEmailAndPassword,
+    useUpdateProfile
 } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 import LoadingOverlay from "../shared/LoadingOverlay";
 
@@ -31,7 +31,7 @@ const SignUpPage = () => {
     navigate("/");
   }
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4">
       <div className="mt-20 mb-10">
         <h1 className="text-4xl">Sign Up</h1>
       </div>

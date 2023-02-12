@@ -1,17 +1,17 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useQuery } from "@tanstack/react-query";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
-import { signOut } from "firebase/auth";
 
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    UploadOutlined,
+    UserOutlined,
+    VideoCameraOutlined
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 
@@ -56,7 +56,7 @@ const Dashboard = () => {
             <Link to="/">
               <img
                 className="w-36"
-                src="https://restored316.wpenginepowered.com/wp-content/uploads/2020/09/R316_horizontal.png"
+                src="logo.png"
                 alt=""
               />
             </Link>

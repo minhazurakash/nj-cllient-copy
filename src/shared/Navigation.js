@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
+import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { FaBars } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
 import auth from "../firebase.init";
 
 const Navigation = () => {
@@ -20,7 +20,7 @@ const Navigation = () => {
   return (
     <nav className="relative">
       <div className="bg-[#FBF8F5] py-3">
-        <div className="container mx-auto flex justify-end">
+        <div className="container mx-auto px-4 flex justify-end">
           <ul className="flex items-center gap-5">
             {user?.email ? (
               <>
@@ -60,11 +60,11 @@ const Navigation = () => {
         </div>
       </div>
       <div className="py-5 bg-[#FFF79E]">
-        <div className="container mx-auto flex justify-between items-center">
+        <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="w-60">
             <Link to="/">
               <img
-                src="https://restored316.wpenginepowered.com/wp-content/uploads/2020/09/R316_horizontal.png"
+                src="logo.png"
                 alt="Logo"
               />
             </Link>

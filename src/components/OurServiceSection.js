@@ -3,7 +3,7 @@ import serviceImage from "../assets/images/service-illus.jpg";
 
 const OurServiceSection = () => {
   return (
-    <div className="container mx-auto px-5 md:px-0 my-20">
+    <div className="container mx-auto px-5 my-20">
       <div className="grid grid-cols-7 items-center gap-10 lg:gap-20">
         <div className="md:order-2 col-span-7 md:col-span-3">
           <img

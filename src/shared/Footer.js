@@ -1,19 +1,19 @@
 import React from "react";
 import {
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-  FaWhatsapp,
-  FaYoutube,
+    FaFacebook,
+    FaInstagram,
+    FaTwitter,
+    FaWhatsapp,
+    FaYoutube
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="px-5 md:px-0">
+    <div className="px-5">
       <div className="">
         <div className="py-5 border-y-2">
-          <div className="container mx-auto">
+          <div className="container mx-auto px-4">
             <div className="text-center text-2xl">
               <h1>UNLOCK 10% OFF YOUR FIRST ORDER WITH US!</h1>
             </div>
@@ -34,7 +34,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-b-2">
-          <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 text-center md:text-left">
+          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 text-center md:text-left">
             <div className="grid grid-cols-3 items-center uppercase md:border-r-2 py-5 md:py-0">
               <div>
                 <ul className="grid gap-4">

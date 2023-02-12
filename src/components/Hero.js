@@ -1,6 +1,6 @@
+import axios from "axios";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import axios from "axios";
 
 // Import Swiper styles
 import "swiper/css";
@@ -9,8 +9,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // import required modules
-import { EffectFade, Navigation, Pagination } from "swiper";
 import { useQuery } from "@tanstack/react-query";
+import { EffectFade, Navigation, Pagination } from "swiper";
 
 const Hero = () => {
   // Queries
@@ -24,7 +24,7 @@ const Hero = () => {
   });
   return (
     <div id="heroSection" className="bg-[#FFFFFF] my-14">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
         <div className="border border-4 border-[#FFF79E] p-5">
           <div>
             <Swiper
