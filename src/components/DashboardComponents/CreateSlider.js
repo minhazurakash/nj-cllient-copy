@@ -1,10 +1,10 @@
-import React, { useRef, useState, useMemo } from "react";
-import JoditEditor from "jodit-react";
 import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import axios from "axios";
-import { useSlider } from "../../Hooks/useSlider";
+import JoditEditor from "jodit-react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useSlider } from "../../Hooks/useSlider";
 
 const CreateSlider = (e) => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const CreateSlider = (e) => {
           const img = data.url;
           const Slider = { sliderTitle: title, img, sliderDesc: content };
           const res = await axios.post(
-            "http://localhost:5000/api/v1/slider",
+            "https://bored-yoke-bee.cyclic.app/api/v1/slider",
             Slider
           );
           if (res) {

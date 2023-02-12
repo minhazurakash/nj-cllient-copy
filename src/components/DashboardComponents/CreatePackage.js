@@ -1,10 +1,9 @@
-import React, { useRef, useState, useMemo } from "react";
-import JoditEditor from "jodit-react";
 import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import axios from "axios";
-import { useProject } from "../../Hooks/useProject";
+import JoditEditor from "jodit-react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { usePackage } from "../../Hooks/usePackage";
 
 const CreatePackage = (e) => {
@@ -38,7 +37,7 @@ const CreatePackage = (e) => {
           const img = data.url;
           const packages = { name: title, img, price, content };
           const res = await axios.post(
-            "http://localhost:5000/api/v1/package",
+            "https://bored-yoke-bee.cyclic.app/api/v1/package",
             packages
           );
           if (res) {

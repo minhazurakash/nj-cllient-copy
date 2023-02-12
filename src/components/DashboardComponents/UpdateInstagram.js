@@ -1,12 +1,11 @@
-import React, { useRef, useState, useMemo, useEffect } from "react";
-import JoditEditor from "jodit-react";
-import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import axios from "axios";
+import JoditEditor from "jodit-react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useInitialValue } from "../../Hooks/useInitialValue";
 import { useInstagram } from "../../Hooks/useInstagram";
 import LoadingComponent from "../../shared/LoadingComponent";
-import { useInitialValue } from "../../Hooks/useInitialValue";
 
 const UpdateInstagram = (e) => {
   const navigate = useNavigate();
@@ -45,7 +44,7 @@ const UpdateInstagram = (e) => {
             const newProject = { title, link, img, content };
             console.log(newProject);
             const res = await axios.put(
-              `http://localhost:5000/api/v1/instagram/${id}`,
+              `https://bored-yoke-bee.cyclic.app/api/v1/instagram/${id}`,
               newProject
             );
 
@@ -68,7 +67,7 @@ const UpdateInstagram = (e) => {
       const newProject = { title, link, img, content };
       console.log(newProject);
       const res = await axios.put(
-        `http://localhost:5000/api/v1/instagram/${id}`,
+        `https://bored-yoke-bee.cyclic.app/api/v1/instagram/${id}`,
         newProject
       );
 

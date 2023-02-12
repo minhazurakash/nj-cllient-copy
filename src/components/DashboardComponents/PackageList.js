@@ -1,12 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import React, { useRef, useState } from "react";
-import { toast } from "react-toastify";
 import { Table } from "antd";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { usePackage } from "../../Hooks/usePackage";
 import LoadingComponent from "../../shared/LoadingComponent";
 import HeaderDashBoard from "./HeaderDashBoard";
-import { usePackage } from "../../Hooks/usePackage";
 
 const PackageList = () => {
   const [load, setLoad] = useState(false);
@@ -16,7 +14,7 @@ const PackageList = () => {
   const deletePackage = (id) => {
     setLoad(true);
 
-    fetch(`http://localhost:5000/api/v1/package/${id}`, {
+    fetch(`https://bored-yoke-bee.cyclic.app/api/v1/package/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

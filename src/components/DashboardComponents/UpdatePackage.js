@@ -1,12 +1,11 @@
-import React, { useRef, useState, useMemo, useEffect } from "react";
-import JoditEditor from "jodit-react";
 import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import axios from "axios";
+import JoditEditor from "jodit-react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { usePackage } from "../../Hooks/usePackage";
-import LoadingComponent from "../../shared/LoadingComponent";
+import { toast } from "react-toastify";
 import { useInitialValue } from "../../Hooks/useInitialValue";
+import { usePackage } from "../../Hooks/usePackage";
 
 const UpdatePackage = (e) => {
   const navigate = useNavigate();
@@ -46,7 +45,7 @@ const UpdatePackage = (e) => {
             const newProject = { name, price, img, content };
             console.log(newProject);
             const res = await axios.put(
-              `http://localhost:5000/api/v1/package/${id}`,
+              `https://bored-yoke-bee.cyclic.app/api/v1/package/${id}`,
               newProject
             );
 
@@ -69,7 +68,7 @@ const UpdatePackage = (e) => {
       const newProject = { name, price, img, content };
       console.log(newProject);
       const res = await axios.put(
-        `http://localhost:5000/api/v1/package/${id}`,
+        `https://bored-yoke-bee.cyclic.app/api/v1/package/${id}`,
         newProject
       );
 
