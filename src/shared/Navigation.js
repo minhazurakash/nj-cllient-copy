@@ -63,10 +63,7 @@ const Navigation = () => {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="w-60">
             <Link to="/">
-              <img
-                src="logo.png"
-                alt="Logo"
-              />
+              <img src="logo.png" alt="Logo" />
             </Link>
           </div>
           <div className="block md:hidden">
@@ -84,10 +81,13 @@ const Navigation = () => {
                   <Link to="/about">About</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/">Services</Link>
+                  <Link to="/service">Services</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/">Projects</Link>
+                  <Link to="/project">Projects</Link>
+                </li>
+                <li className="text-[#fff]">
+                  <Link to="/project">Package</Link>
                 </li>
                 <li className="text-[#fff]">
                   <Link to="/">Contact Us</Link>
@@ -110,7 +110,7 @@ const Navigation = () => {
                 <Link to="/service">Services</Link>
               </li>
               <li className="text-[#000000]">
-                <Link to="/">Projects</Link>
+                <Link to="/project">Projects</Link>
               </li>
               <li className="text-[#000000]">
                 <Link to="/">Contact Us</Link>

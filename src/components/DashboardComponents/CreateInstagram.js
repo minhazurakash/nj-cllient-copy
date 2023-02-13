@@ -102,7 +102,7 @@ const CreateInstagram = (e) => {
           listType="picture"
           // defaultFileList={[...fileList]}
           maxCount={1}
-          // rules={[{ required: true }]}
+          rules={[{ required: true }]}
           onChange={(e) => {
             setImage(e.file.originFileObj);
           }}

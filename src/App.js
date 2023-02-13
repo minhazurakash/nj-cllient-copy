@@ -35,11 +35,6 @@ import "./App.css";
 
 const App = () => {
   const { user } = useAuthState(auth);
-  const [img, setImg] = useState(null);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(img);
-  };
 
   return (
     <>
@@ -47,14 +42,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/package"
-          element={
-            <RequireAuth>
-              <PackagePage />
-            </RequireAuth>
-          }
-        />
+        <Route path="/package" element={<PackagePage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/service" element={<ServicePage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
