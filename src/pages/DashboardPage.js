@@ -25,7 +25,7 @@ const Dashboard = () => {
   } = theme.useToken();
   // Queries
   const getUsers = async () => {
-    const { data } = await axios.get("http://localhost:5000/api/v1/user");
+    const { data } = await axios.get("https://bored-yoke-bee.cyclic.app/api/v1/user");
     return data;
   };
   const { data: databaseUser, isLoading } = useQuery({

@@ -1,9 +1,9 @@
-import React, { useRef, useState, useMemo } from "react";
-import JoditEditor from "jodit-react";
 import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import axios from "axios";
+import JoditEditor from "jodit-react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useBlog } from "../../Hooks/useBlogs";
 
 const CreateBlog = (e) => {
@@ -36,7 +36,7 @@ const CreateBlog = (e) => {
           const img = data.url;
           const Blog = { blogTitle: title, img, blogDesc: content };
           const res = await axios.post(
-            "http://localhost:5000/api/v1/blog",
+            "https://bored-yoke-bee.cyclic.app/api/v1/blog",
             Blog
           );
           if (res) {

@@ -1,9 +1,9 @@
-import React, { useRef, useState, useMemo } from "react";
-import JoditEditor from "jodit-react";
 import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import axios from "axios";
+import JoditEditor from "jodit-react";
+import React, { useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useProject } from "../../Hooks/useProject";
 
 const UpdateProject = (e) => {
@@ -39,7 +39,7 @@ const UpdateProject = (e) => {
           const newProject = { title, img, content };
           console.log(newProject);
           const res = await axios.put(
-            `http://localhost:5000/api/v1/project/${id}`,
+            `https://bored-yoke-bee.cyclic.app/api/v1/project/${id}`,
             newProject
           );
 

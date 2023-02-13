@@ -1,12 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import React, { useRef, useState } from "react";
-import { toast } from "react-toastify";
-import LoadingOverlay from "../../shared/LoadingOverlay";
 import { Table } from "antd";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import LoadingComponent from "../../shared/LoadingComponent";
+import { toast } from "react-toastify";
 import { useInstagram } from "../../Hooks/useInstagram";
+import LoadingComponent from "../../shared/LoadingComponent";
 import HeaderDashBoard from "./HeaderDashBoard";
 
 const InstagramList = () => {
@@ -22,7 +19,7 @@ const InstagramList = () => {
   const deleteInsta = (id) => {
     setLoad(true);
 
-    fetch(`http://localhost:5000/api/v1/instagram/${id}`, {
+    fetch(`https://bored-yoke-bee.cyclic.app/api/v1/instagram/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

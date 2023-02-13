@@ -1,13 +1,12 @@
-import React, { useRef, useState, useMemo } from "react";
-import JoditEditor from "jodit-react";
-import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import axios from "axios";
-import { useProject } from "../../Hooks/useProject";
-import { useNavigate } from "react-router-dom";
-import { useInstagram } from "../../Hooks/useInstagram";
 import { UploadOutlined } from "@ant-design/icons";
+import { useQueryClient } from "@tanstack/react-query";
 import { Button, Upload } from "antd";
+import axios from "axios";
+import JoditEditor from "jodit-react";
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useInstagram } from "../../Hooks/useInstagram";
 
 const CreateInstagram = (e) => {
   const navigate = useNavigate();
@@ -46,7 +45,7 @@ const CreateInstagram = (e) => {
           const img = data.url;
           const project = { title, img, link, content };
           const res = await axios.post(
-            "http://localhost:5000/api/v1/instagram",
+            "https://bored-yoke-bee.cyclic.app/api/v1/instagram",
             project
           );
           if (res) {

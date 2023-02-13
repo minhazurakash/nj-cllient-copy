@@ -1,15 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import React, { useRef, useState } from "react";
-import { toast } from "react-toastify";
-import LoadingOverlay from "../../shared/LoadingOverlay";
 import { Table } from "antd";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import auth from "../../firebase.init";
+import { useOrder } from "../../Hooks/useOrder";
 import LoadingComponent from "../../shared/LoadingComponent";
 import HeaderDashBoard from "./HeaderDashBoard";
-import { useOrder } from "../../Hooks/useOrder";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
 
 const MyOrder = () => {
   const [load, setLoad] = useState(false);
@@ -23,7 +19,7 @@ const MyOrder = () => {
   const deleteSlider = (id) => {
     setLoad(true);
 
-    fetch(`http://localhost:5000/api/v1/order/${id}`, {
+    fetch(`https://bored-yoke-bee.cyclic.app/api/v1/order/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
