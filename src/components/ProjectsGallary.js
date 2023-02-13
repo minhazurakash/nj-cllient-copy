@@ -15,7 +15,7 @@ import { EffectFade, Navigation, Pagination } from "swiper";
 const ProjectsGallary = () => {
   // Queries
   const getProjects = async () => {
-    const { data } = await axios.get("https://bored-yoke-bee.cyclic.app/api/v1/Project");
+    const { data } = await axios.get("http://localhost:5000/api/v1/Project");
     return data;
   };
   const { data: Projects } = useQuery({

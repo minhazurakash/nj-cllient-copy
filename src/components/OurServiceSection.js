@@ -1,8 +1,10 @@
 import React from "react";
+import { useService } from "../Hooks/useService";
 import ServiceSection from "./ServiceSection";
 
 
 const OurServiceSection = () => {
+
   return (
     
     <div className="container mx-auto px-5 my-20">

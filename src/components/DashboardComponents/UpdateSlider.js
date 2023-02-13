@@ -39,8 +39,8 @@ const UpdateSlider = (e) => {
           const newProject = { sliderTitle, img, sliderDesc: content };
           console.log(newProject);
           const res = await axios.put(
-            `https://bored-yoke-bee.cyclic.app/api/v1/slider/${id}`,
-            newProject 
+            `http://localhost:5000/api/v1/slider/${id}`,
+            newProject
           );
 
           if (res) {

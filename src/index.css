@@ -127,3 +127,6 @@ code {
 img.servimg {
   height: 150px;
 }
+body {
+  scroll-behavior: smooth;
+}

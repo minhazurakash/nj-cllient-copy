@@ -32,6 +32,9 @@ import UpdateBlog from "./components/DashboardComponents/updateBlog";
 import OrderList from "./components/DashboardComponents/OrderList";
 import MyOrder from "./components/DashboardComponents/MyOrder";
 import "./App.css";
+import ServiceList from "./components/DashboardComponents/ServiceList";
+import CreateService from "./components/DashboardComponents/CreateService";
+import UpdateService from "./components/DashboardComponents/updateService";
 
 const App = () => {
   const { user } = useAuthState(auth);
@@ -65,6 +68,10 @@ const App = () => {
           <Route path="create-project" element={<CreateProject />}></Route>
           <Route path="project" element={<ProjectList />}></Route>
           <Route path="update-project/:id" element={<UpdateProject />}></Route>
+          <Route path="service" element={<ServiceList />}></Route>
+          <Route path="create-service" element={<CreateService />}></Route>
+          <Route path="update-service/:id" element={<UpdateService />}></Route>
+
           <Route path="instagram" element={<InstagramList />}></Route>
           <Route path="create-instagram" element={<CreateInstagram />}></Route>
           <Route

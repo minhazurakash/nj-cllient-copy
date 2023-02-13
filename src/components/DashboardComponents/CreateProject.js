@@ -36,7 +36,7 @@ const CreateProject = (e) => {
           const img = data.url;
           const project = { title, img, content };
           const res = await axios.post(
-            "https://bored-yoke-bee.cyclic.app/api/v1/project",
+            "http://localhost:5000/api/v1/project",
             project
           );
           if (res) {

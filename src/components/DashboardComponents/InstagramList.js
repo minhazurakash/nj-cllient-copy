@@ -19,7 +19,7 @@ const InstagramList = () => {
   const deleteInsta = (id) => {
     setLoad(true);
 
-    fetch(`https://bored-yoke-bee.cyclic.app/api/v1/instagram/${id}`, {
+    fetch(`http://localhost:5000/api/v1/instagram/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

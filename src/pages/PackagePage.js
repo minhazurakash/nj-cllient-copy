@@ -28,7 +28,7 @@ const PackagePage = () => {
     };
     console.log(orderDetails);
     const res = await axios.post(
-      "https://bored-yoke-bee.cyclic.app/api/v1/order",
+      "http://localhost:5000/api/v1/order",
       orderDetails
     );
     if (res) {

@@ -39,7 +39,7 @@ const UpdateBlog = (e) => {
           const newProject = { blogTitle, img, blogDesc: content };
           console.log(newProject);
           const res = await axios.put(
-            `https://bored-yoke-bee.cyclic.app/api/v1/blog/${id}`,
+            `http://localhost:5000/api/v1/blog/${id}`,
             newProject
           );
 

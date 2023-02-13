@@ -1,20 +1,21 @@
 import { Table } from "antd";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { usePackage } from "../../Hooks/usePackage";
+import { useInstagram } from "../../Hooks/useInstagram";
+import { useService } from "../../Hooks/useService";
 import LoadingComponent from "../../shared/LoadingComponent";
 import HeaderDashBoard from "./HeaderDashBoard";
 
-const PackageList = () => {
+const ServiceList = () => {
   const [load, setLoad] = useState(false);
 
-  const [Packages, isLoading, refetch] = usePackage();
+  const [Service, isLoading, refetch] = useService();
 
-  const deletePackage = (id) => {
+  const deleteService = (id) => {
     setLoad(true);
 
-    fetch(`http://localhost:5000/api/v1/package/${id}`, {
+    fetch(`http://localhost:5000/api/v1/service/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -22,7 +23,7 @@ const PackageList = () => {
         if (result.success) {
           setLoad(false);
           refetch();
-          toast("package deleted successfully");
+          toast("Service deleted successfully");
         }
       });
   };
@@ -31,13 +32,8 @@ const PackageList = () => {
   const columns = [
     {
       title: "Title",
-      dataIndex: "name",
+      dataIndex: "title",
       key: "_id",
-    },
-    {
-      title: "Price",
-      dataIndex: "price",
-      key: "price",
     },
 
     {
@@ -49,14 +45,14 @@ const PackageList = () => {
           <>
             <div className="flex gap-5">
               <Link
-                to={`/dashboard/update-package/${_id}`}
-                className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500 cursor-pointer"
+                to={`/dashboard/update-service/${_id}`}
+                className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500"
               >
                 Update
               </Link>
               <button
-                onClick={() => deletePackage(_id)}
-                className="w-20 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500 cursor-pointer"
+                onClick={() => deleteService(_id)}
+                className="w-20 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500"
               >
                 Delete
               </button>
@@ -66,14 +62,15 @@ const PackageList = () => {
       },
     },
   ];
-  const data = Packages?.data;
+  const data = Service?.data;
 
   if (isLoading) {
     return <LoadingComponent />;
   }
   return (
     <div>
-      <HeaderDashBoard title="package" src="/dashboard/create-package" />
+      <HeaderDashBoard title="Service" src="/dashboard/create-service" />
+
       <Table
         columns={columns}
         expandable={{
@@ -90,4 +87,4 @@ const PackageList = () => {
   );
 };
 
-export default PackageList;
+export default ServiceList;

@@ -1,38 +1,39 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { Button, Upload } from "antd";
+import { CloudUploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useInitialValue } from "../../Hooks/useInitialValue";
-import { usePackage } from "../../Hooks/usePackage";
+import { useInstagram } from "../../Hooks/useInstagram";
+import { useService } from "../../Hooks/useService";
+import LoadingComponent from "../../shared/LoadingComponent";
 
-const UpdatePackage = (e) => {
+const UpdateService = (e) => {
   const navigate = useNavigate();
   const editor = useRef(null);
   const [Load, setLoad] = useState(false);
   const { id } = useParams();
+  const [initialValue, isLoad] = useInitialValue("service", id);
 
-  const queryClient = useQueryClient();
-  const [Packages, isLoad, refetch] = usePackage();
-  const [Package, isLoading] = useInitialValue("package", id);
-
+  const [Service, isLoading, refetch] = useService();
   const [content, setContent] = useState("");
   useEffect(() => {
-    setContent(Package?.content);
-  }, [Package]);
+    setContent(initialValue?.content);
+  }, [initialValue]);
   const [image, setImage] = useState(null);
 
-  const handleUpdateProject = async (e) => {
+  const handleUpdateService = async (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const price = e.target.price.value;
+    const title = e.target.name.value;
     setLoad(true);
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "NJ_images");
     formData.append("cloud_name", "dvmwear6h");
 
+    console.log(formData);
     if (image) {
       fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
         method: "POST",
@@ -42,10 +43,10 @@ const UpdatePackage = (e) => {
         .then(async (data) => {
           if (data.asset_id) {
             const img = data.url;
-            const newProject = { name, price, img, content };
+            const newProject = { title, img, content };
             console.log(newProject);
             const res = await axios.put(
-              `http://localhost:5000/api/v1/package/${id}`,
+              `http://localhost:5000/api/v1/service/${id}`,
               newProject
             );
 
@@ -54,7 +55,7 @@ const UpdatePackage = (e) => {
               refetch();
               if (res.data.success) {
                 toast("update successful");
-                navigate("/dashboard/package");
+                navigate("/dashboard/service");
               }
             }
           }
@@ -64,11 +65,11 @@ const UpdatePackage = (e) => {
           console.log(err);
         });
     } else {
-      const img = Package?.img;
-      const newProject = { name, price, img, content };
+      const img = initialValue?.img;
+      const newProject = { title, img, content };
       console.log(newProject);
       const res = await axios.put(
-        `http://localhost:5000/api/v1/package/${id}`,
+        `http://localhost:5000/api/v1/service/${id}`,
         newProject
       );
 
@@ -77,46 +78,44 @@ const UpdatePackage = (e) => {
         refetch();
         if (res.data.success) {
           toast("update successful");
-          navigate("/dashboard/package");
+          navigate("/dashboard/service");
         }
       }
     }
   };
-  // if (isLoading) {
-  //   return <LoadingComponent />;
-  // }
+  if (Load) {
+    return <LoadingComponent />;
+  }
   return (
     <div>
-      <form onSubmit={handleUpdateProject}>
+      <form onSubmit={handleUpdateService}>
         <div className="mb-5">
           <input
             name="name"
+            defaultValue={initialValue?.title}
             type="text"
             className="border w-full h-14 pl-5"
-            placeholder="Package Name"
-            defaultValue={Package?.name}
-          />
-        </div>
-        <div className="mb-5">
-          <input
-            name="price"
-            type="number"
-            className="border w-full h-14 pl-5"
-            placeholder="Package price"
-            defaultValue={Package?.price}
+            placeholder="Insta post Name"
           />
         </div>
 
-        <div className="mb-5">
-          <input
-            name="image"
-            className="border w-full h-14 pl-5"
-            placeholder="Your Images"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            // required
-            type="file"
-          />
+        <div className="my-5">
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            listType="picture"
+            maxCount={1}
+            rules={[{ required: true }]}
+            onChange={(e) => {
+              setImage(e.file.originFileObj);
+            }}
+          >
+            <Button
+              className="w-44 md:w-80 h-20 border-dashed text-2xl"
+              icon={<CloudUploadOutlined />}
+            >
+              Upload
+            </Button>
+          </Upload>
         </div>
         <div>
           <JoditEditor
@@ -140,4 +139,4 @@ const UpdatePackage = (e) => {
   );
 };
 
-export default UpdatePackage;
+export default UpdateService;

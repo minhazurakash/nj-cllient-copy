@@ -102,7 +102,7 @@ const Navigation = () => {
                   <Link to="/">Home</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/">Our Projects</Link>
+                  <a href="#projectSection">Our Projects</a>
                 </li>
                 <li className="text-[#fff]">
                   <Link to="/">Services</Link>
@@ -125,14 +125,15 @@ const Navigation = () => {
                 <Link to="/">Home</Link>
               </li>
               <li className="text-[#000000]">
+                <a href="/#projectSection">Our Projects</a>
+              </li>
+              <li className="text-[#000000]">
                 <Link to="/package">Package</Link>
               </li>
               <li className="text-[#000000]">
                 <Link to="/service">Services</Link>
               </li>
-              <li className="text-[#000000]">
-                <Link to="/">Projects</Link>
-              </li>
+
               <li className="text-[#000000]">
                 <Link to="/">Contact Us</Link>
               </li>
