@@ -22,7 +22,9 @@ import UpdatePackage from "./components/DashboardComponents/UpdatePackage";
 import UpdateProject from "./components/DashboardComponents/UpdateProject";
 import UpdateSlider from "./components/DashboardComponents/UpdateSlider";
 import auth from "./firebase.init";
+import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
+import ContactPage from "./pages/ContactPage";
 import DashboardPage from "./pages/DashboardPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -58,6 +60,8 @@ const App = () => {
             </RequireAuth>
           }
         />
+        <Route path="/Contact" element={<ContactPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/service" element={<ServicePage />} />
         <Route path="/sign-up" element={<SignUpPage />} />

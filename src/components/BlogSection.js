@@ -2,7 +2,8 @@ import React from "react";
 import WhoWeAreSection from "../components/WhoWeAreSection";
 import { useBlog } from "../Hooks/useBlogs";
 
-const BlogPage = () => {
+const BlogSection = () => {
+  
   const [Blog, isLoading, refetch] = useBlog();
   return (
     <div>
@@ -40,4 +41,4 @@ const BlogPage = () => {
   );
 };
 
-export default BlogPage;
+export default BlogSection;

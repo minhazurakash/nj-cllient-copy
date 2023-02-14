@@ -86,10 +86,11 @@ const Navigation = () => {
           </div>
         </div>
       </header>
-      <nav className="relative sticky top-0 z-10">
+      <nav className="relative sticky top-0 z-10 ">
 
-      <div className=" bg-[#FFF]">
-        <div className="container mx-auto px-10 flex justify-between items-center">
+      <div className=" bg-[#FFF]  px-8">
+        <div className="border-b-4 border-[#e4cfc8f0]">
+        <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="w-60">
             <Link to="/">
               <img
@@ -132,27 +133,33 @@ const Navigation = () => {
           )}
           <div className="hidden md:block">
             <ul className="flex gap-5 lg:gap-10">
-              <li className="text-[#000]">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="text-[#000]">
-                <Link to="/">Our Projects</Link>
-              </li>
-              <li className="text-[#000]">
-                <Link to="/about">About Me</Link>
-              </li>
-              <li className="text-[#000]">
-                <Link to="/">Our Packages</Link>
-              </li>
-              <li className="text-[#000]">
-                <Link to="/blog">Blog</Link>
-              </li>
-              <li className="text-[#000]">
-                <Link to="/">Contact Us</Link>
-              </li>
+            <li className="text-[#000]">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="text-[#000]">
+                  <Link to="/">Our Packages</Link>
+                </li>
+                <li className="text-[#000]">
+                  <Link to="/service">Our Service</Link>
+                </li>
+                <li className="text-[#000]">
+                  <Link to="/">Our Projects</Link>
+                </li>
+                <li className="text-[#000]">
+                  <Link to="/about">About Me</Link>
+                </li>
+                
+                <li className="text-[#000]">
+                  <Link to="/blog">Blog</Link>
+                </li>
+                <li className="text-[#000]">
+                  <Link to="/contact">Contact Us</Link>
+                </li>
             </ul>
           </div>
         </div>
+        </div>
+        
       </div>
 
     </nav></>

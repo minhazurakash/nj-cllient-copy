@@ -15,7 +15,7 @@ const HomePage = () => {
       
       <WhoWeAreSection />
       <OurServiceSection />
-      <BlogSection/>
+
       
     </>
   );
