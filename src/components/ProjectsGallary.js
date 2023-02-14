@@ -24,12 +24,12 @@ const ProjectsGallary = () => {
   });
   return (
     <>
-      <div id="projectSection" className="Projects_gallary bg-[#fffbe0] py-10">
+      <div id="projectSection" className="Projects_gallary bg-[#f3e8e4] py-10 lg:xl:px-10">
         <div className="text-center mb-14">
           <h1 className="text-3xl uppercase">Our Latest Projects</h1>
         </div>
         <Swiper
-          slidesPerView={2.5}
+          slidesPerView={3}
           spaceBetween={30}
           height={250}
           slidesPerGroup={1}
@@ -71,7 +71,7 @@ const ProjectsGallary = () => {
                 <div key={project._id} className="h-[300px] overflow-hidden">
                   <SwiperSlide>
                     <img
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded"
                       src={project?.img}
                       alt=""
                     />

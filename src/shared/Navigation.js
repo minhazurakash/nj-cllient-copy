@@ -19,79 +19,82 @@ const Navigation = () => {
   }
 
   return (
-    <nav className="relative">
-      <div className="bg-[#FBF8F5] py-3">
-        <div className="container mx-auto px-4 flex justify-between">
-        <ul className="flex items-center gap-5">
-           <li className="text-black">
-            <a href="mailto:info@websitesprofessional.com" className="flex items-stretch">
-              <div className="flex-auto text-xl p-0.5">
-              <AiOutlineMail/>
-              </div>
-              <div className="flex-auto text-base ">
-              info@websitesprofessional.com
-              </div>
-              </a>
-           </li>
-           <li className="text-black">
-            <a href="tel:704-891-4329" className="flex items-stretch">
-            <div className="flex-auto text-xl p-0.5">
-              <AiOutlinePhone/>
-              </div>
-              <div className="flex-auto text-base ">
-              704-891-4329
-              </div>
-              
-              </a>
-           </li>
-          </ul>
-          <ul className="flex items-center gap-5">
-            {user?.email ? (
-              <>
-                <li>Hey {user?.displayName || "User"}!</li>
-                <li>
-                  <Link to="/dashboard">
-                    <button className="border border-orange-300 hover:bg-orange-300 hover:text-white py-2 px-4">
-                      Dashboard
-                    </button>
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    onClick={handleSignOut}
-                    className="border border-orange-300 hover:bg-orange-300 hover:text-white py-2 px-4"
-                  >
-                    Sign Out
-                  </button>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link to="/login" className="">
-                    Login
-                  </Link>
-                </li>
+    <>
+    <header>
+        <div className="bg-[#FBF8F5] py-3 container">
+          <div className="container mx-auto px-4 flex justify-between">
+            <ul className="flex items-center gap-5">
+              <li className="text-black">
+                <a href="mailto:info@websitesprofessional.com" className="flex items-stretch">
+                  <div className="flex-auto text-xl p-0.5">
+                    <AiOutlineMail />
+                  </div>
+                  <div className="flex-auto text-base ">
+                    info@websitesprofessional.com
+                  </div>
+                </a>
+              </li>
+              <li className="text-black">
+                <a href="tel:704-891-4329" className="flex items-stretch">
+                  <div className="flex-auto text-xl p-0.5">
+                    <AiOutlinePhone />
+                  </div>
+                  <div className="flex-auto text-base ">
+                    704-891-4329
+                  </div>
 
-                <li>
-                  <Link to="/sign-up" className="">
-                    Sign up
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
-          
+                </a>
+              </li>
+            </ul>
+            <ul className="flex items-center gap-5">
+              {user?.email ? (
+                <>
+                  <li>Hey {user?.displayName || "User"}!</li>
+                  <li>
+                    <Link to="/dashboard">
+                      <button className="border border-orange-300 hover:bg-orange-300 hover:text-white py-2 px-4">
+                        Dashboard
+                      </button>
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleSignOut}
+                      className="border border-orange-300 hover:bg-orange-300 hover:text-white py-2 px-4"
+                    >
+                      Sign Out
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/login" className="">
+                      Login
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link to="/sign-up" className="">
+                      Sign up
+                    </Link>
+                  </li>
+                </>
+              )}
+            </ul>
+
+          </div>
         </div>
-      </div>
-      <div className="py-5 bg-[#FFF79E]">
+      </header>
+      <nav className="relative sticky top-0 z-10">
+
+      <div className=" bg-[#FFF]">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="w-60">
             <Link to="/">
               <img
                 src="logo.png"
-                alt="Logo"
-              />
+                alt="Logo" />
             </Link>
           </div>
           <div className="block md:hidden">
@@ -125,29 +128,30 @@ const Navigation = () => {
           )}
           <div className="hidden md:block">
             <ul className="flex gap-5 lg:gap-10">
-            <li className="text-[#000]">
-                  <Link to="/">Home</Link>
-                </li>
-                <li className="text-[#000]">
-                  <Link to="/">Our Projects</Link>
-                </li>
-                <li className="text-[#000]">
-                  <Link to="/about">About Me</Link>
-                </li>
-                <li className="text-[#000]">
-                  <Link to="/">Our Packages</Link>
-                </li>
-                <li className="text-[#000]">
-                  <Link to="/blog">Blog</Link>
-                </li>
-                <li className="text-[#000]">
-                  <Link to="/">Contact Us</Link>
-                </li>
+              <li className="text-[#000]">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="text-[#000]">
+                <Link to="/">Our Projects</Link>
+              </li>
+              <li className="text-[#000]">
+                <Link to="/about">About Me</Link>
+              </li>
+              <li className="text-[#000]">
+                <Link to="/">Our Packages</Link>
+              </li>
+              <li className="text-[#000]">
+                <Link to="/blog">Blog</Link>
+              </li>
+              <li className="text-[#000]">
+                <Link to="/">Contact Us</Link>
+              </li>
             </ul>
           </div>
         </div>
       </div>
-    </nav>
+
+    </nav></>
   );
 };
 

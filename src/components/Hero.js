@@ -23,9 +23,14 @@ const Hero = () => {
     queryFn: getSliders,
   });
   return (
-    <div id="heroSection" className="bg-[#FFFFFF] my-14">
+    
+    <div id="heroSection" className="p-10">
+       <video autoPlay loop muted>
+        <source src="hero.mp4" type="video/mp4" />
+      </video>
+      <div className="content-hero">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
-        <div className="border border-4 border-[#FFF79E] p-5">
+        <div className="">
           <div>
             <Swiper
               slidesPerView={1}
@@ -34,7 +39,7 @@ const Hero = () => {
               slidesPerGroup={1}
               effect={"fade"}
               loop={true}
-              navigation={true}
+              navigation={false}
               pagination={{
                 clickable: true,
               }}
@@ -47,7 +52,7 @@ const Hero = () => {
                     <div key={slider._id} className="h-[300px] overflow-hidden">
                       <SwiperSlide>
                         <img
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover rounded"
                           src={slider?.img}
                           alt=""
                         />
@@ -72,11 +77,12 @@ const Hero = () => {
             frequently themselves...
           </p>
           <div className="mt-8 text-center">
-            <button className="px-10 py-2 bg-[#FFF79E] hover:bg-[#EDCF55]">
+            <button className="px-10 py-2 bg-[#fff] hover:bg-[#000] hover:text-[#fff] rounded">
               READ MORE
             </button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

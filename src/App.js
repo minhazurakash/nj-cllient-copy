@@ -1,37 +1,37 @@
 import React, { useState } from "react";
-import Navigation from "./shared/Navigation";
-import HomePage from "./pages/HomePage";
-import Footer from "./shared/Footer";
-import { Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
-import RequireAuth from "./shared/RequireAuth";
-import DashboardPage from "./pages/DashboardPage";
-import SliderList from "./components/DashboardComponents/SliderList";
-import ProjectList from "./components/DashboardComponents/ProjectList";
-import InstagramList from "./components/DashboardComponents/InstagramList";
 import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "./firebase.init";
-import CreateProject from "./components/DashboardComponents/CreateProject";
+import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import CreateSlider from "./components/DashboardComponents/CreateSlider";
-import PackageList from "./components/DashboardComponents/PackageList";
-import CreatePackage from "./components/DashboardComponents/CreatePackage";
-import CreateInstagram from "./components/DashboardComponents/CreateInstagram";
-import UpdateInstagram from "./components/DashboardComponents/UpdateInstagram";
-import UpdateSlider from "./components/DashboardComponents/UpdateSlider";
-import UpdateProject from "./components/DashboardComponents/UpdateProject";
-import UpdatePackage from "./components/DashboardComponents/UpdatePackage";
-import PackagePage from "./pages/PackagePage";
-import ServicePage from "./pages/ServicePage";
-import BlogPage from "./pages/BlogPage";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 import BlogList from "./components/DashboardComponents/BlogList";
 import CreateBlog from "./components/DashboardComponents/CreateBlog";
-import "react-toastify/dist/ReactToastify.css";
-import UpdateBlog from "./components/DashboardComponents/updateBlog";
-import OrderList from "./components/DashboardComponents/OrderList";
+import CreateInstagram from "./components/DashboardComponents/CreateInstagram";
+import CreatePackage from "./components/DashboardComponents/CreatePackage";
+import CreateProject from "./components/DashboardComponents/CreateProject";
+import CreateSlider from "./components/DashboardComponents/CreateSlider";
+import InstagramList from "./components/DashboardComponents/InstagramList";
 import MyOrder from "./components/DashboardComponents/MyOrder";
-import "./App.css";
+import OrderList from "./components/DashboardComponents/OrderList";
+import PackageList from "./components/DashboardComponents/PackageList";
+import ProjectList from "./components/DashboardComponents/ProjectList";
+import SliderList from "./components/DashboardComponents/SliderList";
+import UpdateBlog from "./components/DashboardComponents/updateBlog";
+import UpdateInstagram from "./components/DashboardComponents/UpdateInstagram";
+import UpdatePackage from "./components/DashboardComponents/UpdatePackage";
+import UpdateProject from "./components/DashboardComponents/UpdateProject";
+import UpdateSlider from "./components/DashboardComponents/UpdateSlider";
+import auth from "./firebase.init";
+import BlogPage from "./pages/BlogPage";
+import DashboardPage from "./pages/DashboardPage";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import PackagePage from "./pages/PackagePage";
+import ServicePage from "./pages/ServicePage";
+import SignUpPage from "./pages/SignUpPage";
+import Footer from "./shared/Footer";
+import Navigation from "./shared/Navigation";
+import RequireAuth from "./shared/RequireAuth";
 
 const App = () => {
   const { user } = useAuthState(auth);
@@ -43,7 +43,10 @@ const App = () => {
 
   return (
     <>
-      <Navigation />
+    <Navigation />
+    <div className="px-5">
+      <div className="rounded">
+      
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -93,6 +96,9 @@ const App = () => {
         </Route>
       </Routes>
 
+   
+      </div>
+      </div>
       <Footer />
       <ToastContainer />
     </>
