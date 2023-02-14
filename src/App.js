@@ -44,7 +44,7 @@ const App = () => {
   return (
     <>
     <Navigation />
-    <div className="px-5">
+    <div className="px-8">
       <div className="rounded">
       
       <Routes>

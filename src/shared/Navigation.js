@@ -22,7 +22,7 @@ const Navigation = () => {
     <>
     <header>
         <div className="bg-[#FBF8F5] py-3 container">
-          <div className="container mx-auto px-4 flex justify-between">
+          <div className="container mx-auto px-10 flex justify-between">
             <ul className="flex items-center gap-5">
               <li className="text-black">
                 <a href="mailto:info@websitesprofessional.com" className="flex items-stretch">
@@ -89,7 +89,7 @@ const Navigation = () => {
       <nav className="relative sticky top-0 z-10">
 
       <div className=" bg-[#FFF]">
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="container mx-auto px-10 flex justify-between items-center">
           <div className="w-60">
             <Link to="/">
               <img
@@ -109,14 +109,18 @@ const Navigation = () => {
                   <Link to="/">Home</Link>
                 </li>
                 <li className="text-[#fff]">
+                  <Link to="/">Our Packages</Link>
+                </li>
+                <li className="text-[#fff]">
+                  <Link to="/">Our Service</Link>
+                </li>
+                <li className="text-[#fff]">
                   <Link to="/">Our Projects</Link>
                 </li>
                 <li className="text-[#fff]">
                   <Link to="/about">About Me</Link>
                 </li>
-                <li className="text-[#fff]">
-                  <Link to="/">Our Packages</Link>
-                </li>
+                
                 <li className="text-[#fff]">
                   <Link to="/blog">Blog</Link>
                 </li>
