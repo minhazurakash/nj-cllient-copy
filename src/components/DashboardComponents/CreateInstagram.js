@@ -1,5 +1,4 @@
-import { UploadOutlined } from "@ant-design/icons";
-import { useQueryClient } from "@tanstack/react-query";
+import { CloudUploadOutlined } from "@ant-design/icons";
 import { Button, Upload } from "antd";
 import axios from "axios";
 import JoditEditor from "jodit-react";
@@ -15,14 +14,7 @@ const CreateInstagram = (e) => {
   const [image, setImage] = useState(null);
   const [Load, setLoad] = useState(false);
 
-  const queryClient = useQueryClient();
   const [Instagram, isLoading, refetch] = useInstagram();
-
-  const handleChange = (info) => {
-    if (info.file.status === "done") {
-      setImage(info.file.originFileObj);
-    }
-  };
 
   const addInstagram = (e) => {
     e.preventDefault();
@@ -84,31 +76,24 @@ const CreateInstagram = (e) => {
             placeholder="Insta link"
           />
         </div>
-
-        {/* <div className="mb-5">
-          <input
-            name="image"
-            className="border w-full h-14 pl-5"
-            placeholder="Your Images"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            required
-            type="file"
-          />
-        </div> */}
-        <Upload
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          listType="picture"
-          // defaultFileList={[...fileList]}
-          maxCount={1}
-          // rules={[{ required: true }]}
-          onChange={(e) => {
-            setImage(e.file.originFileObj);
-          }}
-        >
-          <Button icon={<UploadOutlined />}>Upload</Button>
-        </Upload>
-        <br />
+        <div className="my-5">
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            listType="picture"
+            maxCount={1}
+            rules={[{ required: true }]}
+            onChange={(e) => {
+              setImage(e.file.originFileObj);
+            }}
+          >
+            <Button
+              className="w-44 md:w-80 h-20 border-dashed text-2xl"
+              icon={<CloudUploadOutlined />}
+            >
+              Upload
+            </Button>
+          </Upload>
+        </div>
         <div>
           <JoditEditor
             ref={editor}

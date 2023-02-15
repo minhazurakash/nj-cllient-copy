@@ -9,12 +9,14 @@ import CreateBlog from "./components/DashboardComponents/CreateBlog";
 import CreateInstagram from "./components/DashboardComponents/CreateInstagram";
 import CreatePackage from "./components/DashboardComponents/CreatePackage";
 import CreateProject from "./components/DashboardComponents/CreateProject";
+import CreateService from "./components/DashboardComponents/CreateService";
 import CreateSlider from "./components/DashboardComponents/CreateSlider";
 import InstagramList from "./components/DashboardComponents/InstagramList";
 import MyOrder from "./components/DashboardComponents/MyOrder";
 import OrderList from "./components/DashboardComponents/OrderList";
 import PackageList from "./components/DashboardComponents/PackageList";
 import ProjectList from "./components/DashboardComponents/ProjectList";
+import ServiceList from "./components/DashboardComponents/ServiceList";
 import SliderList from "./components/DashboardComponents/SliderList";
 import UpdateBlog from "./components/DashboardComponents/updateBlog";
 import UpdateInstagram from "./components/DashboardComponents/UpdateInstagram";
@@ -76,11 +78,14 @@ const App = () => {
           <Route index element={<h1>Hello User !</h1>}></Route>
           <Route path="profile" element={<h1>Hello User !</h1>}></Route>
           <Route path="create-slider" element={<CreateSlider />}></Route>
-          <Route path="create-blog" element={<CreateBlog />}></Route>
           <Route path="slider" element={<SliderList />}></Route>
+          <Route path="create-blog" element={<CreateBlog />}></Route>
           <Route path="blog" element={<BlogList />}></Route>
-          <Route path="update-slider/:id" element={<UpdateSlider />}></Route>
           <Route path="update-blog/:id" element={<UpdateBlog />}></Route>
+          <Route path="create-service" element={<CreateService />}></Route>
+          <Route path="service" element={<ServiceList />}></Route>
+          <Route path="update-service/:id" element={<updateService />}></Route>
+          <Route path="update-slider/:id" element={<UpdateSlider />}></Route>
           <Route path="create-project" element={<CreateProject />}></Route>
           <Route path="project" element={<ProjectList />}></Route>
           <Route path="update-project/:id" element={<UpdateProject />}></Route>

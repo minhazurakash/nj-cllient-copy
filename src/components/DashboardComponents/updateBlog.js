@@ -1,16 +1,20 @@
 import { useQueryClient } from "@tanstack/react-query";
+import { Button, Upload } from "antd";
+import { CloudUploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import JoditEditor from "jodit-react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useBlog } from "../../Hooks/useBlogs";
+import { useInitialValue } from "../../Hooks/useInitialValue";
 
 const UpdateBlog = (e) => {
   const navigate = useNavigate();
   const editor = useRef(null);
   const [Load, setLoad] = useState(false);
   const { id } = useParams();
+  const [initialValue, isLoad] = useInitialValue("blog", id);
 
   const queryClient = useQueryClient();
   const [blog, isLoading, refetch] = useBlog();
@@ -18,7 +22,11 @@ const UpdateBlog = (e) => {
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
 
-  const handleUpdateProject = (e) => {
+  useEffect(() => {
+    setContent(initialValue?.blogDesc);
+  }, [initialValue]);
+
+  const handleUpdateProject = async (e) => {
     e.preventDefault();
     const blogTitle = e.target.name.value;
     setLoad(true);
@@ -28,35 +36,54 @@ const UpdateBlog = (e) => {
     formData.append("cloud_name", "dvmwear6h");
 
     console.log(formData);
-    fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then(async (data) => {
-        if (data.asset_id) {
-          const img = data.url;
-          const newProject = { blogTitle, img, blogDesc: content };
-          console.log(newProject);
-          const res = await axios.put(
-            `https://bored-yoke-bee.cyclic.app/api/v1/blog/${id}`,
-            newProject
-          );
+    if (image) {
+      fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then(async (data) => {
+          if (data.asset_id) {
+            const img = data.url;
+            const newProject = { blogTitle, img, blogDesc: content };
+            console.log(newProject);
+            const res = await axios.put(
+              `http://localhost:5000/api/v1/blog/${id}`,
+              newProject
+            );
 
-          if (res) {
-            setLoad(false);
-            refetch();
-            if (res.data.success) {
-              toast("update successful");
-              navigate("/dashboard/blog");
+            if (res) {
+              setLoad(false);
+              refetch();
+              if (res.data.success) {
+                toast("update successful");
+                navigate("/dashboard/blog");
+              }
             }
           }
-        }
-      })
-      .catch((err) => {
+        })
+        .catch((err) => {
+          setLoad(false);
+          console.log(err);
+        });
+    } else {
+      const img = initialValue?.img;
+      const newProject = { blogTitle, img, blogDesc: content };
+      console.log(newProject);
+      const res = await axios.put(
+        `http://localhost:5000/api/v1/blog/${id}`,
+        newProject
+      );
+
+      if (res) {
         setLoad(false);
-        console.log(err);
-      });
+        refetch();
+        if (res.data.success) {
+          toast("update successful");
+          navigate("/dashboard/blog");
+        }
+      }
+    }
   };
   return (
     <div>
@@ -67,19 +94,27 @@ const UpdateBlog = (e) => {
             type="text"
             className="border w-full h-14 pl-5"
             placeholder="Blog Name"
+            defaultValue={initialValue?.blogTitle}
           />
         </div>
 
-        <div className="mb-5">
-          <input
-            name="image"
-            className="border w-full h-14 pl-5"
-            placeholder="Your Images"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            required
-            type="file"
-          />
+        <div className="my-5">
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            listType="picture"
+            maxCount={1}
+            rules={[{ required: true }]}
+            onChange={(e) => {
+              setImage(e.file.originFileObj);
+            }}
+          >
+            <Button
+              className="w-44 md:w-80 h-20 border-dashed text-2xl"
+              icon={<CloudUploadOutlined />}
+            >
+              Upload
+            </Button>
+          </Upload>
         </div>
         <div>
           <JoditEditor

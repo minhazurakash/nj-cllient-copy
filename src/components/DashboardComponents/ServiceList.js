@@ -1,8 +1,7 @@
 import { Table } from "antd";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useInstagram } from "../../Hooks/useInstagram";
 import { useService } from "../../Hooks/useService";
 import LoadingComponent from "../../shared/LoadingComponent";
 import HeaderDashBoard from "./HeaderDashBoard";
@@ -15,7 +14,7 @@ const ServiceList = () => {
   const deleteService = (id) => {
     setLoad(true);
 
-    fetch(`http://localhost:5000/api/v1/service/${id}`, {
+    fetch(`https://bored-yoke-bee.cyclic.app/api/v1/service/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

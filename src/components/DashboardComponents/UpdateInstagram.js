@@ -1,4 +1,6 @@
 import axios from "axios";
+import { Button, Upload } from "antd";
+import { CloudUploadOutlined } from "@ant-design/icons";
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -44,7 +46,7 @@ const UpdateInstagram = (e) => {
             const newProject = { title, link, img, content };
             console.log(newProject);
             const res = await axios.put(
-              `https://bored-yoke-bee.cyclic.app/api/v1/instagram/${id}`,
+              `http://localhost:5000/api/v1/instagram/${id}`,
               newProject
             );
 
@@ -67,7 +69,7 @@ const UpdateInstagram = (e) => {
       const newProject = { title, link, img, content };
       console.log(newProject);
       const res = await axios.put(
-        `https://bored-yoke-bee.cyclic.app/api/v1/instagram/${id}`,
+        `http://localhost:5000/api/v1/instagram/${id}`,
         newProject
       );
 
@@ -106,17 +108,23 @@ const UpdateInstagram = (e) => {
           />
         </div>
 
-        <div className="mb-5">
-          <input
-            name="image"
-            className="border w-full h-14 pl-5"
-            placeholder="Your Images"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            // required
-            type="file"
-            defaultValue={initialValue?.img}
-          />
+        <div className="my-5">
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            listType="picture"
+            maxCount={1}
+            rules={[{ required: true }]}
+            onChange={(e) => {
+              setImage(e.file.originFileObj);
+            }}
+          >
+            <Button
+              className="w-44 md:w-80 h-20 border-dashed text-2xl"
+              icon={<CloudUploadOutlined />}
+            >
+              Upload
+            </Button>
+          </Upload>
         </div>
         <div>
           <JoditEditor

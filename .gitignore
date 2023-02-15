@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+/.gitn
+/.gitm
+/src
 # dependencies
 /node_modules
 /.pnp

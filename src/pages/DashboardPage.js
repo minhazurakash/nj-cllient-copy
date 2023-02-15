@@ -7,11 +7,11 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 
 import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 
@@ -54,11 +54,7 @@ const Dashboard = () => {
         >
           <div className="logo grid justify-center mb-5">
             <Link to="/">
-              <img
-                className="w-36"
-                src="logo.png"
-                alt=""
-              />
+              <img className="w-36" src="logo.png" alt="" />
             </Link>
           </div>
           <Menu
@@ -98,6 +94,11 @@ const Dashboard = () => {
                 key: "package",
                 icon: <UploadOutlined />,
                 label: "package",
+              },
+              {
+                key: "service",
+                icon: <UploadOutlined />,
+                label: "service",
               },
               {
                 key: "blog",

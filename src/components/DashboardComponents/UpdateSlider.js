@@ -1,24 +1,25 @@
 import { useQueryClient } from "@tanstack/react-query";
+import { Button, Upload } from "antd";
+import { CloudUploadOutlined } from "@ant-design/icons";
 import axios from "axios";
-import JoditEditor from "jodit-react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useSlider } from "../../Hooks/useSlider";
+import { useInitialValue } from "../../Hooks/useInitialValue";
 
 const UpdateSlider = (e) => {
   const navigate = useNavigate();
   const editor = useRef(null);
   const [Load, setLoad] = useState(false);
   const { id } = useParams();
+  const [initialValue, isLoad] = useInitialValue("slider", id);
 
-  const queryClient = useQueryClient();
   const [Slider, isLoading, refetch] = useSlider();
   console.log(Slider);
-  const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
 
-  const handleUpdateProject = (e) => {
+  const handleUpdateProject = async (e) => {
     e.preventDefault();
     const sliderTitle = e.target.name.value;
     setLoad(true);
@@ -28,35 +29,54 @@ const UpdateSlider = (e) => {
     formData.append("cloud_name", "dvmwear6h");
 
     console.log(formData);
-    fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then(async (data) => {
-        if (data.asset_id) {
-          const img = data.url;
-          const newProject = { sliderTitle, img, sliderDesc: content };
-          console.log(newProject);
-          const res = await axios.put(
-            `https://bored-yoke-bee.cyclic.app/api/v1/slider/${id}`,
-            newProject 
-          );
+    if (image) {
+      fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then(async (data) => {
+          if (data.asset_id) {
+            const img = data.url;
+            const newProject = { sliderTitle, img };
+            console.log(newProject);
+            const res = await axios.put(
+              `http://localhost:5000/api/v1/slider/${id}`,
+              newProject
+            );
 
-          if (res) {
-            setLoad(false);
-            refetch();
-            if (res.data.success) {
-              toast("update successful");
-              navigate("/dashboard/slider");
+            if (res) {
+              setLoad(false);
+              refetch();
+              if (res.data.success) {
+                toast("update successful");
+                navigate("/dashboard/slider");
+              }
             }
           }
-        }
-      })
-      .catch((err) => {
+        })
+        .catch((err) => {
+          setLoad(false);
+          console.log(err);
+        });
+    } else {
+      const img = initialValue?.img;
+      const newProject = { sliderTitle, img };
+      console.log(newProject);
+      const res = await axios.put(
+        `http://localhost:5000/api/v1/slider/${id}`,
+        newProject
+      );
+
+      if (res) {
         setLoad(false);
-        console.log(err);
-      });
+        refetch();
+        if (res.data.success) {
+          toast("update successful");
+          navigate("/dashboard/slider");
+        }
+      }
+    }
   };
   return (
     <div>
@@ -66,30 +86,30 @@ const UpdateSlider = (e) => {
             name="name"
             type="text"
             className="border w-full h-14 pl-5"
-            placeholder="Insta post Name"
+            placeholder="Slider Name"
+            defaultValue={initialValue?.sliderTitle}
           />
         </div>
 
-        <div className="mb-5">
-          <input
-            name="image"
-            className="border w-full h-14 pl-5"
-            placeholder="Your Images"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            required
-            type="file"
-          />
+        <div className="my-5">
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            listType="picture"
+            maxCount={1}
+            rules={[{ required: true }]}
+            onChange={(e) => {
+              setImage(e.file.originFileObj);
+            }}
+          >
+            <Button
+              className="w-44 md:w-80 h-20 border-dashed text-2xl"
+              icon={<CloudUploadOutlined />}
+            >
+              Upload
+            </Button>
+          </Upload>
         </div>
-        <div>
-          <JoditEditor
-            ref={editor}
-            value={content}
-            tabIndex={1} // tabIndex of textarea
-            onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-            onChange={(newContent) => {}}
-          />
-        </div>
+
         <div className="mt-8">
           <input
             type="submit"

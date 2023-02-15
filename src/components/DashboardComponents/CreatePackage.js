@@ -1,4 +1,6 @@
+import { CloudUploadOutlined } from "@ant-design/icons";
 import { useQueryClient } from "@tanstack/react-query";
+import { Button, Upload } from "antd";
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import React, { useRef, useState } from "react";
@@ -76,16 +78,23 @@ const CreatePackage = (e) => {
             placeholder="Package Price"
           />
         </div>
-        <div className="mb-5">
-          <input
-            name="image"
-            className="border w-full h-14 pl-5"
-            placeholder="Your Images"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            required
-            type="file"
-          />
+        <div className="my-5">
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            listType="picture"
+            maxCount={1}
+            rules={[{ required: true }]}
+            onChange={(e) => {
+              setImage(e.file.originFileObj);
+            }}
+          >
+            <Button
+              className="w-44 md:w-80 h-20 border-dashed text-2xl"
+              icon={<CloudUploadOutlined />}
+            >
+              Upload
+            </Button>
+          </Upload>
         </div>
         <div>
           <JoditEditor

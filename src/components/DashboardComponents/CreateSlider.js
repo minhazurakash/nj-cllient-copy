@@ -1,6 +1,7 @@
+import { CloudUploadOutlined } from "@ant-design/icons";
 import { useQueryClient } from "@tanstack/react-query";
+import { Button, Upload } from "antd";
 import axios from "axios";
-import JoditEditor from "jodit-react";
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -9,7 +10,6 @@ import { useSlider } from "../../Hooks/useSlider";
 const CreateSlider = (e) => {
   const navigate = useNavigate();
   const editor = useRef(null);
-  const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
   const [Load, setLoad] = useState(false);
 
@@ -35,7 +35,7 @@ const CreateSlider = (e) => {
       .then(async (data) => {
         if (data.asset_id) {
           const img = data.url;
-          const Slider = { sliderTitle: title, img, sliderDesc: content };
+          const Slider = { sliderTitle: title, img };
           const res = await axios.post(
             "https://bored-yoke-bee.cyclic.app/api/v1/slider",
             Slider
@@ -65,28 +65,26 @@ const CreateSlider = (e) => {
             name="name"
             type="text"
             className="border w-full h-14 pl-5"
-            placeholder="Service Name"
+            placeholder="Slider Name"
           />
         </div>
-        <div className="mb-5">
-          <input
-            name="image"
-            className="border w-full h-14 pl-5"
-            placeholder="Your Images"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            required
-            type="file"
-          />
-        </div>
-        <div>
-          <JoditEditor
-            ref={editor}
-            value={content}
-            tabIndex={1} // tabIndex of textarea
-            onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-            onChange={(newContent) => {}}
-          />
+        <div className="my-5">
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            listType="picture"
+            maxCount={1}
+            rules={[{ required: true }]}
+            onChange={(e) => {
+              setImage(e.file.originFileObj);
+            }}
+          >
+            <Button
+              className="w-44 md:w-80 h-20 border-dashed text-2xl"
+              icon={<CloudUploadOutlined />}
+            >
+              Upload
+            </Button>
+          </Upload>
         </div>
         <div className="mt-8">
           <input
