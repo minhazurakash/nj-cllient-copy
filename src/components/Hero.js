@@ -23,7 +23,7 @@ const Hero = () => {
     queryFn: getSliders,
   });
   return (
-    
+    <div className="px-8">
     <div id="heroSection" className="p-10">
        <video autoPlay loop muted>
         <source src="hero.mp4" type="video/mp4" />
@@ -84,6 +84,7 @@ const Hero = () => {
         </div>
       </div>
       </div>
+    </div>
     </div>
   );
 };

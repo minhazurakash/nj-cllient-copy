@@ -5,9 +5,9 @@ import ServiceSection from "./ServiceSection";
 const OurServiceSection = () => {
   return (
     
-    <div className="container mx-auto px-5 my-20">
+    <div className="container mx-auto  my-20">
       
-      <div className="grid grid-cols-8 items-center gap-10 lg:gap-20">
+      <div className="grid grid-cols-8 px-10 items-center gap-10 lg:gap-20">
         <div className="md:order-2 col-span-8 md:col-span-3">
           <img
             className="w-full h-full object-cover"
@@ -45,7 +45,7 @@ const OurServiceSection = () => {
           </button> */}
         </div>
 <div className="md:order-3 col-span-8 md:col-span-8">
-<ServiceSection/>
+
 </div>
         <div className="md:order-4 col-span-8 md:col-span-8">
           <p className="leadeing-relaxed text-justify">

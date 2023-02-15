@@ -86,7 +86,7 @@ const Navigation = () => {
           </div>
         </div>
       </header>
-      <nav className="relative sticky top-0 z-10 ">
+      <nav className="relative sticky top-0 z-10">
 
       <div className=" bg-[#FFF]  px-8">
         <div className="border-b-4 border-[#e4cfc8f0]">

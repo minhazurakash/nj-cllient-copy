@@ -26,7 +26,7 @@ const ProjectsGallary = () => {
     <>
       <div id="projectSection" className="Projects_gallary bg-[#f3e8e4] py-10 lg:xl:px-10">
         <div className="text-center mb-14">
-          <h1 className="text-3xl uppercase">Our Latest Projects</h1>
+          <h1 className="text-3xl uppercase">Our Lates Projects</h1>
         </div>
         <Swiper
           slidesPerView={3}

@@ -6,7 +6,7 @@ const BlogSection = () => {
   
   const [Blog, isLoading, refetch] = useBlog();
   return (
-    <div>
+    <div className="bg-[#f3e8e4]">
       {/* <WhoWeAreSection /> */}
       <div className="container mx-auto px-4">
         <div className="my-5">
@@ -16,7 +16,7 @@ const BlogSection = () => {
           {Blog?.data?.map((i) => {
             return (
               <>
-                <div className="my-14 border-2 p-5 rounded-lg text-center">
+                <div className="my-14 border-2 border-[#fff] p-5 rounded-lg text-center">
                   <div className="w-ful h-96">
                     <img
                       className="w-full h-full object-cover"

@@ -5,7 +5,7 @@ import { useBlog } from "../Hooks/useBlogs";
 const BlogPage = () => {
   const [Blog, isLoading, refetch] = useBlog();
   return (
-    <div>
+    <div className="bg-[#f3e8e4]">
       {/* <WhoWeAreSection /> */}
       <div className="container mx-auto px-4">
         <div className="my-5">

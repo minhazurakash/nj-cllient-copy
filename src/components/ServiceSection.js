@@ -5,8 +5,9 @@ const ServiceSection = () => {
   const [Service, isLoading, refetch] = useService();
 
   return (
-    <div className="container mx-auto px-2">
-      <div className="px-3 md:lg:xl:px-10   border-t border-b py-10 bg-opacity-10">
+    <div className="bg-[#fff]">
+    <div className="container mx-auto px-2 ">
+      <div className="px-3 md:lg:xl:px-10    border-t border-b py-10 bg-opacity-10">
         <h1 class="block font-sans text-4xl pb-5 font-semibold leading-relaxed tracking-normal text-inherit text-center antialiased">
           These are some of the skills I will put to work for you
         </h1>
@@ -25,7 +26,7 @@ const ServiceSection = () => {
             );
           })}
         </div>
-      </div>
+      </div></div>
     </div>
   );
 };

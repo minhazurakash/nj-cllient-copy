@@ -2,14 +2,14 @@ import React from "react";
 
 const WhoWeAreSection = () => {
   return (
-    <div>
+    <div className="bg-[#f3e8e4]">
       
- <div className="container mx-auto px-5 my-20" >
+ <div className="container mx-auto px-8  my-20" >
       
       <div className="grid grid-cols-7 items-center gap-10 lg:gap-20">
         <div className=" col-span-7 md:col-span-3">
           <img
-            src="https://restored316.wpenginepowered.com/wp-content/uploads/2021/07/courtney-whitmore-300-dpi.jpg"
+            src="about.jpg"
             alt=""
           />
         </div>

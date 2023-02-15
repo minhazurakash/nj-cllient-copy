@@ -44,21 +44,16 @@ const PackagePage = () => {
     <div className="container mx-auto ">
 
 
-<section className="relative z-10 overflow-hidden bg-[#f3e8e4] pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
+<section className="relative z-10 overflow-hidden bg-[#fff] pt-10 pb-12 lg:pt-[10px] lg:pb-[90px]">
         <div className="container mx-auto">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="mx-auto mb-[60px] max-w-[510px] text-center lg:mb-20">
-                <span className="text-primary mb-2 block text-lg font-semibold">
-                  Pricing Table
-                </span>
+               
                 <h2 className="text-dark mb-4 text-3xl font-bold sm:text-4xl md:text-[40px]">
-                  Our Pricing Plan
+                  Our Packages
                 </h2>
-                <p className="text-body-color text-base">
-                  There are many variations of passages of Lorem Ipsum available but
-                  the majority have suffered alteration in some form.
-                </p>
+
               </div>
             </div>
           </div>

@@ -47,10 +47,9 @@ const App = () => {
 
   return (
     <>
-    <Navigation />
-    <div className="px-8">
-      <div className="rounded">
-      
+
+      <Navigation />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -105,9 +104,7 @@ const App = () => {
         </Route>
       </Routes>
 
-   
-      </div>
-      </div>
+
       <Footer />
       <ToastContainer />
     </>
