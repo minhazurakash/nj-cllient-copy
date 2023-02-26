@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ServicePage = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch('http://localhost:5000/api/v1/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, message }),
+    })
+      .then((res) => res.text())
+      .then((data) => {
+        console.log(data);
+        // Display a success message to the user
+      })
+      .catch((err) => {
+        console.error(err);
+        // Display an error message to the user
+      });
+  };
+
   return (
     <div>
-            <div className="relative flex items-top justify-center min-h-screen bg-white dark:bg-gray-900 sm:items-center sm:pt-0">
+      <div className="relative flex items-top justify-center min-h-screen bg-white dark:bg-gray-900 sm:items-center sm:pt-0">
         <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
           <div className="mt-8 overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2">
@@ -41,28 +65,43 @@ const ServicePage = () => {
                   </div>
                 </div>
               </div>
-              <form className="p-6 flex flex-col justify-center">
-                <div className="flex flex-col">
-                  <label htmlFor="name" className="hidden">Full Name</label>
-                  <input type="name" name="name" id="name" placeholder="Full Name" className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none" />
+              <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
+                <div className="mb-4">
+                  <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+                    Name:
+                  </label>
+                  <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <div className="flex flex-col mt-2">
-                  <label htmlFor="email" className="hidden">Email</label>
-                  <input type="email" name="email" id="email" placeholder="Email" className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none" />
+                <div className="mb-4">
+                  <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+                    Email:
+                  </label>
+                  <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <div className="flex flex-col mt-2">
-                  <label htmlFor="tel" className="hidden">Number</label>
-                  <input type="tel" name="tel" id="tel" placeholder="Telephone Number" className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none" />
+                <div className="mb-4">
+                  <label htmlFor="phone" className="block text-gray-700 font-bold mb-2">
+                    Phone:
+                  </label>
+                  <input type="tel" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                <button type="submit" className="md:w-32 bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-500 transition ease-in-out duration-300">
-                  Submit
-                </button>
-              </form>
-            </div>
-          </div>
+                <div className="mb-4">
+                  <label htmlFor="message" className="block text-gray-700 font-bold mb-2">
+                    Message:
+                  </label>
+                  <textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="5"></textarea>
+                </div>
+                <div className="flex items-center justify-center">
+                  <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Submit
+                  </button>
+                </div>
+
+          </form>
         </div>
       </div>
     </div>
+      </div >
+    </div >
   );
 };
 

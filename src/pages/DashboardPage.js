@@ -110,6 +110,11 @@ const Dashboard = () => {
                 icon: <UploadOutlined />,
                 label: "Orders",
               },
+              {
+                key: "Contacts",
+                icon: <UploadOutlined />,
+                label: "Contacts",
+              },
             ]}
           />
         </Sider>

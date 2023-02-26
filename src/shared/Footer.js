@@ -13,7 +13,7 @@ const Footer = () => {
     <div className="px-5">
       <div className="border-y-2">
         {/* <div className="py-5 border-y-2">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto lg:xl:px-[120px]">
             <div className="text-center text-2xl">
               <h1>UNLOCK 10% OFF YOUR FIRST ORDER WITH US!</h1>
             </div>
@@ -90,7 +90,7 @@ const Footer = () => {
 
             </div>
             <div className="m-5">
-              <div className="flex flex-col justify-center items-center bg-[#FFF79E] p-10">
+              <div className="flex flex-col justify-center items-center bg-[#fcf9f4] p-10">
                 <div className="text-center mb-5">
                   <h2 className="text-xl mb-4">JOIN Website Professionals COMMUNITY</h2>
                   <h1 className="text-2xl">

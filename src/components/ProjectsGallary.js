@@ -24,9 +24,9 @@ const ProjectsGallary = () => {
   });
   return (
     <>
-      <div id="projectSection" className="Projects_gallary bg-[#f3e8e4] py-10 lg:xl:px-10">
+      <div id="projectSection" className="Projects_gallary bg-[#fcf9f4] py-10 lg:xl:px-[120px]">
         <div className="text-center mb-14">
-          <h1 className="text-3xl uppercase">Our Lates Projects</h1>
+          <h1 className="text-3xl uppercase font-title">Our Latest Projects</h1>
         </div>
         <Swiper
           slidesPerView={3}
@@ -41,15 +41,15 @@ const ProjectsGallary = () => {
               spaceBetween: 10,
             },
             480: {
-              slidesPerView: 1.2,
+              slidesPerView: 1,
               spaceBetween: 10,
             },
             768: {
-              slidesPerView: 2.5,
+              slidesPerView: 2,
               spaceBetween: 10,
             },
             992: {
-              slidesPerView: 2.6,
+              slidesPerView: 3,
               spaceBetween: 30,
             },
           }}

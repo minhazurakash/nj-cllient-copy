@@ -31,7 +31,7 @@ const SignUpPage = () => {
     navigate("/");
   }
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto lg:xl:px-[120px]">
       <div className="mt-20 mb-10">
         <h1 className="text-4xl">Sign Up</h1>
       </div>

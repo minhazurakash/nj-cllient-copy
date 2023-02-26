@@ -1,15 +1,14 @@
 import React from "react";
-import WhoWeAreSection from "../components/WhoWeAreSection";
 import { useBlog } from "../Hooks/useBlogs";
 
 const BlogPage = () => {
   const [Blog, isLoading, refetch] = useBlog();
   return (
-    <div className="bg-[#f3e8e4]">
+    <div className="bg-[#fcf9f4]">
       {/* <WhoWeAreSection /> */}
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto lg:xl:px-[120px]">
         <div className="my-5">
-          <h1 className="text-3xl font-bold text-center uppercase">our Blog</h1>
+          <h1 className="text-3xl font-bold text-center uppercase">Blog Posts</h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {Blog?.data?.map((i) => {

@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import BlogList from "./components/DashboardComponents/BlogList";
+import ContactList from "./components/DashboardComponents/ContactList";
 import CreateBlog from "./components/DashboardComponents/CreateBlog";
 import CreateInstagram from "./components/DashboardComponents/CreateInstagram";
 import CreatePackage from "./components/DashboardComponents/CreatePackage";
@@ -22,6 +23,7 @@ import UpdateBlog from "./components/DashboardComponents/updateBlog";
 import UpdateInstagram from "./components/DashboardComponents/UpdateInstagram";
 import UpdatePackage from "./components/DashboardComponents/UpdatePackage";
 import UpdateProject from "./components/DashboardComponents/UpdateProject";
+import UpdateService from "./components/DashboardComponents/updateService";
 import UpdateSlider from "./components/DashboardComponents/UpdateSlider";
 import auth from "./firebase.init";
 import AboutPage from "./pages/AboutPage";
@@ -45,7 +47,15 @@ const App = () => {
     console.log(img);
   };
 
+
+
+
+
+
+
+  
   return (
+    
     <>
 
       <Navigation />
@@ -83,7 +93,7 @@ const App = () => {
           <Route path="update-blog/:id" element={<UpdateBlog />}></Route>
           <Route path="create-service" element={<CreateService />}></Route>
           <Route path="service" element={<ServiceList />}></Route>
-          <Route path="update-service/:id" element={<updateService />}></Route>
+          <Route path="update-service/:id" element={<UpdateService />}></Route>
           <Route path="update-slider/:id" element={<UpdateSlider />}></Route>
           <Route path="create-project" element={<CreateProject />}></Route>
           <Route path="project" element={<ProjectList />}></Route>
@@ -94,10 +104,14 @@ const App = () => {
             path="update-instagram/:id"
             element={<UpdateInstagram />}
           ></Route>
+
+
+<Route path="contacts" element={<ContactList />}></Route>
           <Route path="package" element={<PackageList />}></Route>
           <Route path="update-package/:id" element={<UpdatePackage />}></Route>
           <Route path="create-package" element={<CreatePackage />}></Route>
           <Route path="*" element={<h1>Not Found</h1>}></Route>
+
 
           <Route path="orders" element={<OrderList />}></Route>
           <Route path="my-order" element={<MyOrder />}></Route>

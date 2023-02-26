@@ -18,11 +18,13 @@ const Navigation = () => {
     return;
   }
 
+
+  
   return (
     <>
     <header>
         <div className="bg-[#FBF8F5] py-3 container">
-          <div className="container mx-auto px-10 flex justify-between">
+          <div className="container mx-auto lg:xl:px-[120px] flex justify-between">
             <ul className="flex items-center gap-5">
               <li className="text-black">
                 <a href="mailto:info@websitesprofessional.com" className="flex items-stretch">
@@ -90,7 +92,7 @@ const Navigation = () => {
 
       <div className=" bg-[#FFF]  px-8">
         <div className="border-b-4 border-[#e4cfc8f0]">
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="container mx-auto lg:xl:px-[120px] flex justify-between items-center">
           <div className="w-60">
             <Link to="/">
               <img
@@ -110,23 +112,23 @@ const Navigation = () => {
                   <Link to="/">Home</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/">Our Packages</Link>
+                  <Link to="/">Packages</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/">Our Service</Link>
+                  <Link to="/">Services</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/">Our Projects</Link>
+                  <Link to="/">Projects</Link>
                 </li>
                 <li className="text-[#fff]">
                   <Link to="/about">About Me</Link>
                 </li>
                 
                 <li className="text-[#fff]">
-                  <Link to="/blog">Blog</Link>
+                  <Link to="/blog">Blog Posts</Link>
                 </li>
                 <li className="text-[#fff]">
-                  <Link to="/">Contact Us</Link>
+                  <Link to="/">Contacts</Link>
                 </li>
               </ul>
             </div>
@@ -137,23 +139,23 @@ const Navigation = () => {
                   <Link to="/">Home</Link>
                 </li>
                 <li className="text-[#000]">
-                  <Link to="/">Our Packages</Link>
+                  <Link to="/">Packages</Link>
                 </li>
                 <li className="text-[#000]">
-                  <Link to="/service">Our Service</Link>
+                  <Link to="/service">Services</Link>
                 </li>
                 <li className="text-[#000]">
-                  <Link to="/">Our Projects</Link>
+                  <Link to="/">Projects</Link>
                 </li>
                 <li className="text-[#000]">
                   <Link to="/about">About Me</Link>
                 </li>
                 
                 <li className="text-[#000]">
-                  <Link to="/blog">Blog</Link>
+                  <Link to="/blog">Blog Posts</Link>
                 </li>
                 <li className="text-[#000]">
-                  <Link to="/contact">Contact Us</Link>
+                  <Link to="/contact">Contacts</Link>
                 </li>
             </ul>
           </div>
