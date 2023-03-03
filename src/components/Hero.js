@@ -15,7 +15,7 @@ import { EffectFade, Navigation, Pagination } from "swiper";
 const Hero = () => {
   // Queries
   const getSliders = async () => {
-    const { data } = await axios.get("https://bored-yoke-bee.cyclic.app/api/v1/slider");
+    const { data } = await axios.get("https://api.websitesprofessional.com/api/v1/slider");
     return data;
   };
   const { data: sliders } = useQuery({

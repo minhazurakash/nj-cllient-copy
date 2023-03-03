@@ -28,7 +28,7 @@ const PackagePage = () => {
     };
     console.log(orderDetails);
     const res = await axios.post(
-      "https://bored-yoke-bee.cyclic.app/api/v1/order",
+      "https://api.websitesprofessional.com/api/v1/order",
       orderDetails
     );
     if (res) {
@@ -63,12 +63,12 @@ const PackagePage = () => {
           return (
             <>
             <div className="bg-white rounded-lg shadow-lg">
-            <div className="flex flex-col items-center p-10 bg-[#fcf9f4] font-title">
-              <span className="font-semibold text-2xl">{i?.name}</span>
+            <div className="flex flex-col items-center text-center p-10 bg-[#fcf9f4] ">
+              <span className="font-semibold text-2xl font-subtitle">{i?.name}</span>
               <div className="flex items-center">
                 {/* <span className="text-3xl">$</span> */}
-                <span className="text-4xl font-bold">${i?.price}</span>
-                <span className="text-2xl text-gray-500">/mo</span>
+                <span className="text-xl pt-5  text-[#a59167]">{i?.price}</span>
+                {/* <span className="text-xl text-gray-500">/mo</span> */}
               </div>
             </div>
             <div className="p-10">

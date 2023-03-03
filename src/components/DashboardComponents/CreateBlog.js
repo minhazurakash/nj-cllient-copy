@@ -38,7 +38,7 @@ const CreateBlog = (e) => {
           const img = data.url;
           const Blog = { blogTitle: title, img, blogDesc: content };
           const res = await axios.post(
-            "https://bored-yoke-bee.cyclic.app/api/v1/blog",
+            "https://api.websitesprofessional.com/api/v1/blog",
             Blog
           );
           if (res) {

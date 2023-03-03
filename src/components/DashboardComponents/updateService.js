@@ -1,12 +1,11 @@
-import { Button, Upload } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
+import { Button, Upload } from "antd";
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useInitialValue } from "../../Hooks/useInitialValue";
-import { useInstagram } from "../../Hooks/useInstagram";
 import { useService } from "../../Hooks/useService";
 import LoadingComponent from "../../shared/LoadingComponent";
 
@@ -46,7 +45,7 @@ const UpdateService = (e) => {
             const newProject = { title, img, content };
             console.log(newProject);
             const res = await axios.put(
-              `http://localhost:5000/api/v1/service/${id}`,
+              `https://api.websitesprofessional.com/api/v1/service/${id}`,
               newProject
             );
 
@@ -69,7 +68,7 @@ const UpdateService = (e) => {
       const newProject = { title, img, content };
       console.log(newProject);
       const res = await axios.put(
-        `http://localhost:5000/api/v1/service/${id}`,
+        `https://api.websitesprofessional.com/api/v1/service/${id}`,
         newProject
       );
 

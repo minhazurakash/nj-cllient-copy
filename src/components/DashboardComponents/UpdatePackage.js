@@ -1,6 +1,6 @@
+import { CloudUploadOutlined } from "@ant-design/icons";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button, Upload } from "antd";
-import { CloudUploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
@@ -47,7 +47,7 @@ const UpdatePackage = (e) => {
             const newProject = { name, price, img, content };
             console.log(newProject);
             const res = await axios.put(
-              `http://localhost:5000/api/v1/package/${id}`,
+              `https://api.websitesprofessional.com/api/v1/package/${id}`,
               newProject
             );
 
@@ -70,7 +70,7 @@ const UpdatePackage = (e) => {
       const newProject = { name, price, img, content };
       console.log(newProject);
       const res = await axios.put(
-        `http://localhost:5000/api/v1/package/${id}`,
+        `https://api.websitesprofessional.com/api/v1/package/${id}`,
         newProject
       );
 
@@ -102,7 +102,7 @@ const UpdatePackage = (e) => {
         <div className="mb-5">
           <input
             name="price"
-            type="number"
+            type="text"
             className="border w-full h-14 pl-5"
             placeholder="Package price"
             defaultValue={Package?.price}

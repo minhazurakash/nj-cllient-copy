@@ -18,7 +18,7 @@ const SliderList = () => {
   const deleteSlider = (id) => {
     setLoad(true);
 
-    fetch(`https://bored-yoke-bee.cyclic.app/api/v1/slider/${id}`, {
+    fetch(`https://api.websitesprofessional.com/api/v1/slider/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

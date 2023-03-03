@@ -1,21 +1,14 @@
-import axios from "axios";
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import 'lightbox2/dist/css/lightbox.min.css';
+import 'lightbox2/dist/js/lightbox.min.js';
+import React from 'react';
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+const ProjectsGallery = () => {
 
-// import required modules
-import { useQuery } from "@tanstack/react-query";
-import { EffectFade, Navigation, Pagination } from "swiper";
 
-const ProjectsGallary = () => {
-  // Queries
   const getProjects = async () => {
-    const { data } = await axios.get("https://bored-yoke-bee.cyclic.app/api/v1/Project");
+    const { data } = await axios.get("https://api.websitesprofessional.com/api/v1/Project");
     return data;
   };
   const { data: Projects } = useQuery({
@@ -23,69 +16,28 @@ const ProjectsGallary = () => {
     queryFn: getProjects,
   });
   return (
-    <>
-      <div id="projectSection" className="Projects_gallary bg-[#fcf9f4] py-10 lg:xl:px-[120px]">
-        <div className="text-center mb-14">
-          <h1 className="text-3xl uppercase font-title">Our Latest Projects</h1>
-        </div>
-        <Swiper
-          slidesPerView={3}
-          spaceBetween={30}
-          height={250}
-          slidesPerGroup={1}
-          effect={"slide"}
-          loop={true}
-          breakpoints={{
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 10,
-            },
-            480: {
-              slidesPerView: 1,
-              spaceBetween: 10,
-            },
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-            },
-            992: {
-              slidesPerView: 3,
-              spaceBetween: 30,
-            },
-          }}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          navigation={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[EffectFade, Navigation, Pagination]}
-          className="mySwiper"
-        >
-          {Projects?.data ? (
-            Projects?.data?.map((project) => {
+    <div className="parallax">
+    <div className="grid grid-cols-3 gap-4">
+
+
+{Projects?.data ? (
+            Projects?.data?.map((image) => {
               return (
-                <div key={project._id} className="h-[300px] overflow-hidden">
-                  <SwiperSlide>
-                    <img
-                      className="w-full h-full object-cover rounded"
-                      src={project?.img}
-                      alt=""
-                    />
-                  </SwiperSlide>
-                </div>
+                <a href={image.img} data-lightbox="gallery" key={image._id}>
+                <img
+                  src={image.img}
+                  alt={image.title}
+                  className="cursor-pointer"
+                />
+              </a>
               );
             })
           ) : (
             <h1>No slider found</h1>
           )}
-        </Swiper>
-      </div>
-    </>
+    </div>
+    </div>
   );
 };
 
-export default ProjectsGallary;
+export default ProjectsGallery;

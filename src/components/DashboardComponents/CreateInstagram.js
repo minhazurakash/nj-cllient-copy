@@ -37,7 +37,7 @@ const CreateInstagram = (e) => {
           const img = data.url;
           const project = { title, img, link, content };
           const res = await axios.post(
-            "https://bored-yoke-bee.cyclic.app/api/v1/instagram",
+            "https://api.websitesprofessional.com/api/v1/instagram",
             project
           );
           if (res) {

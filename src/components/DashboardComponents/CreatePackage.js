@@ -39,7 +39,7 @@ const CreatePackage = (e) => {
           const img = data.url;
           const packages = { name: title, img, price, content };
           const res = await axios.post(
-            "https://bored-yoke-bee.cyclic.app/api/v1/package",
+            "https://api.websitesprofessional.com/api/v1/package",
             packages
           );
           if (res) {
@@ -73,7 +73,7 @@ const CreatePackage = (e) => {
         <div className="mb-5">
           <input
             name="price"
-            type="number"
+            type="text"
             className="border w-full h-14 pl-5"
             placeholder="Package Price"
           />

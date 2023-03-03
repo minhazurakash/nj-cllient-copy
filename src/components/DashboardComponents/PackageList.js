@@ -14,7 +14,7 @@ const PackageList = () => {
   const deletePackage = (id) => {
     setLoad(true);
 
-    fetch(`https://bored-yoke-bee.cyclic.app/api/v1/package/${id}`, {
+    fetch(`https://api.websitesprofessional.com/api/v1/package/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

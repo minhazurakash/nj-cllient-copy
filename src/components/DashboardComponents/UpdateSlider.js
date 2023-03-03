@@ -1,12 +1,11 @@
-import { useQueryClient } from "@tanstack/react-query";
-import { Button, Upload } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
+import { Button, Upload } from "antd";
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useSlider } from "../../Hooks/useSlider";
 import { useInitialValue } from "../../Hooks/useInitialValue";
+import { useSlider } from "../../Hooks/useSlider";
 
 const UpdateSlider = (e) => {
   const navigate = useNavigate();
@@ -41,7 +40,7 @@ const UpdateSlider = (e) => {
             const newProject = { sliderTitle, img };
             console.log(newProject);
             const res = await axios.put(
-              `http://localhost:5000/api/v1/slider/${id}`,
+              `https://api.websitesprofessional.com/api/v1/slider/${id}`,
               newProject
             );
 
@@ -64,7 +63,7 @@ const UpdateSlider = (e) => {
       const newProject = { sliderTitle, img };
       console.log(newProject);
       const res = await axios.put(
-        `http://localhost:5000/api/v1/slider/${id}`,
+        `https://api.websitesprofessional.com/api/v1/slider/${id}`,
         newProject
       );
 

@@ -1,6 +1,6 @@
+import { CloudUploadOutlined } from "@ant-design/icons";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button, Upload } from "antd";
-import { CloudUploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
@@ -48,7 +48,7 @@ const UpdateBlog = (e) => {
             const newProject = { blogTitle, img, blogDesc: content };
             console.log(newProject);
             const res = await axios.put(
-              `http://localhost:5000/api/v1/blog/${id}`,
+              `https://api.websitesprofessional.com/api/v1/blog/${id}`,
               newProject
             );
 
@@ -71,7 +71,7 @@ const UpdateBlog = (e) => {
       const newProject = { blogTitle, img, blogDesc: content };
       console.log(newProject);
       const res = await axios.put(
-        `http://localhost:5000/api/v1/blog/${id}`,
+        `https://api.websitesprofessional.com/api/v1/blog/${id}`,
         newProject
       );
 

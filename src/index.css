@@ -26,7 +26,7 @@ code {
 }
 
 #heroSection .swiper-wrapper {
-  height: 450px !important;
+  /* height: 450px !important; */
 }
 
 #projectSection .swiper-wrapper {
@@ -186,4 +186,25 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 #heroSection .content-hero {
   position: relative;
   z-index: 1;
+}
+
+.gridimg {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 50px 0 0 0;
+}
+
+.gridimg img {
+  display: block;
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .gridimg {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

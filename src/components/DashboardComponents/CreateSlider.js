@@ -37,7 +37,7 @@ const CreateSlider = (e) => {
           const img = data.url;
           const Slider = { sliderTitle: title, img };
           const res = await axios.post(
-            "https://bored-yoke-bee.cyclic.app/api/v1/slider",
+            "https://api.websitesprofessional.com/api/v1/slider",
             Slider
           );
           if (res) {

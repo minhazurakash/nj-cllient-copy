@@ -9,7 +9,7 @@ const ServicePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('http://localhost:5000/api/v1/contact', {
+    fetch('https://api.websitesprofessional.com/api/v1/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, phone, message }),

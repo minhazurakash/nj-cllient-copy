@@ -1,6 +1,6 @@
-import axios from "axios";
-import { Button, Upload } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
+import { Button, Upload } from "antd";
+import axios from "axios";
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -46,7 +46,7 @@ const UpdateInstagram = (e) => {
             const newProject = { title, link, img, content };
             console.log(newProject);
             const res = await axios.put(
-              `http://localhost:5000/api/v1/instagram/${id}`,
+              `https://api.websitesprofessional.com/api/v1/instagram/${id}`,
               newProject
             );
 
@@ -69,7 +69,7 @@ const UpdateInstagram = (e) => {
       const newProject = { title, link, img, content };
       console.log(newProject);
       const res = await axios.put(
-        `http://localhost:5000/api/v1/instagram/${id}`,
+        `https://api.websitesprofessional.com/api/v1/instagram/${id}`,
         newProject
       );
 
