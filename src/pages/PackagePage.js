@@ -44,41 +44,47 @@ const PackagePage = () => {
     <div className="container mx-auto ">
 
 
-<section className="relative z-10 overflow-hidden bg-[#fff] pt-10 pb-12 lg:pt-[30px] ">
+      <section className="relative z-10 overflow-hidden bg-[#fff] pt-10 pb-12 lg:pt-[30px] ">
         <div className="container mx-auto">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="mx-auto mb-[60px] max-w-[510px] text-center">
-               
-                <h2 className="text-dark mb-4 text-3xl font-bold sm:text-4xl md:text-[40px]">
+
+                <h2 className="text-dark font-title mb-4 mt-10 xl:lg:mt-20 text-3xl font-bold sm:text-4xl md:text-[40px]">
                   Our Packages
                 </h2>
 
               </div>
             </div>
           </div>
-          <div className="-mx-4 px-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="-mx-4 px-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
 
-          {Package?.data?.map((i) => {
-          return (
-            <>
-            <div className="bg-white rounded-lg shadow-lg">
-            <div className="flex flex-col items-center text-center p-10 bg-[#fcf9f4] ">
-              <span className="font-semibold text-2xl font-subtitle">{i?.name}</span>
-              <div className="flex items-center">
-                {/* <span className="text-3xl">$</span> */}
-                <span className="text-xl pt-5  text-[#a59167]">{i?.price}</span>
-                {/* <span className="text-xl text-gray-500">/mo</span> */}
-              </div>
-            </div>
-            <div className="p-10">
-            <div dangerouslySetInnerHTML={{ __html: i?.content }} />
-            </div>
-            <div className="flex lg:xl:px-[120px] pb-10 justfy-center">
-              <button className="flex items-center justify-center w-full h-12 px-6 text-xl uppercase bg-[#ae9d78] text-white font-subtitle rounded-lg">Get it now</button>
-            </div>
-          </div>
-            {/* <div className="w-full px-4 md:w-1/2 lg:w-1/3">
+            {Package?.data?.map((i) => {
+              return (
+                <>
+                  <div className="bg-white rounded-lg shadow-lg mx-10">
+                    <div className="flex flex-col items-center text-center p-10 bg-[#fcf9f4] ">
+                      <span className="font-semibold text-2xl font-subtitle">{i?.name}</span>
+                      <div className="flex items-center">
+                        {/* <span className="text-3xl">$</span> */}
+                        <span className="text-xl pt-5  text-[#a59167]">{i?.price}</span>
+                        {/* <span className="text-xl text-gray-500">/mo</span> */}
+                      </div>
+                    </div>
+                    <div className="p-10">
+                      <div dangerouslySetInnerHTML={{ __html: i?.content }} />
+                    </div>
+                    <div className="text-center py-5">
+                      <button className="bg-[#ae9d78] m-2 hover:bg-[#6c531a] text-white font-bold py-2 px-4 rounded">
+                      One Time Package
+                      </button>
+                      <button className="bg-[#ae9d78] m-2 hover:bg-[#6c531a] text-white font-bold py-2 px-4 rounded">
+                        Subscription
+                      </button>
+                    </div>
+
+                  </div>
+                  {/* <div className="w-full px-4 md:w-1/2 lg:w-1/3">
               <div className="border-[#f3e8e4] shadow-pricing relative z-9 mb-10 overflow-hidden rounded-xl border  bg-white py-10 px-8 sm:p-12 lg:py-10 lg:px-6 xl:p-12">
                 <span className="text-primary mb-4 block text-lg font-semibold">
                   Personal
@@ -145,16 +151,16 @@ const PackagePage = () => {
                 </div>
               </div>
             </div> */}
-            </>
-          );
-        })}
+                </>
+              );
+            })}
           </div>
         </div>
       </section>
 
 
 
-  
+
     </div>
   );
 };

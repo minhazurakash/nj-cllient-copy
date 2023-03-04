@@ -1,6 +1,4 @@
-import { CloudUploadOutlined } from "@ant-design/icons";
 import { useQueryClient } from "@tanstack/react-query";
-import { Button, Upload } from "antd";
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import React, { useRef, useState } from "react";
@@ -12,52 +10,37 @@ const CreatePackage = (e) => {
   const navigate = useNavigate();
   const editor = useRef(null);
   const [content, setContent] = useState("");
-  const [image, setImage] = useState(null);
   const [Load, setLoad] = useState(false);
 
   const queryClient = useQueryClient();
   const [Packages, isLoading, refetch] = usePackage();
 
-  const postProject = (e) => {
+
+
+
+  const postProject = async (e) => {
     e.preventDefault();
     setLoad(true);
-    const title = e.target.name.value;
+    const name = e.target.name.value;
     const price = e.target.price.value;
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", "NJ_images");
-    formData.append("cloud_name", "dvmwear6h");
+    const newProject = { name, price, content };
+    // console.log(newProject);
+    try {
+      
+      const response = await axios.post('https://api.websitesprofessional.com/api/v1/package',
+        newProject);
 
-    // post api call
-    fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then(async (data) => {
-        if (data.asset_id) {
-          const img = data.url;
-          const packages = { name: title, img, price, content };
-          const res = await axios.post(
-            "https://api.websitesprofessional.com/api/v1/package",
-            packages
-          );
-          if (res) {
-            setLoad(false);
-            refetch();
-            if (res.data.success) {
-              e.target.reset();
-              navigate("/dashboard/package");
-              toast("package Post added Successfull");
-            }
-          }
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    //clear all input field
+      if (response.data.success) {
+        e.target.reset();
+        navigate("/dashboard/package");
+        toast("package Post added Successfull");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+
 
   return (
     <div>
@@ -77,24 +60,6 @@ const CreatePackage = (e) => {
             className="border w-full h-14 pl-5"
             placeholder="Package Price"
           />
-        </div>
-        <div className="my-5">
-          <Upload
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            listType="picture"
-            maxCount={1}
-            rules={[{ required: true }]}
-            onChange={(e) => {
-              setImage(e.file.originFileObj);
-            }}
-          >
-            <Button
-              className="w-44 md:w-80 h-20 border-dashed text-2xl"
-              icon={<CloudUploadOutlined />}
-            >
-              Upload
-            </Button>
-          </Upload>
         </div>
         <div>
           <JoditEditor

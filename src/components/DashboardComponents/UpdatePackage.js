@@ -1,6 +1,4 @@
-import { CloudUploadOutlined } from "@ant-design/icons";
 import { useQueryClient } from "@tanstack/react-query";
-import { Button, Upload } from "antd";
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
@@ -23,67 +21,33 @@ const UpdatePackage = (e) => {
   useEffect(() => {
     setContent(Package?.content);
   }, [Package]);
-  const [image, setImage] = useState(null);
+
+
 
   const handleUpdateProject = async (e) => {
     e.preventDefault();
+
     const name = e.target.name.value;
     const price = e.target.price.value;
+    const newProject = { name, price, content };
     setLoad(true);
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", "NJ_images");
-    formData.append("cloud_name", "dvmwear6h");
+    try {
+      const response = await axios.put(`https://api.websitesprofessional.com/api/v1/package/${id}`, newProject);
 
-    if (image) {
-      fetch("https://api.cloudinary.com/v1_1/dvmwear6h/image/upload", {
-        method: "POST",
-        body: formData,
-      })
-        .then((res) => res.json())
-        .then(async (data) => {
-          if (data.asset_id) {
-            const img = data.url;
-            const newProject = { name, price, img, content };
-            console.log(newProject);
-            const res = await axios.put(
-              `https://api.websitesprofessional.com/api/v1/package/${id}`,
-              newProject
-            );
+      console.log(response.data);
 
-            if (res) {
-              setLoad(false);
-              refetch();
-              if (res.data.success) {
-                toast("update successful");
-                navigate("/dashboard/package");
-              }
-            }
-          }
-        })
-        .catch((err) => {
-          setLoad(false);
-          console.log(err);
-        });
-    } else {
-      const img = Package?.img;
-      const newProject = { name, price, img, content };
-      console.log(newProject);
-      const res = await axios.put(
-        `https://api.websitesprofessional.com/api/v1/package/${id}`,
-        newProject
-      );
-
-      if (res) {
-        setLoad(false);
-        refetch();
-        if (res.data.success) {
-          toast("update successful");
-          navigate("/dashboard/package");
-        }
+      if (response.data.success) {
+        navigate("/dashboard/package");
+        toast('Blog post updated successfully!');
       }
+    } catch (error) {
+      console.error(error);
     }
   };
+
+
+
+ 
   // if (isLoading) {
   //   return <LoadingComponent />;
   // }
@@ -109,24 +73,7 @@ const UpdatePackage = (e) => {
           />
         </div>
 
-        <div className="my-5">
-          <Upload
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            listType="picture"
-            maxCount={1}
-            rules={[{ required: true }]}
-            onChange={(e) => {
-              setImage(e.file.originFileObj);
-            }}
-          >
-            <Button
-              className="w-44 md:w-80 h-20 border-dashed text-2xl"
-              icon={<CloudUploadOutlined />}
-            >
-              Upload
-            </Button>
-          </Upload>
-        </div>
+
         <div>
           <JoditEditor
             ref={editor}
