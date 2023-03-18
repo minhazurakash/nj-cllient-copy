@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 export const useContact = () => {
   const getContact = async () => {
-    const { data } = await axios.get("https://api.websitesprofessional.com/api/v1/Contact");
+    const { data } = await axios.get("http://localhost:5000/api/v1/Contact");
     return data;
   };
   const {

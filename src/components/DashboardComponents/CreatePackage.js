@@ -27,7 +27,7 @@ const CreatePackage = (e) => {
     // console.log(newProject);
     try {
       
-      const response = await axios.post('https://api.websitesprofessional.com/api/v1/package',
+      const response = await axios.post('http://localhost:5000/api/v1/package',
         newProject);
 
       if (response.data.success) {

@@ -7,11 +7,11 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    UploadOutlined,
+    UserOutlined,
+    VideoCameraOutlined
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 
@@ -25,7 +25,7 @@ const Dashboard = () => {
   } = theme.useToken();
   // Queries
   const getUsers = async () => {
-    const { data } = await axios.get("https://api.websitesprofessional.com/api/v1/user");
+    const { data } = await axios.get("http://localhost:5000/api/v1/user");
     return data;
   };
   const { data: databaseUser, isLoading } = useQuery({

@@ -33,8 +33,11 @@ import DashboardPage from "./pages/DashboardPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import PackagePage from "./pages/PackagePage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import ProjectPage from "./pages/ProjectPage";
 import ServicePage from "./pages/ServicePage";
 import SignUpPage from "./pages/SignUpPage";
+import TermsServicePage from "./pages/TermsServicePage";
 import Footer from "./shared/Footer";
 import Navigation from "./shared/Navigation";
 import RequireAuth from "./shared/RequireAuth";
@@ -73,8 +76,12 @@ const App = () => {
         />
         <Route path="/Contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="/terms-service" element={TermsServicePage}></Route>
         <Route path="/service" element={<ServicePage />} />
+        <Route path="/packages" element={<PackagePage />} />
+        <Route path="/projects" element={<ProjectPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route
           path="/dashboard"

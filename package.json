@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@paypal/sdk-client": "^4.0.169",
     "@tanstack/react-query": "^4.22.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -19,12 +20,14 @@
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-firebase-hooks": "^5.1.1",
+    "react-helmet": "^6.1.0",
     "react-icons": "^4.7.1",
     "react-image-gallery": "^1.2.11",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.9",
+    "react-spinner": "^0.2.7",
     "react-toastify": "^9.1.1",
     "swiper": "^8.4.6",
     "web-vitals": "^2.1.4"

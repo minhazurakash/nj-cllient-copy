@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuthState, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 import LoadingOverlay from "../shared/LoadingOverlay";
 
@@ -22,51 +22,63 @@ const LoginPage = () => {
     navigate("/");
   }
   return (
-    <div className="container mx-auto lg:xl:px-[120px]">
-      <div className="mt-20 mb-10">
-        <h1 className="text-4xl">Login</h1>
-      </div>
-      <div className="mb-20 mt-5 border-2 border-[#FFF79E] p-5">
-        <div className=" ">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-10">
-              <label className="">Email Address *</label>
-              <input
-                name="email"
-                type="email"
-                className="w-full h-14 pl-5 border-2 border-slate-300 mt-3"
-              />
-            </div>
-            <div>
-              <label>Password *</label>
-              <input
-                name="password"
-                type="password"
-                className="w-full h-14 pl-5 border-2 border-slate-300 mt-3"
-              />
-            </div>
-            <div className="mt-3">
-              <div className="text-lg flex items-center gap-3">
-                <input type="checkbox" id="remember" className="w-4 h-4" />
-                <label htmlFor="remember">Remember me</label>
-              </div>
-            </div>
-            <div className="mt-8">
-              <input
-                className="bg-[#FFF79E] py-2 px-8 cursor-pointer"
-                type="submit"
-                value="Log In"
-              />
-            </div>
-          </form>
-          <div className="flex gap-5 mt-5">
-            <Link className="underline text-gray-500" to="/">
-              Lost your Password?
-            </Link>
-            <Link className="underline text-gray-500" to="/sign-up">
-              Create an accaount?
-            </Link>
+    <div className="h-screen bg-[#fbf8f5] py-20 flex justify-center items-center">
+      <div className="w-3/3 lg:xl:w-1/3 bg-white rounded-lg shadow-lg p-8">
+        <h2 className="text-3xl font-bold text-center mb-4">Welcome back!</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="border rounded-lg px-3 py-2 w-full"
+              required
+            />
           </div>
+          <div className="mb-6">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              className="border rounded-lg px-3 py-2 w-full"
+              required
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              type="submit"
+              className="bg-[#ae9d78] hover:bg-[#775d22] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Log in
+            </button>
+            <a
+              href="#"
+              className="inline-block align-baseline font-bold text-sm text-[#ae9d78] hover:text-[#775d22]"
+            >
+              Forgot Password?
+            </a>
+          </div>
+        </form>
+        <div className="text-center mt-8">
+          <p className="text-gray-600 font-bold">Don't have an account?</p>
+          <a
+            href="/sign-up"
+            className="text-[#ae9d78] hover:text-[#775d22] font-bold"
+          >
+            Sign up
+          </a>
         </div>
       </div>
     </div>

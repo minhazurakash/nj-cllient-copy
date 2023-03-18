@@ -48,7 +48,7 @@ const UpdateBlog = (e) => {
             const newProject = { blogTitle, img, blogDesc: content };
             console.log(newProject);
             const res = await axios.put(
-              `https://api.websitesprofessional.com/api/v1/blog/${id}`,
+              `http://localhost:5000/api/v1/blog/${id}`,
               newProject
             );
 
@@ -71,7 +71,7 @@ const UpdateBlog = (e) => {
       const newProject = { blogTitle, img, blogDesc: content };
       console.log(newProject);
       const res = await axios.put(
-        `https://api.websitesprofessional.com/api/v1/blog/${id}`,
+        `http://localhost:5000/api/v1/blog/${id}`,
         newProject
       );
 

@@ -14,7 +14,7 @@ const ServiceList = () => {
   const deleteService = (id) => {
     setLoad(true);
 
-    fetch(`https://api.websitesprofessional.com/api/v1/service/${id}`, {
+    fetch(`http://localhost:5000/api/v1/service/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

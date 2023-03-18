@@ -18,7 +18,7 @@ const BlogList = () => {
   const deleteBlog = (id) => {
     setLoad(true);
 
-    fetch(`https://api.websitesprofessional.com/api/v1/blog/${id}`, {
+    fetch(`http://localhost:5000/api/v1/blog/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

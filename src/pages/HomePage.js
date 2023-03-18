@@ -1,22 +1,23 @@
 import React from "react";
+import BlogSection from "../components/BlogSection";
 import Hero from "../components/Hero";
 import ImageGallery from "../components/ImageGallery";
-import ServiceSection from "../components/ServiceSection";
+import PackageSection from "../components/PackageSection";
 import WhoWeAreSection from "../components/WhoWeAreSection";
-import PackagePage from "./PackagePage";
 
 const HomePage = () => {
   return (
     <>
       <Hero />
-      <PackagePage/>
+      <PackageSection/>
       {/* <ProjectsGallary /> */}
       <ImageGallery/>
-      <ServiceSection/>      
+      <BlogSection/>
+      {/* <ServiceSection/>       */}
 
       <WhoWeAreSection />
       {/* <OurServiceSection /> */}
-      {/* <BlogSection/> */}
+      
       
     </>
   );

@@ -46,7 +46,7 @@ const UpdateProject = (e) => {
             const newProject = { title, img, content };
             console.log(newProject);
             const res = await axios.put(
-              `https://api.websitesprofessional.com/api/v1/project/${id}`,
+              `http://localhost:5000/api/v1/project/${id}`,
               newProject
             );
 
@@ -69,7 +69,7 @@ const UpdateProject = (e) => {
       const newProject = { title, img, content };
       console.log(newProject);
       const res = await axios.put(
-        `https://api.websitesprofessional.com/api/v1/project/${id}`,
+        `http://localhost:5000/api/v1/project/${id}`,
         newProject
       );
 
@@ -95,7 +95,10 @@ const UpdateProject = (e) => {
             defaultValue={initialValue?.title}
           />
         </div>
-
+        <div className="my-5">
+          <img src={initialValue?.img}  alt="" width="600"
+            height="600" />
+          </div>
         <div className="my-5">
           <Upload
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"

@@ -22,8 +22,8 @@ const Navigation = () => {
   
   return (
     <>
-    <header>
-        <div className="bg-[#FBF8F5] py-3 container">
+    <header className="bg-[#FBF8F5] hidden md:block">
+        <div className="mx-auto py-3 container w-full">
           <div className="container mx-auto lg:xl:px-[120px] flex justify-between">
             <ul className="flex items-center gap-5">
               <li className="text-black">
@@ -88,7 +88,7 @@ const Navigation = () => {
           </div>
         </div>
       </header>
-      <nav className="relative sticky top-0 z-10">
+      <nav className="relative sticky top-0 z-50">
 
       <div className=" bg-[#FFF]  px-8">
         <div className="border-b-4 border-[#e4cfc8f0]">
@@ -100,7 +100,7 @@ const Navigation = () => {
                 alt="Logo" />
             </Link>
           </div>
-          <div className="block md:hidden">
+          <div className="block xl:lg:hidden">
             <button className="" onClick={() => setCollaps(!collaps)}>
               <FaBars />
             </button>
@@ -130,22 +130,58 @@ const Navigation = () => {
                 <li className="text-[#fff]">
                   <Link to="/">Contacts</Link>
                 </li>
+
+                {user?.email ? (
+                <>
+                  {/* <li>Hey {user?.displayName || "User"}!</li> */}
+                  <li>
+                    <Link to="/dashboard">
+                      <button className="border border-orange-300 hover:bg-orange-300 hover:text-white py-2 px-4">
+                        Dashboard
+                      </button>
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleSignOut}
+                      className="border border-orange-300 hover:bg-orange-300 hover:text-white py-2 px-4"
+                    >
+                      Sign Out
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/login" className="">
+                      Login
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link to="/sign-up" className="">
+                      Sign up
+                    </Link>
+                  </li>
+                </>
+              )}
+
               </ul>
             </div>
           )}
-          <div className="hidden md:block">
+          <div className="hidden xl:lg:block">
             <ul className="flex gap-5 lg:gap-10">
             <li className="text-[#000]">
                   <Link to="/">Home</Link>
                 </li>
                 <li className="text-[#000]">
-                  <Link to="/">Packages</Link>
+                  <Link to="/packages">Packages</Link>
                 </li>
                 <li className="text-[#000]">
                   <Link to="/service">Services</Link>
                 </li>
                 <li className="text-[#000]">
-                  <Link to="/">Projects</Link>
+                  <Link to="/projects">Projects</Link>
                 </li>
                 <li className="text-[#000]">
                   <Link to="/about">About Me</Link>

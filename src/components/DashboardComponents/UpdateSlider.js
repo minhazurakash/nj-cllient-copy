@@ -40,7 +40,7 @@ const UpdateSlider = (e) => {
             const newProject = { sliderTitle, img };
             console.log(newProject);
             const res = await axios.put(
-              `https://api.websitesprofessional.com/api/v1/slider/${id}`,
+              `http://localhost:5000/api/v1/slider/${id}`,
               newProject
             );
 
@@ -63,7 +63,7 @@ const UpdateSlider = (e) => {
       const newProject = { sliderTitle, img };
       console.log(newProject);
       const res = await axios.put(
-        `https://api.websitesprofessional.com/api/v1/slider/${id}`,
+        `http://localhost:5000/api/v1/slider/${id}`,
         newProject
       );
 

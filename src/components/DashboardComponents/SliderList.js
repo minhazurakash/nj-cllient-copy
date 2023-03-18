@@ -18,7 +18,7 @@ const SliderList = () => {
   const deleteSlider = (id) => {
     setLoad(true);
 
-    fetch(`https://api.websitesprofessional.com/api/v1/slider/${id}`, {
+    fetch(`http://localhost:5000/api/v1/slider/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
