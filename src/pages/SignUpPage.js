@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import {
   useAuthState,
@@ -14,15 +15,32 @@ const SignUpPage = () => {
   const [createUserWithEmailAndPassword, passUser, passLoading, PassError] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile] = useUpdateProfile(auth);
+
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const name = event.target.name.value;
     const email = event.target.email.value;
+    const phone = event.target.phone.value;
     const password = event.target.password.value;
 
     // create user
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
+
+    const user = { displayName:name ,email,phone,role:'user' };
+    const res = await axios.post(
+      "http://localhost:5000/api/v1/user/",
+      user
+    );
+    if (res) {
+      if (res.data.success) {
+console.log(res.data);
+      }
+    }
+
+    
   };
   if (loading || passLoading) {
     return <LoadingOverlay />;
@@ -40,10 +58,10 @@ const SignUpPage = () => {
             htmlFor="name"
             className="block text-gray-700 font-bold mb-2"
           >
-            Email
+            User Name
           </label>
           <input
-            type="name"
+            type="text"
             name="name"
             id="name"
             className="border rounded-lg px-3 py-2 w-full"
@@ -61,6 +79,21 @@ const SignUpPage = () => {
             type="email"
             name="email"
             id="email"
+            className="border rounded-lg px-3 py-2 w-full"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="email"
+            className="block text-gray-700 font-bold mb-2"
+          >
+            Phone
+          </label>
+          <input
+            type="phone"
+            name="phone"
+            id="phone"
             className="border rounded-lg px-3 py-2 w-full"
             required
           />

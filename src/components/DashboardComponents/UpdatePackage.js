@@ -29,7 +29,8 @@ const UpdatePackage = (e) => {
 
     const name = e.target.name.value;
     const price = e.target.price.value;
-    const newProject = { name, price, content };
+    const priceToShow = e.target.priceToShow.value;
+    const newProject = { name, price,priceToShow, content };
     setLoad(true);
     try {
       const response = await axios.put(`http://localhost:5000/api/v1/package/${id}`, newProject);
@@ -70,6 +71,15 @@ const UpdatePackage = (e) => {
             className="border w-full h-14 pl-5"
             placeholder="Package price"
             defaultValue={Package?.price}
+          />
+        </div>
+        <div className="mb-5">
+          <input
+            name="priceToShow"
+            type="text"
+            className="border w-full h-14 pl-5"
+            placeholder="Package price"
+            defaultValue={Package?.priceToShow}
           />
         </div>
 

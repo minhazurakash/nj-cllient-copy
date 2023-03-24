@@ -9,7 +9,7 @@ const BlogSection = () => {
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl lg:text-5xl pb-4 pt-10 xl:lg:pt-20 font-title pt-10 text-center">LAST 4 BLOG POSTS</h1>
+          <h1 className="text-4xl lg:text-5xl pb-4 pt-10 xl:lg:pt-20 font-title pt-10 text-center ">LAST 4 BLOG POSTS</h1>
           <Link to="/blog" className="text-gray-800 font-medium hover:underline">
             View All
           </Link>
@@ -17,6 +17,7 @@ const BlogSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {Blog?.data?.slice(-4).map((post) => {
             return (
+              <Link to={`/blog/${post._id}`}>
               <div key={post.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
                 <div className="relative">
                   <img
@@ -36,6 +37,7 @@ const BlogSection = () => {
                   </a>
                 </div>
               </div>
+              </Link>
             );
           })}
         </div>

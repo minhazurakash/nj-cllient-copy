@@ -7,11 +7,11 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 
 import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 
@@ -66,14 +66,14 @@ const Dashboard = () => {
             defaultSelectedKeys={["1"]}
             items={[
               {
-                key: "profile",
+                key: "Titles",
                 icon: <UserOutlined />,
-                label: "Profile",
+                label: "Title",
               },
               {
-                key: "my-order",
+                key: "users",
                 icon: <UserOutlined />,
-                label: "My Orders",
+                label: "Users",
               },
               {
                 key: "slider",
@@ -109,6 +109,11 @@ const Dashboard = () => {
                 key: "orders",
                 icon: <UploadOutlined />,
                 label: "Orders",
+              },
+              {
+                key: "content",
+                icon: <UploadOutlined />,
+                label: "content",
               },
               {
                 key: "Contacts",

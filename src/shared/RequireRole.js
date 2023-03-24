@@ -3,14 +3,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate, useLocation } from "react-router-dom";
 import auth from "../firebase.init";
 import UnauthorizePage from "../pages/UnauthorizePage";
-import LoadingOverlay from "./LoadingOverlay";
+import LoadingComponent from "./LoadingComponent";
 
-const RequireAuth = ({ children }) => {
+const RoleAuth = ({ children, requiredRole }) => {
   const [user, loading] = useAuthState(auth);
-  const location = useLocation();
   const [userRole, setUserRole] = useState(null);
-
-  const requiredRole = ['admin','editor','super-admin']
+  const location = useLocation();
 
   useEffect(() => {
     if (user) {
@@ -24,19 +22,27 @@ const RequireAuth = ({ children }) => {
           console.error("Error fetching user role:", error);
         });
     }
+  
   }, [user]);
 
-  if (loading) {
-    return <LoadingOverlay />;
+   console.log(requiredRole);
+   if (loading) {
+    return <LoadingComponent />;
   }
+
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
+  
   if (!requiredRole.includes(userRole)) {
     return <UnauthorizePage/>
+    
+  }else{
+    return children;
   }
+    
 
-  return children;
+ 
 };
 
-export default RequireAuth;
+export default RoleAuth;

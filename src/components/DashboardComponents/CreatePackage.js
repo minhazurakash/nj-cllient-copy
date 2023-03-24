@@ -23,7 +23,8 @@ const CreatePackage = (e) => {
     setLoad(true);
     const name = e.target.name.value;
     const price = e.target.price.value;
-    const newProject = { name, price, content };
+    const priceToShow = e.target.priceToShow.value;
+    const newProject = { name, price,priceToShow, content };
     // console.log(newProject);
     try {
       
@@ -56,6 +57,14 @@ const CreatePackage = (e) => {
         <div className="mb-5">
           <input
             name="price"
+            type="text"
+            className="border w-full h-14 pl-5"
+            placeholder="Package Price"
+          />
+        </div>
+        <div className="mb-5">
+          <input
+            name="priceToShow"
             type="text"
             className="border w-full h-14 pl-5"
             placeholder="Package Price"

@@ -39,6 +39,11 @@ const PackageList = () => {
       dataIndex: "price",
       key: "price",
     },
+    {
+      title: "Price to Show",
+      dataIndex: "priceToShow",
+      key: "priceToShow",
+    },
 
     {
       title: "Action",

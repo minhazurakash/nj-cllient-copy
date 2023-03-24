@@ -1,12 +1,11 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import auth from "../firebase.init";
 import { useOrder } from "../Hooks/useOrder";
 import { usePackage } from "../Hooks/usePackage";
 const PackagePage = () => {
+  console.log('package Loaded');
   const [load, setLoad] = useState(false);
   const [Orders, isLoad, refetch] = useOrder();
   const [Package, isLoading, reFetch] = usePackage();
@@ -15,39 +14,26 @@ const PackagePage = () => {
   const userEmail = user?.email;
   const navigate  = useNavigate ();
   const handleOrder = async (i) => {
-
     setLoad(true);
-    
-    if (! userName) {
-      console.log('no authenticated');
-      navigate('/login');
-      // return;
   
-    }
-    else{
+    if (!userName) {
+      navigate("/login");
+    } else {
+      
       const packageId = i?._id;
-    const packageName = i?.name;
-    const packagePrice = i?.price;
-    const orderDetails = {
-      userName,
-      userEmail,
-      packageId,
-      packageName,
-      packagePrice,
-    };
-    console.log(orderDetails);
-    const res = await axios.post(
-      "https://api.websitesprofessional.com/api/v1/order",
-      orderDetails
-    );
-      if (res) {
-        setLoad(false);
-        refetch();
-        if (res.data.success) {
-          // navigate("/dashboard/order");
-          toast("Package Order Successfull");
-        }
-      }
+      //  const packageName = i?.name;
+      //  const packagePrice = i?.priceToShow;
+      //  const orderId = `ORDER-${Math.random().toString(36).substring(2)}`;
+      //  const orderDetails = {
+      //    orderId,
+      //    userName,
+      //    userEmail,
+      //    packageId,
+      //    packageName,
+      //    packagePrice,
+      //  };
+      //  console.log(packageId);
+      navigate(`/payment/${packageId}`);
     }
   };
   return (
@@ -77,7 +63,7 @@ const PackagePage = () => {
                       <span className="font-semibold text-2xl font-subtitle">{i?.name}</span>
                       <div className="flex items-center">
                         {/* <span className="text-3xl">$</span> */}
-                        <span className="text-xl pt-5  text-[#a59167]">{i?.price}</span>
+                        <span className="text-xl pt-5  text-[#a59167]">{i?.priceToShow}</span>
                         {/* <span className="text-xl text-gray-500">/mo</span> */}
                       </div>
                     </div>
@@ -86,7 +72,7 @@ const PackagePage = () => {
                     </div>
                     <div className="text-center py-5">
                       
-                      <button onClick={handleOrder} className="bg-[#ae9d78] m-2 hover:bg-[#6c531a] text-white font-bold py-2 px-4 rounded">
+                      <button onClick={()=>handleOrder(i)} className="bg-[#ae9d78] m-2 hover:bg-[#6c531a] text-white font-bold py-2 px-4 rounded">
                         Subscription
                       </button>
                     </div>
