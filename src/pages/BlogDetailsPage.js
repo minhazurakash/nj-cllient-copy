@@ -12,7 +12,7 @@ const BlogDetailsPage = () => {
   useEffect(() => {
     const getBlog = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/v1/blog/${id}`);
+        const response = await axios.get(`https://api.websitesprofessional.com/api/v1/blog/${id}`);
         setBlog(response.data);
         setIsLoading(false);
       } catch (error) {

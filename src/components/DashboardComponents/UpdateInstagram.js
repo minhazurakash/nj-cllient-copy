@@ -46,7 +46,7 @@ const UpdateInstagram = (e) => {
             const newProject = { title, link, img, content };
             console.log(newProject);
             const res = await axios.put(
-              `http://localhost:5000/api/v1/instagram/${id}`,
+              `https://api.websitesprofessional.com/api/v1/instagram/${id}`,
               newProject
             );
 
@@ -69,7 +69,7 @@ const UpdateInstagram = (e) => {
       const newProject = { title, link, img, content };
       console.log(newProject);
       const res = await axios.put(
-        `http://localhost:5000/api/v1/instagram/${id}`,
+        `https://api.websitesprofessional.com/api/v1/instagram/${id}`,
         newProject
       );
 

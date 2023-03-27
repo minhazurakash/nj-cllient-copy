@@ -46,7 +46,7 @@ const UpdateProject = (e) => {
             const newProject = { title, img, content };
             console.log(newProject);
             const res = await axios.put(
-              `http://localhost:5000/api/v1/project/${id}`,
+              `https://api.websitesprofessional.com/api/v1/project/${id}`,
               newProject
             );
 
@@ -69,7 +69,7 @@ const UpdateProject = (e) => {
       const newProject = { title, img, content };
       console.log(newProject);
       const res = await axios.put(
-        `http://localhost:5000/api/v1/project/${id}`,
+        `https://api.websitesprofessional.com/api/v1/project/${id}`,
         newProject
       );
 

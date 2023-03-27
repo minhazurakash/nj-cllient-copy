@@ -36,7 +36,7 @@ const CreateService = (e) => {
           const img = data.url;
           const project = { title, img, content };
           const res = await axios.post(
-            "http://localhost:5000/api/v1/service",
+            "https://api.websitesprofessional.com/api/v1/service",
             project
           );
           if (res) {

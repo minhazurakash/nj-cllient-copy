@@ -38,7 +38,7 @@ const CreateProject = (e) => {
           const img = data.url;
           const project = { title, img, content };
           const res = await axios.post(
-            "http://localhost:5000/api/v1/project",
+            "https://api.websitesprofessional.com/api/v1/project",
             project
           );
           if (res) {

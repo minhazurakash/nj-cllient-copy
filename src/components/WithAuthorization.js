@@ -14,7 +14,7 @@ const WithAuthorization = (WrappedComponent, allowedRoles) => {
     useEffect(() => {
       const getUserRole = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/api/v1/user/${userEmail}`);
+          const response = await axios.get(`https://api.websitesprofessional.com/api/v1/user/${userEmail}`);
           setUserRole(response.data.role);
         } catch (error) {
           console.log(error);

@@ -8,7 +8,7 @@ const UserList = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/api/v1/User")
+    fetch("https://api.websitesprofessional.com/api/v1/User")
       .then((response) => response.json())
       .then((users) => {
         console.log(users.data);

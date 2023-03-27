@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import BlogList from "./components/DashboardComponents/BlogList";
 import ContactList from "./components/DashboardComponents/ContactList";
-import CreateBlog from "./components/DashboardComponents/CreateBlog";
 import CreateInstagram from "./components/DashboardComponents/CreateInstagram";
 import CreatePackage from "./components/DashboardComponents/CreatePackage";
 import CreateProject from "./components/DashboardComponents/CreateProject";
@@ -31,8 +30,6 @@ import AboutPage from "./pages/AboutPage";
 import BlogDetailsPage from "./pages/BlogDetailsPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
-import UserDashboardPage from "./pages/Dashboard/UserDashboardPage";
-import DashboardPage from "./pages/DashboardPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import PackagePage from "./pages/PackagePage";
@@ -45,6 +42,7 @@ import TermsServicePage from "./pages/TermsServicePage";
 import UnauthorizePage from "./pages/UnauthorizePage";
 import Footer from "./shared/Footer";
 import Navigation from "./shared/Navigation";
+import RequireAdmin from "./shared/RequireAdmin";
 import RequireAuth from "./shared/RequireAuth";
 import RequireRole from "./shared/RequireRole";
 
@@ -59,7 +57,7 @@ const App = () => {
         <Route path="*" element={<UnauthorizePage />} />
         <Route path="/unauthorized" element={<UnauthorizePage />} />
         <Route path="/" element={<HomePage />} />
-        <Route path ="/user-dashboard" element={<UserDashboardPage/>}/>
+        {/* <Route path="/user-dashboard" element={<UserDashboardPage />} /> */}
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/unauthorized" element={<UnauthorizePage/>}/> */}
         <Route
@@ -81,12 +79,12 @@ const App = () => {
         <Route path="/payment/:packageId" element={<PaymentPage />} />
         <Route path="/projects" element={<ProjectPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
+        
         <Route
           path="/dashboard"
           element={
             <RequireAuth>
-              
-              <DashboardPage />
+              <RequireAdmin/>
             </RequireAuth>
           }
         >
@@ -94,41 +92,134 @@ const App = () => {
           <Route path="profile" element={<h1>Hello User !</h1>}></Route>
           <Route path="create-slider" element={<CreateSlider />}></Route>
           <Route path="slider" element={<SliderList />}></Route>
-          <Route path="create-blog" element={<CreateBlog />}></Route>
-          <Route path="users" element={<UserList />}></Route>
-          <Route path="blog" element={
 
-            <RequireRole requiredRole={['admin','editor','super-admin']}>
-              <BlogList />
+          <Route path="users" element={
+            <RequireRole requiredRole={['admin','editor', 'super-admin']}>
+              <UserList />
             </RequireRole>
           } />
-          <Route path="update-blog/:id" element={<UpdateBlog />}></Route>
-          <Route path="create-service" element={<CreateService />}></Route>
-          <Route path="Content" element={<UpdateContent />}></Route>
-          <Route path="service" element={<ServiceList />}></Route>
-          <Route path="update-service/:id" element={<UpdateService />}></Route>
-          <Route path="update-slider/:id" element={<UpdateSlider />}></Route>
-          <Route path="create-project" element={<CreateProject />}></Route>
-          <Route path="project" element={<ProjectList />}></Route>
-          <Route path="update-project/:id" element={<UpdateProject />}></Route>
-          <Route path="instagram" element={<InstagramList />}></Route>
-          <Route path="create-instagram" element={<CreateInstagram />}></Route>
-          <Route
-            path="update-instagram/:id"
-            element={<UpdateInstagram />}
-          ></Route>
 
 
-          <Route path="contacts" element={<ContactList />}></Route>
-          <Route path="package" element={<PackageList />}></Route>
-          <Route path="update-package/:id" element={<UpdatePackage />}></Route>
-          <Route path="create-package" element={<CreatePackage />}></Route>
+          <Route path="update-blog/:id" element={
+            <RequireRole requiredRole={['editor', 'super-admin']}>
+              <UpdateBlog />
+            </RequireRole>
+          }></Route>
+
+          <Route path="create-service" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <CreateService />
+            </RequireRole>
+          }></Route>
+          
+          <Route path="Content" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <UpdateContent />
+            </RequireRole>
+          }></Route>
+
+          <Route path="service" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <ServiceList />
+            </RequireRole>
+          }></Route>
+
+          <Route path="update-service/:id" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <UpdateService />
+            </RequireRole>
+          }></Route>
+
+          <Route path="update-slider/:id" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <UpdateSlider />
+            </RequireRole>
+          }></Route>
+
+          <Route path="create-project" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <CreateProject />
+            </RequireRole>
+          }></Route>
+
+          <Route path="project" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <ProjectList />
+            </RequireRole>
+          }></Route>
+          
+          <Route path="update-project/:id" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <UpdateProject />
+            </RequireRole>
+          }></Route>
+
+          <Route path="instagram" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <InstagramList />
+            </RequireRole>
+          }></Route>
+
+          <Route path="create-instagram" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <CreateInstagram />
+            </RequireRole>
+          }></Route>
+
+          <Route path="update-instagram/:id" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <UpdateInstagram />
+            </RequireRole>
+          }></Route>
+
+          <Route path="blog" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <BlogList />
+            </RequireRole>
+          }></Route>
+
+          <Route path="contacts" element={
+            <RequireRole requiredRole={['admin', 'editor', 'super-admin']}>
+              <ContactList />
+            </RequireRole>
+          }></Route>
+
+          <Route path="package" element={
+            <RequireRole requiredRole={['admin','editor','super-admin']}>
+              <PackageList />
+            </RequireRole>
+          }></Route>
+
+          <Route path="update-package/:id" element={
+            <RequireRole requiredRole={['admin','super-admin']}>
+              <UpdatePackage />
+            </RequireRole>
+          }></Route>
+
+          <Route path="create-package" element={
+            <RequireRole requiredRole={['admin','super-admin']}>
+              <CreatePackage />
+            </RequireRole>
+          }></Route>
+
+          <Route path="titles" element={
+            <RequireRole requiredRole={['admin','super-admin']}>
+              <TitlesPage />
+            </RequireRole>
+          }></Route>
+
+          <Route path="orders" element={
+            <RequireRole requiredRole={['admin','super-admin', 'editor']}>
+              <OrderList />
+            </RequireRole>
+          }></Route>
+
+          <Route path="my-order" element={<MyOrder />}></Route>
+
           <Route path="*" element={<h1>Not Found</h1>}></Route>
 
 
-          <Route path="titles" element={<TitlesPage />}></Route>
-          <Route path="orders" element={<OrderList />}></Route>
-          <Route path="my-order" element={<MyOrder />}></Route>
+
           {/* <PrivateRoute
         path="blog" element={<BlogList />} allowedRoles={["admin"]}
       /> */}

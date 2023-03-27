@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const ImageGallery = () => {
   const getProjects = async () => {
-    const { data } = await axios.get("http://localhost:5000/api/v1/Project");
+    const { data } = await axios.get("https://api.websitesprofessional.com/api/v1/Project");
     return data;
   };
   

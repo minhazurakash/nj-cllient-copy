@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useBlog } from "../../Hooks/useBlogs";
+import Canview from "../../shared/CanView";
 import LoadingComponent from "../../shared/LoadingComponent";
 import HeaderDashBoard from "./HeaderDashBoard";
 
@@ -18,7 +19,7 @@ const BlogList = () => {
   const deleteBlog = (id) => {
     setLoad(true);
 
-    fetch(`http://localhost:5000/api/v1/blog/${id}`, {
+    fetch(`https://api.websitesprofessional.com/api/v1/blog/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -48,18 +49,25 @@ const BlogList = () => {
         return (
           <>
             <div className="flex gap-5">
+            <Canview requiredRole={['super-admin','admin']} >
               <Link
                 to={`/dashboard/update-blog/${_id}`}
                 className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500"
               >
                 Update
               </Link>
-              <button
-                onClick={() => deleteBlog(_id)}
-                className="w-20 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500"
-              >
-                Delete
-              </button>
+              </Canview>
+              <Canview requiredRole={['super-admin']} >
+                <div>
+                  <button
+                    onClick={() => deleteBlog(_id)}
+                    className="w-20 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </Canview>
+
             </div>
           </>
         );

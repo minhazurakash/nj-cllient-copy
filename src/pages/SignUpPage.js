@@ -31,7 +31,7 @@ const SignUpPage = () => {
 
     const user = { displayName:name ,email,phone,role:'user' };
     const res = await axios.post(
-      "http://localhost:5000/api/v1/user/",
+      "https://api.websitesprofessional.com/api/v1/user/",
       user
     );
     if (res) {

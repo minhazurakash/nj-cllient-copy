@@ -6,7 +6,7 @@ import React from 'react';
 // import './ImageGallery.css';
 
 const fetchImages = async () => {
-  const response = await axios.get('http://localhost:5000/api/v1/Project');
+  const response = await axios.get('https://api.websitesprofessional.com/api/v1/Project');
   return response.data.map((image) => ({
     id: image.id,
     imgUrl: image.img,

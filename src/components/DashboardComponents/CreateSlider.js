@@ -37,7 +37,7 @@ const CreateSlider = (e) => {
           const img = data.url;
           const Slider = { sliderTitle: title, img };
           const res = await axios.post(
-            "http://localhost:5000/api/v1/slider",
+            "https://api.websitesprofessional.com/api/v1/slider",
             Slider
           );
           if (res) {

@@ -7,7 +7,7 @@ export const ContentProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/content/641da964fe0d23ca3d1ec900`)
+    fetch(`https://api.websitesprofessional.com/api/v1/content/641da964fe0d23ca3d1ec900`)
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);

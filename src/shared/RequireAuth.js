@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate, useLocation } from "react-router-dom";
 import auth from "../firebase.init";
-import UnauthorizePage from "../pages/UnauthorizePage";
 import LoadingOverlay from "./LoadingOverlay";
 
 const RequireAuth = ({ children }) => {
@@ -14,7 +13,7 @@ const RequireAuth = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/api/v1/user/${user.email}`)
+      fetch(`https://api.websitesprofessional.com/api/v1/user/${user.email}`)
         .then((response) => response.json())
         .then((data) => {
           //  console.log(data.data.role);
@@ -31,12 +30,16 @@ const RequireAuth = ({ children }) => {
   }
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-  if (!requiredRole.includes(userRole)) {
-    return <UnauthorizePage/>
+  }else{
+    return children;
   }
 
-  return children;
+  // if (!requiredRole.includes(userRole)) {
+  //   return <UnauthorizePage/>
+  // }
+
+
+  
 };
 
 export default RequireAuth;

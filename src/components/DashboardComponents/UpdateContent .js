@@ -10,7 +10,7 @@ const UpdateContent = () => {
 
     const [contentData, getContent] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:5000/api/v1/content/641da964fe0d23ca3d1ec900`)
+        fetch(`https://api.websitesprofessional.com/api/v1/content/641da964fe0d23ca3d1ec900`)
           .then((res) => res.json())
           .then((data) => {
             getContent(data?.data);
@@ -54,7 +54,7 @@ console.log(contentData.aboutMeContent);
             setContent(content)
             console.log(formData);
             const response = await axios.put(
-                "http://localhost:5000/api/v1/content/641da964fe0d23ca3d1ec900",
+                "https://api.websitesprofessional.com/api/v1/content/641da964fe0d23ca3d1ec900",
                 formData,
                 {
                     headers: {

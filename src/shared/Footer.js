@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { useContentData } from '../Hooks/useContentData';
 
 const Footer = () => {
+  const { contentData, isLoading } = useContentData();
   return (
     <footer className="bg-[#000] text-[#ffba31] py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -16,8 +18,8 @@ const Footer = () => {
           <div className="flex flex-col border border-[#ffba31] rounded-md px-6 py-4">
             <h3 className="text-lg font-medium mb-4 text-center">Links & Contact</h3>
             <ul className="text-sm text-[#ffba31] mb-2 text-center">
-              <li>info@websitesprofessional.com</li>
-              <li>704-891-4329</li>
+              <li>{contentData.email}</li>
+              <li>{contentData.phone}</li>
             </ul>
             <div className="flex justify-center">
 
@@ -38,13 +40,13 @@ const Footer = () => {
         </div>
         <div className="mt-8">
           <div className="text-center">
-            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-[#ffba31] hover:text-[#ffba31] mx-2">
+            <a href={contentData.github} target="_blank" rel="noopener noreferrer" className="text-[#ffba31] hover:text-[#ffba31] mx-2">
               github
             </a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="text-[#ffba31] hover:text-[#ffba31] mx-2">
+            <a href={contentData.linkdin} target="_blank" rel="noopener noreferrer" className="text-[#ffba31] hover:text-[#ffba31] mx-2">
               linkedin
             </a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="text-[#ffba31] hover:text-[#ffba31] mx-2">
+            <a href={contentData.instagram} target="_blank" rel="noopener noreferrer" className="text-[#ffba31] hover:text-[#ffba31] mx-2">
               Instagram
             </a>
           </div>

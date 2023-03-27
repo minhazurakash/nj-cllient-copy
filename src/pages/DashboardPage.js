@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { signOut } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
@@ -10,14 +10,16 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined
+  UserOutlined
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
+import CanView from "../shared/CanView";
 
 const { Header, Sider, Content } = Layout;
 
 const Dashboard = () => {
+
+  
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -25,7 +27,7 @@ const Dashboard = () => {
   } = theme.useToken();
   // Queries
   const getUsers = async () => {
-    const { data } = await axios.get("http://localhost:5000/api/v1/user");
+    const { data } = await axios.get("https://api.websitesprofessional.com/api/v1/user");
     return data;
   };
   const { data: databaseUser, isLoading } = useQuery({
@@ -39,6 +41,23 @@ const Dashboard = () => {
   const handleSignOut = () => {
     signOut(auth);
   };
+
+  const [userRole, setUserRole] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      fetch(`https://api.websitesprofessional.com/api/v1/user/${user.email}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setUserRole(data.data.role);
+        })
+        .catch((error) => {
+          console.error("Error fetching user role:", error);
+        });
+    }
+  }, [user]);
+
+
   return (
     <>
       <Layout>
@@ -65,21 +84,19 @@ const Dashboard = () => {
             mode="inline"
             defaultSelectedKeys={["1"]}
             items={[
+              
               {
                 key: "Titles",
                 icon: <UserOutlined />,
                 label: "Title",
+                className:<CanView requiredRole={['super-admin']}/>
               },
               {
                 key: "users",
                 icon: <UserOutlined />,
                 label: "Users",
               },
-              {
-                key: "slider",
-                icon: <VideoCameraOutlined />,
-                label: "Slider",
-              },
+         
               {
                 key: "project",
                 icon: <UploadOutlined />,
@@ -123,6 +140,13 @@ const Dashboard = () => {
             ]}
           />
         </Sider>
+        <style>
+    {`
+      .hide {
+        display: none;
+      }
+    `}
+  </style>
         <Layout className="site-layout">
           <Header
             className="flex justify-between items-center"
@@ -137,7 +161,7 @@ const Dashboard = () => {
             )}
             <div>
               <ul className="flex gap-5">
-                <li>Hey {user?.displayName || "User"}!</li>
+                <li>Hey {user?.displayName || "User"}! </li>
                 <li className="inline-block">
                   <button className="text-red-500" onClick={handleSignOut}>
                     Sign Out

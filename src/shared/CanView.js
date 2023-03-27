@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import auth from "../firebase.init";
-import UnauthorizePage from "../pages/UnauthorizePage";
 import LoadingComponent from "./LoadingComponent";
 
-const RoleAuth = ({ children, requiredRole }) => {
+const Canview = ({ children, requiredRole }) => {
   const [user, loading] = useAuthState(auth);
   const [userRole, setUserRole] = useState(null);
   const location = useLocation();
@@ -30,12 +29,8 @@ const RoleAuth = ({ children, requiredRole }) => {
     return <LoadingComponent />;
   }
 
-  if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-  
   if (!requiredRole.includes(userRole)) {
-    return <UnauthorizePage/>
+    return " ";
     
   }else{
     return children;
@@ -45,4 +40,4 @@ const RoleAuth = ({ children, requiredRole }) => {
  
 };
 
-export default RoleAuth;
+export default Canview;

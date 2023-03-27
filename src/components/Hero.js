@@ -10,17 +10,17 @@ import "swiper/css/pagination";
 // import required modules
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { useContentData } from "../Hooks/useContentData";
 
 const Hero = () => {
-  // Queries
-  const getSliders = async () => {
-    const { data } = await axios.get("http://localhost:5000/api/v1/slider");
-    return data;
-  };
-  const { data: sliders } = useQuery({
-    queryKey: ["sliders"],
-    queryFn: getSliders,
-  });
+
+  const { contentData, isLoading } = useContentData();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+
   return (
     <div className="px-8">
     <div id="heroSection" className="p-10">
@@ -32,13 +32,10 @@ const Hero = () => {
        
         <div className="text-center">
           <h1 className="text-3xl mb-8 text-[#6f5e38]">
-            Attract new customer, and Increase Your Chances of Success
+            {contentData.heroTitle}
           </h1>
           <p className="text-[#6f5e38] text-xl font-subtitle">
-            Delightful remarkably mr on announcing themselves entreaties
-            favourable. About to in so terms voice at. Equal an would is found
-            seems of. The particular friendship one sufficient terminated
-            frequently themselves...
+          {contentData.heroSubTitle}
           </p>
           <div className="mt-8 text-center">
           <Link to="/contact">

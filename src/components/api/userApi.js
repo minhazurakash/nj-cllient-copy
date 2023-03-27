@@ -1,6 +1,6 @@
 import axios from "axios";
 import "firebase/auth";
-const baseUrl = 'http://localhost:5000/api/v1/User';
+const baseUrl = 'https://api.websitesprofessional.com/api/v1/User';
 
 // Function to fetch all users
 export const getUsers = async () => {

@@ -33,7 +33,7 @@ const UpdatePackage = (e) => {
     const newProject = { name, price,priceToShow, content };
     setLoad(true);
     try {
-      const response = await axios.put(`http://localhost:5000/api/v1/package/${id}`, newProject);
+      const response = await axios.put(`https://api.websitesprofessional.com/api/v1/package/${id}`, newProject);
 
       console.log(response.data);
 
