@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
-import { useOrder } from "../Hooks/useOrder";
 import { usePackage } from "../Hooks/usePackage";
 const PackagePage = () => {
   console.log('package Loaded');
-  const [load, setLoad] = useState(false);
-  const [Orders, isLoad, refetch] = useOrder();
-  const [Package, isLoading, reFetch] = usePackage();
-  const [user, loading, error] = useAuthState(auth);
+  const [ setLoad] = useState(false);
+  const [Package] = usePackage();
+  const [user] = useAuthState(auth);
   const userName = user?.displayName;
-  const userEmail = user?.email;
   const navigate  = useNavigate ();
   const handleOrder = async (i) => {
     setLoad(true);
@@ -21,18 +18,6 @@ const PackagePage = () => {
     } else {
       
       const packageId = i?._id;
-      //  const packageName = i?.name;
-      //  const packagePrice = i?.priceToShow;
-      //  const orderId = `ORDER-${Math.random().toString(36).substring(2)}`;
-      //  const orderDetails = {
-      //    orderId,
-      //    userName,
-      //    userEmail,
-      //    packageId,
-      //    packageName,
-      //    packagePrice,
-      //  };
-      //  console.log(packageId);
       navigate(`/payment/${packageId}`);
     }
   };
@@ -85,10 +70,6 @@ const PackagePage = () => {
           </div>
         </div>
       </section>
-
-
-
-
     </div>
   );
 };

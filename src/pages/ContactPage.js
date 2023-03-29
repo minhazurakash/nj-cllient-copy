@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ServicePage = () => {
+const ContactPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -133,4 +133,4 @@ const ServicePage = () => {
   );
 };
 
-export default ServicePage;
+export default ContactPage;

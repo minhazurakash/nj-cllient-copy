@@ -34,7 +34,7 @@ const RequireAdmin = ({ children, requiredRole }) => {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
   
-  if (userRole == "user") {
+  if (userRole === "user") {
     return <UserDashboardPage/>
   
   }else{

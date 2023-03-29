@@ -88,11 +88,8 @@ console.log(content)
                     <JoditEditor
                     name="aboutMeContent"
                         ref={editor}
-                        // value={content}
                         tabIndex={1} // tabIndex of textarea
-                        onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                        // defaultValue={contentData.aboutMeContent}
-                        
+                        onBlur={(newContent) => setContent(newContent)} // preferred to use only this 
                         onChange={(newContent) => { }}
                     />
                 </Form.Item>

@@ -22,16 +22,35 @@ const ProjectPage = () => {
         {projects?.data ? (
           projects?.data?.map((project) => {
             return (
-              <div key={project._id}>
+              <div className='rounded-lg' key={project._id}>
                 <a href={project.img} data-lightbox="gallery">
+
+                <div className="relative text-center">
+                  <div className="layer absolute top-0 bottom-0 rounded left-0 right-0 bg-[#000] opacity-30">
+
+                  </div>
                   <img
+                    className="lg:xl:h-[380px] lg:xl:w-[350px] h-[190px] w-[175px] rounded  object-cover img-fit cursor-pointer"
+                    loading="lazy"
                     src={project.img}
                     alt={project.title}
-                    className="w-300 h-300 object-cover img-fit cursor-pointer"
                   />
+                  <div className="absolute bottom-0 left-0 px-6 py-4">
+                    <h2 className="text-2xl font-semibold text-white">{project.title}</h2>
+                  </div>
+                </div>
+
+
+
+
+                  {/* <img
+                    src={project.img}
+                    alt={project.title}
+                    className="lg:xl:h-[380px] lg:xl:w-[350px] h-[190px] w-[175px] object-cover img-fit cursor-pointer"
+                  /> */}
                 </a>
-                <h2 className="text-2xl font-bold mt-2 mb-1">{project.title}</h2>
-                <p className="text-lg text-gray-600 mb-4">{project.description}</p>
+                {/* <h2 className="text-2xl font-bold mt-2 mb-1">{project.title}</h2>
+                <p className="text-lg text-gray-600 mb-4">{project.description}</p> */}
               </div>
             );
           })
