@@ -11,18 +11,20 @@ const ServiceSection = () => {
         <h1 class="block font-sans text-4xl pb-5 font-semibold font-title leading-relaxed tracking-normal text-inherit text-center antialiased">
           These are some of the skills I will put to work for you
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:xl:grid-cols-4 bg-white shadow-xl shadow-neutral-100 border ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:xl:grid-cols-3 bg-white shadow-xl shadow-neutral-100 border gap-5 ">
           {Service?.data?.map((item) => {
             return (
-              <div className="p-10 flex flex-col items-center text-center md:lg:xl:border-r md:lg:xl:border-b hover:bg-slate-50">
-                <span className="p-5">
-                  <img src={item?.img} className="servimg" alt="" />
-                </span>
-                <p className="text-lg font-medium text-[#9b9179] my-3">
-                  {item?.title}
-                </p>
-                <div dangerouslySetInnerHTML={{ __html: item?.content }} />
+
+              <div className="card text-center flex flex-col justify-center p-10 bg-white rounded-lg shadow-2xl">
+              
+              <div className="prod-img">
+                <img src={item?.img} className="h-[120px] mx-auto"/>
               </div>
+
+              <div className="prod-title mt-5">
+                <p className="text-md  uppercase text-[#ae9d78] font-bold">{item?.title}</p>
+              </div>
+            </div>
             );
           })}
         </div>

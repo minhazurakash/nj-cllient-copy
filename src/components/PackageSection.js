@@ -61,7 +61,7 @@ const PackageSection = () => {
     setShowModal(false);
   };
   return (
-    <div className="bg-[#fff]">
+    <div className="bg-[#F5F2EC]">
       <div className="-mx-4 flex flex-wrap">
         <div className="w-full px-4">
           <div className="mx-auto mb-[60px] max-w-[510px] text-center">

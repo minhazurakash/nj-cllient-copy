@@ -5,12 +5,13 @@ import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import auth from "../firebase.init";
+import { useContentData } from "../Hooks/useContentData";
 
 const Navigation = () => {
   const location = useLocation();
   const [collaps, setCollaps] = useState(false);
   const [user, loading, error] = useAuthState(auth);
-
+  const { contentData, isLoading } = useContentData();
   const handleSignOut = () => {
     signOut(auth);
   };
@@ -27,22 +28,22 @@ const Navigation = () => {
           <div className="container mx-auto lg:xl:px-[120px] flex justify-between">
             <ul className="flex items-center gap-5">
               <li className="text-black">
-                <a href="mailto:info@websitesprofessional.com" className="flex items-stretch">
+                <a href={`mailto:${contentData.email}`} className="flex items-stretch">
                   <div className="flex-auto text-xl p-0.5">
                     <AiOutlineMail />
                   </div>
                   <div className="flex-auto text-base ">
-                    info@websitesprofessional.com
+                    {contentData.email}
                   </div>
                 </a>
               </li>
               <li className="text-black">
-                <a href="tel:704-891-4329" className="flex items-stretch">
+                <a href={`tel:${contentData.email}`} className="flex items-stretch">
                   <div className="flex-auto text-xl p-0.5">
                     <AiOutlinePhone />
                   </div>
                   <div className="flex-auto text-base ">
-                    704-891-4329
+                    {contentData.email}
                   </div>
 
                 </a>
@@ -96,7 +97,8 @@ const Navigation = () => {
           <div className="w-60">
             <Link to="/">
               <img
-                src="logo.png"
+                src={contentData.websiteLogo}
+                className="h-[50px]"
                 alt="Logo" />
             </Link>
           </div>
