@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 @font-face {
   font-family: 'com4dl';
@@ -22,7 +22,8 @@ body {
   margin: 0;
   /* font-family: 'Inconsolata', monospace; */
   /* font-family: 'Cormorant Garamond', serif; */
-  font-family: 'proxima-nova';
+  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'proxima-nova'; */
   color: #ae9d78;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

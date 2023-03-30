@@ -1,6 +1,7 @@
 import React from "react";
-import { useAuthState, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../firebase.init";
 import LoadingOverlay from "../shared/LoadingOverlay";
 
@@ -8,19 +9,41 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [signInWithEmailAndPassword, userEmail, loadingEmail, errorEmail] =
     useSignInWithEmailAndPassword(auth);
-  const [user, loading, error] = useAuthState(auth);
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    signInWithEmailAndPassword(email, password);
+
+
+    signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      if(userCredential){
+        navigate('/')
+      const user = userCredential.user;
+      toast(`${user.displayName} Sign In successful`);
+      }
+      
+      
+
+    })
+
+    
+    // signInWithEmailAndPassword(email, password).then(() => {
+      
+      
+    //   toast("Sign In successful");
+    // }).catch((error) => {
+    //   toast(`${errorEmail}An error happened`);
+    // });
+
+   
   };
-  if (loading || loadingEmail) {
+  if (loadingEmail) {
+    
     return <LoadingOverlay />;
+    
   }
-  if (user) {
-    navigate("/");
-  }
+
   return (
     <div className="h-screen bg-[#fbf8f5] py-20 flex justify-center items-center">
       <div className="w-3/3 lg:xl:w-1/3 bg-white rounded-lg shadow-lg p-8">

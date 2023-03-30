@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../firebase.init";
 import { useContentData } from "../Hooks/useContentData";
 
@@ -13,7 +14,14 @@ const Navigation = () => {
   const [user, loading, error] = useAuthState(auth);
   const { contentData, isLoading } = useContentData();
   const handleSignOut = () => {
-    signOut(auth);
+    signOut(auth).then(() => {
+      toast("Sign-out successful");
+    }).catch((error) => {
+
+      toast("An error happened");
+
+    });
+    
   };
   if (location?.pathname?.includes("dashboard")) {
     return;
@@ -23,76 +31,80 @@ const Navigation = () => {
   
   return (
     <>
-    <header className="bg-[#FBF8F5] hidden md:block">
-        <div className="mx-auto py-3 container w-full">
-          <div className="container mx-auto lg:xl:px-[120px] flex justify-between">
-            <ul className="flex items-center gap-5">
-              <li className="text-black">
-                <a href={`mailto:${contentData.email}`} className="flex items-stretch">
-                  <div className="flex-auto text-xl p-0.5">
-                    <AiOutlineMail />
-                  </div>
-                  <div className="flex-auto text-base ">
-                    {contentData.email}
-                  </div>
-                </a>
-              </li>
-              <li className="text-black">
-                <a href={`tel:${contentData.email}`} className="flex items-stretch">
-                  <div className="flex-auto text-xl p-0.5">
-                    <AiOutlinePhone />
-                  </div>
-                  <div className="flex-auto text-base ">
-                    {contentData.email}
-                  </div>
+    <header className="bg-gray-100 hidden md:block">
+  <div className="mx-auto container w-full">
+    <div className="container mx-auto px-4 lg:px-12 flex justify-between items-center">
+      <ul className="flex items-center space-x-5">
+        <li className="text-gray-700">
+          <a href={`mailto:${contentData.email}`} className="flex items-center space-x-2">
+            <span className="text-lg">
+              <AiOutlineMail />
+            </span>
+            <span className="text-base font-medium">
+              {contentData.email}
+            </span>
+          </a>
+        </li>
+        <li className="text-gray-700">
+          <a href={`tel:${contentData.phone}`} className="flex items-center space-x-2">
+            <span className="text-lg">
+              <AiOutlinePhone />
+            </span>
+            <span className="text-base font-medium">
+              {contentData.phone}
+            </span>
+          </a>
+        </li>
+      </ul>
+      <ul className="flex items-center space-x-5">
+        {user?.email ? (
+          <>
+            <li className="text-gray-700">
+              Hey {user?.displayName || "User"}!
+            </li>
+            <li>
+              <Link to="/dashboard">
+                <button className="bg-[#F5F2EC ] border-[#a5a5a5] border-2  text-[#a5a5a5] m-2 hover:bg-[#AE9D78] hover:text-white hover:border-white font-bold p-1 text-xs">
+                  Dashboard
+                </button>
+              </Link>
+            </li>
+            <li>
+              <button
+                onClick={handleSignOut}
+                className="bg-[#F5F2EC ] border-[#a5a5a5] border-2  text-[#a5a5a5] m-2 hover:bg-[#AE9D78] hover:text-white hover:border-white font-bold p-1 text-xs"
+              >
+                Sign Out
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link to="/login"> 
+              <button className="bg-[#F5F2EC ] border-[#a5a5a5] border-2  text-[#a5a5a5] m-2 hover:bg-[#AE9D78] hover:text-white hover:border-white font-bold p-1 text-xs">
+                  Login
+                </button>
+              </Link>
+            </li>
+            <li>
+              <Link to="/sign-up">
+                <button className="bg-[#F5F2EC ] border-[#a5a5a5] border-2  text-[#a5a5a5] m-2 hover:bg-[#AE9D78] hover:text-white hover:border-white font-bold p-1 text-xs">
+                  Sign up
+                </button>
+              </Link>
+            </li>
+          </>
+        )}
+      </ul>
+    </div>
+  </div>
+</header>
 
-                </a>
-              </li>
-            </ul>
-            <ul className="flex items-center gap-5">
-              {user?.email ? (
-                <>
-                  <li>Hey {user?.displayName || "User"}!</li>
-                  <li>
-                    <Link to="/dashboard">
-                      <button className="border border-orange-300 hover:bg-orange-300 hover:text-white py-2 px-4">
-                        Dashboard
-                      </button>
-                    </Link>
-                  </li>
-                  <li>
-                    <button
-                      onClick={handleSignOut}
-                      className="border border-orange-300 hover:bg-orange-300 hover:text-white py-2 px-4"
-                    >
-                      Sign Out
-                    </button>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li>
-                    <Link to="/login" className="">
-                      Login
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link to="/sign-up" className="">
-                      Sign up
-                    </Link>
-                  </li>
-                </>
-              )}
-            </ul>
-
-          </div>
-        </div>
-      </header>
       <nav className="relative sticky top-0 z-50">
 
-      <div className=" bg-[#FFF]  px-8">
-        <div className="border-b-4 border-[#e4cfc8f0]">
+      <div className=" bg-[#FFF]  px-8 border-b-4 border-[#e4cfc8f0]">
+        <div className="">
         <div className="container mx-auto lg:xl:px-[120px] flex justify-between items-center">
           <div className="w-60">
             <Link to="/">

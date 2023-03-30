@@ -30,6 +30,7 @@ import AboutPage from "./pages/AboutPage";
 import BlogDetailsPage from "./pages/BlogDetailsPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
+import UserDashboard from "./pages/Dashboard/UserDashboard";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import PackagePage from "./pages/PackagePage";
@@ -57,6 +58,7 @@ const App = () => {
         <Route path="*" element={<UnauthorizePage />} />
         <Route path="/unauthorized" element={<UnauthorizePage />} />
         <Route path="/" element={<HomePage />} />
+        
         {/* <Route path="/user-dashboard" element={<UserDashboardPage />} /> */}
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/unauthorized" element={<UnauthorizePage/>}/> */}
@@ -68,6 +70,7 @@ const App = () => {
             </RequireAuth>
           }
         />
+        <Route path="/user-dash" element={<UserDashboard />} />
         <Route path="/Contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
@@ -224,11 +227,13 @@ const App = () => {
         path="blog" element={<BlogList />} allowedRoles={["admin"]}
       /> */}
         </Route>
+        
       </Routes>
 
 
-      <Footer />
+      
       <ToastContainer />
+      <Footer />
     </>
   );
 };

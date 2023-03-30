@@ -39,7 +39,7 @@ const PackageSection = () => {
       });
   };
   const handleOrder = async (i) => {
-    setLoad(true);
+    // setLoad(true);
 
     if (!userName) {
       navigate("/login");
@@ -62,7 +62,7 @@ const PackageSection = () => {
   };
   return (
     <div className="bg-[#F5F2EC]">
-      <div className="-mx-4 flex flex-wrap">
+      <div className="mx-4 flex flex-wrap">
         <div className="w-full px-4">
           <div className="mx-auto mb-[60px] max-w-[510px] text-center">
             <h2 className="text-dark font-title mb-4 mt-10 xl:lg:mt-20 text-3xl font-bold sm:text-4xl md:text-[40px]">
@@ -71,7 +71,7 @@ const PackageSection = () => {
           </div>
         </div>
       </div>
-      <div className="mx-4 px-20 pb-10  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
+      <div className="mx-4 lg:xl:px-20 px-6 pb-10  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
         {Package?.data?.slice(Math.max(Package?.data?.length - 3, 0)).map((i) => {
           return (
             <>
@@ -86,7 +86,7 @@ const PackageSection = () => {
                   <div dangerouslySetInnerHTML={{ __html: i?.content }} />
                 </div>
                 <div className="text-center py-5">
-                  <button onClick={() => handleOrder(i)} className="bg-[#ae9d78] m-2 hover:bg-[#6c531a] text-white font-bold py-2 px-4 rounded">
+                  <button onClick={() => handleOrder(i)} className="bg-[#F5F2EC ] border-[#a5a5a5] border-2  text-[#a5a5a5] m-2 hover:bg-[#AE9D78] hover:text-white hover:border-white font-bold py-2 px-4">
                     Subscription
                   </button>
                 </div>
@@ -96,7 +96,7 @@ const PackageSection = () => {
         })}
 
       </div>
-      <div className="mx-4 px-20 pb-10 grid grid-cols-1 gap-20">
+      <div className="mx-4 lg:xl:px-20 px-6pb-10 grid grid-cols-1 gap-20">
         <div className="bg-white rounded-lg shadow-lg xl:lg:mx-[120px]">
           <div className="flex flex-col items-center text-center p-10 bg-[#fcf9f4] ">
             <span className="font-semibold text-2xl font-subtitle">Want a Custom Build</span>
@@ -109,7 +109,7 @@ const PackageSection = () => {
           </div>
           <div className="text-center py-5">
             <button
-              className="bg-[#ae9d78] m-2 hover:bg-[#6c531a] text-white font-bold py-2 px-4 rounded"
+              className="bg-[#F5F2EC ] border-[#a5a5a5] border-2  text-[#a5a5a5] m-2 hover:bg-[#AE9D78] hover:text-white hover:border-white font-bold py-2 px-4"
               onClick={handleClick}
             >
               Contact Us

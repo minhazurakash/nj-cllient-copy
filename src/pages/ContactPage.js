@@ -65,66 +65,66 @@ const ContactPage = () => {
                   </div>
                 </div>
               </div>
-              <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label htmlFor="name" className="block font-bold mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full border-gray-400 border-2 p-3 rounded-lg focus:outline-none focus:border-blue-400"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="block font-bold mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border-gray-400 border-2 p-3 rounded-lg focus:outline-none focus:border-blue-400"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="phone" className="block font-bold mb-2">
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full border-gray-400 border-2 p-3 rounded-lg focus:outline-none focus:border-blue-400"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="message" className="block font-bold mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  rows="5"
-                  className="w-full border-gray-400 border-2 p-3 rounded-lg focus:outline-none focus:border-blue-400"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-              >
-                Submit
-              </button>
-            </form>
+              <div className="w-full max-w-md px-6 py-10 bg-white rounded-lg shadow-lg">
+                      {/* <h2 className="text-2xl font-bold mb-8 text-gray-800">Contact Us</h2> */}
+
+                      <form onSubmit={handleSubmit}>
+                        <div className="mb-4">
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full px-3 py-2 border-b-4 border-b-[#f3e8e4c7] focus:border-blue-400"
+                            placeholder="Name"
+                          />
+                        </div>
+                        <div className="mb-4">
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full px-3 py-2 border-b-4 border-b-[#f3e8e4c7] focus:border-blue-400"
+                            placeholder="Email"
+                          />
+                        </div>
+                        <div className="mb-4">
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            className="w-full px-3 py-2 border-b-4 border-b-[#f3e8e4c7] focus:border-blue-400"
+                            placeholder="Phone"
+                          />
+                        </div>
+                        <div className="mb-6">
+                          <textarea
+                            id="message"
+                            name="message"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            rows="5"
+                            className="w-full px-3 py-2 border-b-4 border-b-[#f3e8e4c7] focus:border-blue-400"
+                            placeholder="Message"
+                          ></textarea>
+                        </div>
+                        <div className="flex justify-center">
+                          <button
+                            type="submit"
+                            className="bg-[#ae9d78] m-2 hover:bg-[#6c531a] text-white font-bold py-2 px-4 rounded"
+                          >
+                            Submit
+                          </button>
+                         
+                        </div>
+                      </form>
+
+                    </div>
         </div>
       </div>
     </div>

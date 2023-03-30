@@ -43,21 +43,11 @@ const ProjectsGallery = () => {
                     alt={project.title}
                   />
                   <div className="absolute bottom-0 left-0 px-6 py-4">
-                    <h2 className="text-2xl font-semibold text-[#fff]">{project.title}</h2>
+                    <h2 className="lg:text-2xl text-sm font-semibold text-[#fff]">{project.title}</h2>
                   </div>
                 </div>
-
-
-
-
-                  {/* <img
-                    src={project.img}
-                    alt={project.title}
-                    className="lg:xl:h-[380px] lg:xl:w-[350px] h-[190px] w-[175px] object-cover img-fit cursor-pointer"
-                  /> */}
                 </a>
-                {/* <h2 className="text-2xl font-bold mt-2 mb-1">{project.title}</h2>
-                <p className="text-lg text-gray-600 mb-4">{project.description}</p> */}
+
               </div>
             );
           })

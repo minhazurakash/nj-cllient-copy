@@ -49,11 +49,11 @@ const UpdateContent = () => {
 
     const [logoData, setLogoData] = useState('');
     useEffect(() => {
-        setImageData(contentData?.websiteLogo);
+        setLogoData(contentData?.websiteLogo);
     }, [contentData]);
     // console.log(contentData.aboutMeContent);
     const handleImageUpload = (event) => {
-        const file = event.target.files[1];
+        const file = event.target.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {

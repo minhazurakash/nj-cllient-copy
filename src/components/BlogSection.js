@@ -13,7 +13,7 @@ const BlogSection = () => {
         Latest Blog Posts
       </h1>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {Blog?.data?.slice(-4).map((post) => {
             return (
               <Link to={`/blog/${post._id}`}>
@@ -32,12 +32,12 @@ const BlogSection = () => {
                     <h2 className="text-2xl font-semibold text-white">{post.blogTitle}</h2>
                   </div>
                 </div>
-                <div className="p-6">
+                {/* <div className="p-6">
                   <p className="text-gray-600 mb-4">{post.blogDescription}</p>
                   <a href={`/blog/${post.slug}`} className="text-gray-800 font-medium hover:underline">
                     Read More
                   </a>
-                </div>
+                </div> */}
               </div>
               </Link>
             );

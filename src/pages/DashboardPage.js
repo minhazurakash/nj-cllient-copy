@@ -13,6 +13,7 @@ import {
   UserOutlined
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
+import { toast } from "react-toastify";
 import CanView from "../shared/CanView";
 
 const { Header, Sider, Content } = Layout;
@@ -39,7 +40,13 @@ const Dashboard = () => {
   const visitor = databaseUser?.data?.find((u) => u.email === user.email);
   const isAdmin = visitor?.role;
   const handleSignOut = () => {
-    signOut(auth);
+    signOut(auth).then(() => {
+      toast("Sign-out successful");
+    }).catch((error) => {
+
+      toast("An error happened");
+
+    });
   };
 
   const [userRole, setUserRole] = useState(null);

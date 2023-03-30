@@ -9,7 +9,7 @@ const OrderList = () => {
   const [load, setLoad] = useState(false);
 
   const [Orders, isLoading, refetch] = useOrder();
-
+console.log(Orders);
   const deleteSlider = (id) => {
     setLoad(true);
 
@@ -74,8 +74,9 @@ const OrderList = () => {
       },
     },
   ];
-  const data = Orders?.data;
-
+   const data = Orders?.data;
+   console.log(data);
+  //  console.log(data['orderDetails']);
   if (isLoading) {
     return <LoadingComponent />;
   }

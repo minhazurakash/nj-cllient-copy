@@ -7,7 +7,7 @@ const WhoWeAreSection = () => {
     <div className="bg-[#fff]">
       
  <div className="container mx-auto px-5 lg:xl:px-[120px]  mb-20" >
- <h1 className="text-4xl lg:text-5xl pb-4 pt-10 xl:lg:pt-20 font-title pt-10 text-center">About Me</h1>
+ <h1 className="text-4xl lg:text-5xl pb-4 font-title pt-10 text-center">About Me</h1>
           <h2 className="  mb-8 text-2xl font-subtitle text-center">
           {contentData.aboutMeSubTitle}
           
