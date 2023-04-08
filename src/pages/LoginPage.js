@@ -1,6 +1,6 @@
 import React from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../firebase.init";
 import LoadingOverlay from "../shared/LoadingOverlay";
@@ -18,14 +18,14 @@ const LoginPage = () => {
     signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       if(userCredential){
-        navigate('/')
+         navigate('/redirectuser')
       const user = userCredential.user;
-      toast(`${user.displayName} Sign In successful`);
-      }
-      
-      
-
-    })
+      toast.success(`${user.displayName} Sign In successful`);
+      }}).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error(errorMessage)
+      });
 
     
     // signInWithEmailAndPassword(email, password).then(() => {
@@ -96,12 +96,15 @@ const LoginPage = () => {
         </form>
         <div className="text-center mt-8">
           <p className="text-gray-600 font-bold">Don't have an account?</p>
-          <a
-            href="/sign-up"
+          <Link to="/sign-up">
+          <p
+            
             className="text-[#ae9d78] hover:text-[#775d22] font-bold"
           >
             Sign up
-          </a>
+          </p>
+          </Link>
+          
         </div>
       </div>
     </div>

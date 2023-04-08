@@ -1,6 +1,6 @@
 import { message, Table } from "antd";
 import { useEffect, useState } from "react";
-import { deleteUser, updateUserRole } from "../api/userApi";
+import { deleteUser, updateUserRole } from "../api/UserApi";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);

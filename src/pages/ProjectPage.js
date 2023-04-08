@@ -16,7 +16,7 @@ const ProjectPage = () => {
   return (
     <div className="max-w-screen-xl mx-auto">
       <h1 className="text-4xl lg:text-5xl pb-4 pt-10 xl:lg:pt-20 font-title pt-10 text-center">
-        Our Projects
+        Projects
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-8">
         {projects?.data ? (

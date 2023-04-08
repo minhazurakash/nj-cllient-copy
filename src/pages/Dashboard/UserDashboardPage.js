@@ -4,7 +4,7 @@ import { updatePassword } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useAuthState, useUpdateEmail, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { getUserOrders, getUserProfile } from "../../components/api/userApi";
+import { getUserOrders, getUserProfile } from "../../components/api/UserApi";
 import auth from "../../firebase.init";
 import Footer from "../../shared/Footer";
 import LoadingComponent from "../../shared/LoadingComponent";

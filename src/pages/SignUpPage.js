@@ -5,7 +5,7 @@ import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile
 } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../firebase.init";
 import LoadingOverlay from "../shared/LoadingOverlay";
@@ -53,7 +53,7 @@ const SignUpPage = () => {
   return (
     <div className="h-screen bg-[#fbf8f5] py-20 flex justify-center items-center">
       <div className="w-3/3 lg:xl:w-1/3 bg-white rounded-lg shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-center mb-4">Welcome!</h2>
+        {/* <h2 className="text-3xl font-bold text-center mb-4">Welcome!</h2> */}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -142,12 +142,15 @@ const SignUpPage = () => {
         </form>
         <div className="text-center mt-8">
           <p className="text-gray-600 font-bold">Already have an account?</p>
-          <a
-            href="/sign-up"
+          <Link to="/login">
+          <p
+         
             className="text-[#ae9d78] hover:text-[#775d22] font-bold"
           >
             Sign In
-          </a>
+          </p>
+          </Link>
+         
         </div>
       </div>
     </div>

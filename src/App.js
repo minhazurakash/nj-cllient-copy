@@ -17,20 +17,22 @@ import PackageList from "./components/DashboardComponents/PackageList";
 import ProjectList from "./components/DashboardComponents/ProjectList";
 import ServiceList from "./components/DashboardComponents/ServiceList";
 import SliderList from "./components/DashboardComponents/SliderList";
-import UpdateBlog from "./components/DashboardComponents/updateBlog";
 import UpdateContent from "./components/DashboardComponents/UpdateContent ";
 import UpdateInstagram from "./components/DashboardComponents/UpdateInstagram";
 import UpdatePackage from "./components/DashboardComponents/UpdatePackage";
 import UpdateProject from "./components/DashboardComponents/UpdateProject";
-import UpdateService from "./components/DashboardComponents/updateService";
 import UpdateSlider from "./components/DashboardComponents/UpdateSlider";
 import UserList from "./components/DashboardComponents/UserList";
+import UpdateBlog from "./components/DashboardComponents/updateBlog";
+import UpdateService from "./components/DashboardComponents/updateService";
 import TitlesPage from "./components/TitlePage";
 import AboutPage from "./pages/AboutPage";
 import BlogDetailsPage from "./pages/BlogDetailsPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
-import UserDashboard from "./pages/Dashboard/UserDashboard";
+import Profile from "./pages/Dashboard/Component/Profile";
+import Dashboard from "./pages/DashboardPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import PackagePage from "./pages/PackagePage";
@@ -43,7 +45,7 @@ import TermsServicePage from "./pages/TermsServicePage";
 import UnauthorizePage from "./pages/UnauthorizePage";
 import Footer from "./shared/Footer";
 import Navigation from "./shared/Navigation";
-import RequireAdmin from "./shared/RequireAdmin";
+import RedirectDashboard from "./shared/RedirectDashboard";
 import RequireAuth from "./shared/RequireAuth";
 import RequireRole from "./shared/RequireRole";
 
@@ -55,12 +57,16 @@ const App = () => {
       <Navigation />
 
       <Routes>
+
+
+        <Route path="/redirectuser" element={<RedirectDashboard />} />
         <Route path="*" element={<UnauthorizePage />} />
         <Route path="/unauthorized" element={<UnauthorizePage />} />
         <Route path="/" element={<HomePage />} />
         
         {/* <Route path="/user-dashboard" element={<UserDashboardPage />} /> */}
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         {/* <Route path="/unauthorized" element={<UnauthorizePage/>}/> */}
         <Route
           path="/package"
@@ -70,7 +76,17 @@ const App = () => {
             </RequireAuth>
           }
         />
-        <Route path="/user-dash" element={<UserDashboard />} />
+          {/* <Route path="user-panel" element={<Panel />} ></Route>
+          <Route
+          path="/user-panel"
+          
+        > */}
+        <Route path="user-profile" element={
+        <RequireAuth>
+           <Profile />
+        </RequireAuth>
+       }></Route>
+        {/* </Route> */}
         <Route path="/Contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
@@ -87,7 +103,7 @@ const App = () => {
           path="/dashboard"
           element={
             <RequireAuth>
-              <RequireAdmin/>
+              <Dashboard/>
             </RequireAuth>
           }
         >

@@ -1,18 +1,22 @@
-import { Button, Form, Input, message } from "antd";
+import { Form, Input } from "antd";
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import LoadingComponent from "../../shared/LoadingComponent";
 
 const UpdateContent = () => {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
     const editor = useRef(null);
-
+    const navigate = useNavigate();
     const [contentData, getContent] = useState({});
     useEffect(() => {
         fetch(`https://api.websitesprofessional.com/api/v1/content/641da964fe0d23ca3d1ec900`)
             .then((res) => res.json())
             .then((data) => {
+                setLoading(true)
                 getContent(data?.data);
             });
     }, []);
@@ -28,8 +32,10 @@ const UpdateContent = () => {
         aboutMeContent: contentData.aboutMeContent,
         aboutMeSubTitle: contentData.aboutMeSubTitle,
         websiteSlogan: contentData.websiteSlogan,
-        heroTitle: contentData.heroTitle,
-        heroSubTitle: contentData.heroSubTitle,
+        sliderTitle: contentData.sliderTitle,
+        sliderTitle2: contentData.sliderTitle2,
+        sliderSubTitle: contentData.sliderSubTitle,
+        sliderSubTitle2: contentData.sliderSubTitle2,
         phone: contentData.phone,
         email: contentData.email,
         github: contentData.github,
@@ -83,8 +89,10 @@ const UpdateContent = () => {
                 aboutMeContent: content,
                 aboutMeImage: imageData,
                 aboutMeSubTitle: values.aboutMeSubTitle,
-                heroTitle: values.heroTitle,
-                heroSubTitle: values.heroSubTitle,
+                sliderTitle: values.sliderTitle,
+                sliderTitle2: values.sliderTitle2,
+                sliderSubTitle: values.sliderSubTitle,
+                sliderSubTitle2: values.sliderSubTitle2,
                 phone: values.phone,
                 email: values.email,
                 github: values.github,
@@ -92,24 +100,29 @@ const UpdateContent = () => {
                 instagram: values.instagram,
                 facebook: values.facebook,
             };
+          
             setContent(content)
             console.log(formData);
             const response = await axios.put(
                 "https://api.websitesprofessional.com/api/v1/content/641da964fe0d23ca3d1ec900",
                 formData,
                 {
+                    
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
                 }
+                
             );
 
             if (response && response.data.success) {
-                message.success("Content updated successfully!");
+                setContent(formData)
+                // navigate("/dashboard/content");
+                toast.success("Content Update Successful!");
             }
         } catch (error) {
             console.log(error);
-            message.error("Failed to update content, please try again later.");
+            toast.error("Failed to update content, please try again later.");
         } finally {
             setLoading(false);
         }
@@ -117,7 +130,9 @@ const UpdateContent = () => {
     // console.log(contentData.aboutMeSubTitle);
 
 
-    console.log(content)
+if(loading){
+<LoadingComponent/>
+}
     return (
         <div>
             <h1>Update Content</h1>
@@ -158,11 +173,17 @@ const UpdateContent = () => {
 
 
 
-                <Form.Item label="Hero Title" name="heroTitle">
-                    <Input placeholder="Hero Title" />
+                <Form.Item label="Slider Title line 1" name="sliderTitle">
+                    <Input placeholder="Slider Title line 1" />
                 </Form.Item>
-                <Form.Item label="Hero Subtitle" name="heroSubTitle">
-                    <Input placeholder="Hero Subtitle" />
+                <Form.Item label="Slider Title line 2" name="sliderTitle2">
+                    <Input placeholder="Slider Title line 2" />
+                </Form.Item>
+                <Form.Item label="Slider Subtitle" name="sliderSubTitle">
+                    <Input placeholder="Slider Subtitle" />
+                </Form.Item>
+                <Form.Item label="Slider Subtitle2" name="sliderSubTitle2">
+                    <Input placeholder="Slider Subtitle2" />
                 </Form.Item>
                 <Form.Item label="Phone" name="phone">
                     <Input placeholder="Phone" />
@@ -184,9 +205,12 @@ const UpdateContent = () => {
                     <Input placeholder="Facebook" />
                 </Form.Item>
 
-                <Button type="primary" htmlType="submit" loading={loading}>
-                    Update Content
-                </Button>
+                <input
+            type="submit"
+            className="w-36 h-10 flex justify-center border border-1 border-red-500 items-center hover:text-white hover:bg-red-500 cursor-pointer"
+            placeholder="Project Name"
+            value={`submit`}
+          />
 
             </Form>
         </div>

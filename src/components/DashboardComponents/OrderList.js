@@ -9,7 +9,7 @@ const OrderList = () => {
   const [load, setLoad] = useState(false);
 
   const [Orders, isLoading, refetch] = useOrder();
-console.log(Orders);
+
   const deleteSlider = (id) => {
     setLoad(true);
 
@@ -60,7 +60,7 @@ console.log(Orders);
           <>
             <div className="flex gap-5">
               <button className="w-20 h-10 flex justify-center border border-1 border-orange-500 items-center hover:text-white hover:bg-orange-500">
-                Payment
+                Approve
               </button>
               <button
                 onClick={() => deleteSlider(_id)}

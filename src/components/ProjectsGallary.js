@@ -23,7 +23,7 @@ const ProjectsGallery = () => {
       <div className=' max-w-screen-xl mx-auto'>
       <div className="bg-layer"></div>
       <h1 className="text-4xl lg:text-5xl pb-4 pt-10 xl:lg:pt-20 font-title pt-10 text-center">
-        Our Projects
+        Projects
       </h1>
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 p-8">
         {projects?.data ? (
@@ -55,7 +55,7 @@ const ProjectsGallery = () => {
           <h1>No projects found</h1>
         )}
       </div>
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mb-5">
         <Link to="/projects" >
           <button className='bg-[#F5F2EC ] border-[#a5a5a5] border-2  text-[#a5a5a5] m-2 hover:bg-[#AE9D78] hover:text-white hover:border-white font-bold py-2 px-4'>
           View All</button>

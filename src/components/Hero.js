@@ -20,25 +20,32 @@ const Hero = () => {
 
 
   return (
-    <div className="lg:xl:px-8">
-    <div id="heroSection" className="px-10 xl:lg:py-[180px]">
+    <div className="">
+    <div id="heroSection" className="px-10  xl:lg:py-[180px]">
        <video autoPlay loop muted>
-        <source src="hero.mp4" type="video/mp4" className="hidden xl:lg:block" />
+        <source src="hero.mp4" type="video/mp4" className="object-fit" />
       </video>
-      <div className="content-hero">
-      <div className="container mx-2  lg:xl:px-[240px] items-center gap-10">
+      <div className="content-hero ">
+      <div className="container mx-2 mx-auto lg:xl:px-[240px] items-center gap-10">
        
-        <div className="text-center">
-          <h1 className="lg:xl:text-5xl text-md lg:xl:mb-8 pt-4 md:xl:lg:pt-0 text-[#6f5e38]">
-            {contentData.heroTitle}
+        <div className="text-center ">
+          <h1 className="lg:xl:text-5xl text-md lg:xl:mb-2 pt-4 md:xl:lg:pt-0 text-xl text-[#000]">
+            {contentData.sliderTitle}
+           
           </h1>
-          <p className="text-[#6f5e38] text-3xl hidden lg:xl:block font-subtitle">
-          {contentData.heroSubTitle}
+          <h1 className="lg:xl:text-5xl text-md lg:xl:mb-8 lg:xl:pb-8  text-xl text-[#000]">
+            {contentData.sliderTitle2}
+           
+          </h1>
+          <p className="text-[#000]  md:lg:xl:text-3xl text-md lg:xl:block font-subtitle">
+          {contentData.sliderSubTitle}
+          <br />
+          {contentData.sliderSubTitle2}
           </p>
           <div className="mt-2 lg:xl:mt-8 py-2 lg:xl:py-0 text-center">
           <Link to="/contact">
-            <button className=" p-2 lg:xl:p-4 bg-[#fff] hover:bg-[#000] text-sm  lg:xl:text-xl hover:text-[#fff]">
-            Contact us 
+            <button className=" p-2 lg:xl:p-4 bg-[#000] text-[#fff] hover:bg-[#17255A] text-sm  lg:xl:text-xl hover:text-[#fff]">
+            Contact Us 
             </button>
             </Link>
           </div>
